@@ -6,7 +6,7 @@ import java.util.EnumSet;
 
 public enum InstanceKlassFlag {
 
-    REWRITTEN(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+    REWRITTEN(0, 2, 2, 2, 2, 2, 2, 0, 0, 0, 0),
     HAS_NONSTATIC_FIELDS(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
     SHOULD_VERIFY_CLASS(2, 4, 4, 4, 4, 4, 4, 2, 2, 2, 2, 2, 2),
     IS_ANONYMOUS(3, 3, -1, -1, -1, -1, -1, -1, -1, -1, -1),

@@ -11,8 +11,14 @@ import java.io.IOException;
 
 public class Method extends Oop implements Dumpable {
 
+    protected boolean rewritten = false;
+
     public Method(long base) {
         super(base, Structs.method);
+    }
+
+    public void setRewritten(boolean rewritten) {
+        this.rewritten = rewritten;
     }
 
     public ConstMethod getConstMethod() {
@@ -32,7 +38,7 @@ public class Method extends Oop implements Dumpable {
         out.writeShort(constMethod.getSignatureIndex());
         out.writeShort(1); // Code
         byte[] code = constMethod.getCode();
-        CodeTransformer.transform(pool, code);
+        if(rewritten) CodeTransformer.transform(pool, code);
         // write code attribute
         out.writeShort(pool.getUtf8SymbolIndex("Code"));
         out.writeInt(2 + 2 + 4 + code.length + 2 + 2);

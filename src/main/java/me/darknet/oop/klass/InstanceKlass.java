@@ -58,10 +58,13 @@ public class InstanceKlass extends Klass implements Dumpable {
     }
 
     public List<Method> getMethods() {
+        boolean rewritten = isFlagSet(InstanceKlassFlag.REWRITTEN);
         if(methodList == null) {
             methodList = new ArrayList<>();
             for (int i = 0; i < this.methods.length(); i++) {
-                methodList.add(new Method(this.methods.getAddress(i)));
+                Method method = new Method(this.methods.getAddress(i));
+                method.setRewritten(rewritten);
+                methodList.add(method);
             }
         }
         return methodList;
