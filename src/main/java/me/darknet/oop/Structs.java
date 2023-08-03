@@ -1,0 +1,17 @@
+package me.darknet.oop;
+
+import me.darknet.oop.data.Struct;
+
+public class Structs {
+
+    public static final Struct oopDesc = new Struct("oopDesc");
+    public static final Struct klass = new Struct("Klass");
+    public static final Struct instanceKlass = new Struct("InstanceKlass");
+    public static final Struct method = new Struct("Method");
+    public static final Struct array = new Struct("Array");
+    public static final Struct symbol = new Struct("Symbol");
+    public static final Struct constMethod = new Struct("ConstMethod");
+    public static final Struct constantPool = new Struct("ConstantPool");
+    public static final Struct classLoaderData = new Struct("ClassLoaderData");
+
+}
