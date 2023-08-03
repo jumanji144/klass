@@ -129,7 +129,20 @@ public class ConstantPool extends Oop implements Dumpable, ConstantPoolTags {
             } else if(type == JVM_CONSTANT_Class
                     || type == JVM_CONSTANT_UnresolvedClass
                     || type == JVM_CONSTANT_UnresolvedClassInError) {
-                String symbol = getString(higherShort(getInt(i)));
+                int klassIndex = getInt(i);
+                String symbol;
+                if(klassIndex < 0 || klassIndex >= 0xFFFFFFF) {
+                    // address is cached
+                    if(type == JVM_CONSTANT_UnresolvedClass || type == JVM_CONSTANT_UnresolvedClassInError) {
+                        long address = unsafe.getAddress(index(i)) - 1;
+                        symbol = new Symbol(address).asString();
+                    } else {
+                        symbol = getKlass(i).getName();
+                    }
+                } else {
+                    // address is not cached
+                    symbol = getString(higherShort(klassIndex));
+                }
                 classSymbolMap.put(symbol, i);
             } else if(type == JVM_CONSTANT_Fieldref
                     || type == JVM_CONSTANT_Methodref
@@ -178,7 +191,11 @@ public class ConstantPool extends Oop implements Dumpable, ConstantPoolTags {
                 case JVM_CONSTANT_Class: {
                     out.writeByte(tag);
                     int klassIndex = getInt(i);
-                    short index = higherShort(klassIndex);
+                    int index;
+                    if(klassIndex < 0)
+                        index = getUtf8SymbolIndex(getKlass(i).getName());
+                    else
+                        index = higherShort(klassIndex);
                     out.writeShort(index);
                     break;
                 }
@@ -186,8 +203,13 @@ public class ConstantPool extends Oop implements Dumpable, ConstantPoolTags {
                 case JVM_CONSTANT_UnresolvedClassInError: {
                     out.writeByte(JVM_CONSTANT_Class);
                     int klassIndex = getInt(i);
-                    short index = higherShort(klassIndex);
-                    out.writeShort(index);
+                    if(klassIndex < 0 || klassIndex >= 0xFFFFFFF) {
+                        long address = unsafe.getAddress(index(i)) - 1; // ????
+                        String symbol = new Symbol(address).asString();
+                        out.writeShort(utf8SymbolMap.get(symbol));
+                    } else {
+                        out.writeShort(higherShort(klassIndex));
+                    }
                     break;
                 }
                 case JVM_CONSTANT_String: {
