@@ -12,6 +12,8 @@ public class Structs {
     public static final Struct symbol = new Struct("Symbol");
     public static final Struct constMethod = new Struct("ConstMethod");
     public static final Struct constantPool = new Struct("ConstantPool");
+    public static final Struct constantPoolCache = new Struct("ConstantPoolCache");
+    public static final Struct constantPoolCacheEntry = new Struct("ConstantPoolCacheEntry");
     public static final Struct classLoaderData = new Struct("ClassLoaderData");
 
 }

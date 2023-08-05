@@ -3,10 +3,8 @@ package me.darknet.oop.types;
 import me.darknet.oop.util.Util;
 
 import java.io.*;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.NoSuchElementException;
-import java.util.StringTokenizer;
+import java.math.BigInteger;
+import java.util.*;
 
 public class Types {
 
@@ -78,87 +76,97 @@ public class Types {
 
             String type = t.sval;
 
-            if (type.equals("field")) {
-                t.nextToken();
-                String containingType = t.sval;
-                t.nextToken();
-                String fieldName = t.sval;
+            switch (type) {
+                case "field": {
+                    t.nextToken();
+                    String containingType = t.sval;
+                    t.nextToken();
+                    String fieldName = t.sval;
 
-                // The field's Type must already be in the database -- no exceptions
-                t.nextToken();
-                String fieldType = t.sval;
-                t.nextToken();
-                boolean isStatic = Boolean.parseBoolean(t.sval);
-                t.nextToken();
-                long offset = Long.parseLong(t.sval);
-                t.nextToken();
-                String staticAddress = t.sval;
+                    // The field's Type must already be in the database -- no exceptions
+                    t.nextToken();
+                    String fieldType = t.sval;
+                    t.nextToken();
+                    boolean isStatic = Boolean.parseBoolean(t.sval);
+                    t.nextToken();
+                    long offset = Long.parseLong(t.sval);
+                    t.nextToken();
+                    String staticAddress = t.sval;
 
-                // lookup field type
-                Type typeObj = types.get(fieldType);
+                    // lookup field type
+                    Type typeObj = types.get(fieldType);
 
-                // create field object
-                Field field = new Field();
-                field.name = containingType + "::" + fieldName;
-                field.type = typeObj;
-                field.isStatic = isStatic;
-                field.offset = offset;
+                    // create field object
+                    Field field = new Field();
+                    field.name = containingType + "::" + fieldName;
+                    field.type = typeObj;
+                    field.isStatic = isStatic;
+                    field.offset = offset;
 
-                // add field to database
-                fields.put(field.name, field);
-            } else if (type.equals("type")) {
-                t.nextToken();
-                String typeName = t.sval;
-                t.nextToken();
-                String superclassName = t.sval;
-                if (superclassName.equals("null")) {
-                    superclassName = null;
+                    // add field to database
+                    fields.put(field.name, field);
+                    break;
                 }
+                case "type": {
+                    t.nextToken();
+                    String typeName = t.sval;
+                    t.nextToken();
+                    String superclassName = t.sval;
+                    if (superclassName.equals("null")) {
+                        superclassName = null;
+                    }
 
-                t.nextToken();
-                boolean isOop = Boolean.parseBoolean(t.sval);
-                t.nextToken();
-                boolean isInteger = Boolean.parseBoolean(t.sval);
-                t.nextToken();
-                boolean isUnsigned = Boolean.parseBoolean(t.sval);
-                t.nextToken();
-                long size = Long.parseLong(t.sval);
+                    t.nextToken();
+                    boolean isOop = Boolean.parseBoolean(t.sval);
+                    t.nextToken();
+                    boolean isInteger = Boolean.parseBoolean(t.sval);
+                    t.nextToken();
+                    boolean isUnsigned = Boolean.parseBoolean(t.sval);
+                    t.nextToken();
+                    long size = Long.parseLong(t.sval);
 
-                // create type object
-                Type typeObj = new Type();
-                typeObj.name = typeName;
-                typeObj.superType = superclassName == null ? null : types.get(superclassName);
-                typeObj.isOop = isOop;
-                typeObj.isInteger = isInteger;
-                typeObj.isUnsigned = isUnsigned;
-                typeObj.size = (int) size;
+                    // create type object
+                    Type typeObj = new Type();
+                    typeObj.name = typeName;
+                    typeObj.superType = superclassName == null ? null : types.get(superclassName);
+                    typeObj.isOop = isOop;
+                    typeObj.isInteger = isInteger;
+                    typeObj.isUnsigned = isUnsigned;
+                    typeObj.size = (int) size;
 
-                // add type to database
-                types.put(typeName, typeObj);
-            } else if (type.equals("constant")) {
-                t.nextToken();
-                String superClassName = t.sval;
-                t.nextToken();
-                String constantName = t.sval;
-                t.nextToken();
-                String constantType = t.sval;
-                t.nextToken();
-                long value = Long.parseLong(t.sval.substring(2), 16);
+                    // add type to database
+                    types.put(typeName, typeObj);
+                    break;
+                }
+                case "constant": {
+                    t.nextToken();
+                    String superClassName = t.sval;
+                    t.nextToken();
+                    String constantName = t.sval;
+                    t.nextToken();
+                    String constantType = t.sval;
+                    t.nextToken();
+                    long value = new BigInteger(t.sval.substring(2), 16).longValue();
 
-                // lookup constant type
-                Type typeObj = types.get(constantType);
+                    // lookup constant type
+                    Type typeObj = types.get(constantType);
 
-                // create constant object
-                Constant constant = new Constant();
-                constant.name = constantName;
-                constant.superType = types.get(superClassName);
-                constant.type = typeObj;
-                constant.value = value;
+                    // create constant object
+                    Constant constant = new Constant();
+                    constant.name = constantName;
+                    if (Objects.equals(superClassName, "null")) {
+                        superClassName = null;
+                    } else constant.superType = types.get(superClassName);
+                    constant.type = typeObj;
+                    constant.value = value;
 
-                // add constant to database
-                constants.put(superClassName + "::" + constantName, constant);
-            } else {
-                throw new InternalError("\"" + t.sval + "\"");
+                    // add constant to database
+                    String keyName = superClassName == null ? constantName : superClassName + "::" + constantName;
+                    constants.put(keyName, constant);
+                    break;
+                }
+                default:
+                    throw new InternalError("\"" + t.sval + "\"");
             }
         }
     }

@@ -2,12 +2,19 @@ package me.darknet.oop.data;
 
 import me.darknet.oop.klass.ConstantPool;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class CodeTransformer implements Opcodes, ReservedOpcodes {
 
     /**
      * Remap rewritten instructions
      */
     public static byte[] transform(ConstantPool pool, byte[] code) {
+        Map<Integer, Integer> memberRefMap = pool.getRefCache();
+        Map<Integer, Integer> stringRefMap = pool.getRefString();
+        Map<Integer, Integer> fieldRefMap = pool.getFieldRefCache();
+        Map<Integer, Integer> methodRefMap = pool.getMethodRefCache();
         for (int i = 0; i < code.length; i++) {
             int opcode = code[i] & 0xff;
             switch (opcode) {
@@ -173,6 +180,16 @@ public class CodeTransformer implements Opcodes, ReservedOpcodes {
                 case FSTORE:
                 case DSTORE:
                 case ASTORE:
+                case BIPUSH:
+                case NEWARRAY:
+                case LDC:
+                    i++;
+                    break;
+                // two operands
+                case ANEWARRAY:
+                case CHECKCAST:
+                case INSTANCEOF:
+                case NEW:
                 case GOTO:
                 case JSR:
                 case IFNULL:
@@ -191,18 +208,6 @@ public class CodeTransformer implements Opcodes, ReservedOpcodes {
                 case IF_ICMPLE:
                 case IF_ACMPEQ:
                 case IF_ACMPNE:
-                case GOTO_W:
-                case JSR_W:
-                case NEWARRAY:
-                case ANEWARRAY:
-                case CHECKCAST:
-                case INSTANCEOF:
-                case NEW:
-                case LDC:
-                    i++;
-                    break;
-                // two operands
-                case BIPUSH:
                 case SIPUSH:
                 case IINC:
                 case LDC_W:
@@ -210,20 +215,29 @@ public class CodeTransformer implements Opcodes, ReservedOpcodes {
                     i++;
                     i++;
                     break;
+                // four operands
+                case GOTO_W:
+                case JSR_W:
+                    i++;
+                    i++;
+                    i++;
+                    i++;
+                    break;
                 // call instructions
                 case INVOKEVIRTUAL:
-                case INVOKESPECIAL:
                 case INVOKESTATIC:
                 case INVOKEINTERFACE:
                 case GETFIELD:
                 case GETSTATIC:
                 case PUTFIELD:
-                case PUTSTATIC: {
+                case PUTSTATIC:
+                case INVOKESPECIAL: {
                     // rewrite
-                    short index = (short) ((code[i + 1] & 0xff) << 8 | (code[i + 2] & 0xff));
-                    short refIndex = (short) pool.getRefIndex(index);
-                    code[i + 1] = (byte) (refIndex >> 8);
-                    code[i + 2] = (byte) (refIndex & 0xff);
+                    int index = (short) ((code[i + 1] & 0xff) << 8 | (code[i + 2] & 0xff));
+                    int refIndex = memberRefMap.getOrDefault(index, index);
+                    short refIndexShort = (short) refIndex;
+                    code[i + 1] = (byte) (refIndexShort >> 8);
+                    code[i + 2] = (byte) (refIndexShort & 0xff);
                     i += 2;
                     break;
                 }
@@ -266,19 +280,87 @@ public class CodeTransformer implements Opcodes, ReservedOpcodes {
                 }
                 // multianewarray
                 case MULTIANEWARRAY: {
-                    // rewrite
-                    short index = (short) ((code[i + 1] & 0xff) << 8 | (code[i + 2] & 0xff));
-                    short refIndex = (short) pool.getRefIndex(index);
-                    code[i + 1] = (byte) (refIndex >> 8);
-                    code[i + 2] = (byte) (refIndex & 0xff);
-                    // dimensions
                     i += 3;
+                    break;
+                }
+                case fast_aload_0: {
+                    code[i] = ALOAD_0;
+                    break;
+                }
+                case fast_iaccess_0: {
+                    code[i] = ILOAD_0;
+                    int index = (short) ((code[i + 1] & 0xff) << 8 | (code[i + 2] & 0xff));
+                    code[i + 1] = (byte) GETFIELD;
+                    int i2 = fieldRefMap.getOrDefault(index, index);
+                    code[i + 2] = (byte) i2;
+                    break;
+                }
+                case fast_aaccess_0: {
+                    code[i] = ALOAD_0;
+                    int index = (short) ((code[i + 1] & 0xff) << 8 | (code[i + 2] & 0xff));
+                    code[i + 1] = (byte) GETFIELD;
+                    int i2 = fieldRefMap.getOrDefault(index, index);
+                    code[i + 2] = (byte) i2;
+                    break;
+                }
+                case fast_iload: {
+                    code[i] = ILOAD;
+                    i++;
+                    break;
+                }
+                case fast_iload2: {
+                    code[i] = ILOAD;
+                    code[i + 2] = ILOAD;
+                    i += 3;
+                    break;
+                }
+                case fast_icaload: {
+                    code[i] = ILOAD;
+                    code[i + 2] = CALOAD;
                     break;
                 }
                 case fast_aldc: {
                     code[i] = LDC;
-                    code[i + 1] = (byte) pool.getStringIndex(code[i + 1]);
+                    int rewritten = 0;
+                    int index = code[i + 1];
+                    rewritten = stringRefMap.getOrDefault(index, index);
+                    code[i + 1] = (byte) rewritten;
                     i++;
+                    break;
+                }
+                case fast_aldc_w: {
+                    code[i] = LDC_W;
+                    code[i + 1] = (byte) (pool.getStringIndex(code[i + 1]) >> 8);
+                    code[i + 2] = (byte) (pool.getStringIndex(code[i + 1]) & 0xff);
+                    i += 2;
+                    break;
+                }
+                case fast_agetfield:
+                case fast_bgetfield:
+                case fast_cgetfield:
+                case fast_dgetfield:
+                case fast_fgetfield:
+                case fast_igetfield:
+                case fast_lgetfield: {
+                    code[i] = (byte) GETFIELD;
+                    int index = (short) ((code[i + 1] & 0xff) << 8 | (code[i + 2] & 0xff));
+                    int i2 = fieldRefMap.getOrDefault(index, index);
+                    code[i + 1] = (byte) (i2 >> 8);
+                    code[i + 2] = (byte) (i2 & 0xff);
+                    break;
+                }
+                case fast_aputfield:
+                case fast_bputfield:
+                case fast_cputfield:
+                case fast_dputfield:
+                case fast_fputfield:
+                case fast_iputfield:
+                case fast_lputfield: {
+                    code[i] = (byte) PUTFIELD;
+                    int index = (short) ((code[i + 1] & 0xff) << 8 | (code[i + 2] & 0xff));
+                    int i2 = fieldRefMap.getOrDefault(index, index);
+                    code[i + 1] = (byte) (i2 >> 8);
+                    code[i + 2] = (byte) (i2 & 0xff);
                     break;
                 }
             }

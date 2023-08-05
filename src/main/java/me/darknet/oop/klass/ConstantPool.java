@@ -8,6 +8,7 @@ import me.darknet.oop.types.Types;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,6 +20,8 @@ public class ConstantPool extends Oop implements Dumpable, ConstantPoolTags {
     protected Map<String, Integer> utf8SymbolMap;
     protected Map<String, Integer> classSymbolMap;
     protected Map<Integer, Integer> refCache;
+    protected Map<Integer, Integer> fieldRefCache;
+    protected Map<Integer, Integer> methodRefCache;
     protected Map<Integer, Integer> refString;
 
     public ConstantPool(long base) {
@@ -67,7 +70,7 @@ public class ConstantPool extends Oop implements Dumpable, ConstantPoolTags {
 
     public Klass getKlass(int index) {
         long address = unsafe.getAddress(index(index));
-        return new Klass(address);
+        return Klass.of(address);
     }
 
     public int getInt(int index) {
@@ -102,12 +105,40 @@ public class ConstantPool extends Oop implements Dumpable, ConstantPoolTags {
         return classSymbolMap.get(symbol);
     }
 
+    public ConstantPoolCache getCache() {
+        return new ConstantPoolCache(struct.getAddress(base, "_cache"));
+    }
+
     public int getRefIndex(int index) {
         return refCache.get(index);
     }
 
     public int getStringIndex(int index) {
         return refString.get(index);
+    }
+
+    public Map<String, Integer> getUtf8SymbolMap() {
+        return utf8SymbolMap;
+    }
+
+    public Map<String, Integer> getClassSymbolMap() {
+        return classSymbolMap;
+    }
+
+    public Map<Integer, Integer> getRefCache() {
+        return refCache;
+    }
+
+    public Map<Integer, Integer> getRefString() {
+        return refString;
+    }
+
+    public Map<Integer, Integer> getFieldRefCache() {
+        return fieldRefCache;
+    }
+
+    public Map<Integer, Integer> getMethodRefCache() {
+        return methodRefCache;
     }
 
     @Override
@@ -119,41 +150,72 @@ public class ConstantPool extends Oop implements Dumpable, ConstantPoolTags {
         classSymbolMap = new HashMap<>();
         refCache = new HashMap<>();
         refString = new HashMap<>();
+        fieldRefCache = new HashMap<>();
+        methodRefCache = new HashMap<>();
         int refCount = 0;
+        int fieldRefCount = 1;
+        int methodRefCount = 1;
         int stringCount = 0;
         for (int i = 1; i < getLength(); i++) {
             byte type = getTag(i);
-            if(type == JVM_CONSTANT_Utf8) {
-                String symbol = getString(i);
-                utf8SymbolMap.put(symbol, i);
-            } else if(type == JVM_CONSTANT_Class
-                    || type == JVM_CONSTANT_UnresolvedClass
-                    || type == JVM_CONSTANT_UnresolvedClassInError) {
-                int klassIndex = getInt(i);
-                String symbol;
-                if(klassIndex < 0 || klassIndex >= 0xFFFFFFF) {
-                    // address is cached
-                    if(type == JVM_CONSTANT_UnresolvedClass || type == JVM_CONSTANT_UnresolvedClassInError) {
-                        long address = unsafe.getAddress(index(i)) - 1;
-                        symbol = new Symbol(address).asString();
-                    } else {
-                        symbol = getKlass(i).getName();
-                    }
-                } else {
-                    // address is not cached
-                    symbol = getString(higherShort(klassIndex));
+            switch (type) {
+                case JVM_CONSTANT_Utf8: {
+                    String symbol = getString(i);
+                    utf8SymbolMap.put(symbol, i);
+                    break;
                 }
-                classSymbolMap.put(symbol, i);
-            } else if(type == JVM_CONSTANT_Fieldref
-                    || type == JVM_CONSTANT_Methodref
-                    || type == JVM_CONSTANT_InterfaceMethodref) {
-                refCache.put(refCount++ * 256, i);
-            } else if(type == JVM_CONSTANT_String) {
-                refString.put(stringCount++, i);
-            } else if(type == JVM_CONSTANT_Long || type == JVM_CONSTANT_Double) {
-                i++;
+                case JVM_CONSTANT_Class:
+                case JVM_CONSTANT_UnresolvedClass:
+                case JVM_CONSTANT_UnresolvedClassInError: {
+                    int klassIndex = getInt(i);
+                    String symbol;
+                    if (klassIndex < 0 || klassIndex >= 0xFFFFFFF) {
+                        // address is cached
+                        if (type == JVM_CONSTANT_UnresolvedClass || type == JVM_CONSTANT_UnresolvedClassInError) {
+                            long address = unsafe.getAddress(index(i)) - 1;
+                            symbol = new Symbol(address).asString();
+                        } else {
+                            symbol = getKlass(i).getName();
+                        }
+                    } else {
+                        // address is not cached
+                        symbol = getString(higherShort(klassIndex));
+                    }
+                    classSymbolMap.put(symbol, i);
+                    break;
+                }
+                case JVM_CONSTANT_Fieldref:
+                case JVM_CONSTANT_Methodref:
+                case JVM_CONSTANT_InterfaceMethodref: {
+                    switch (type) {
+                        case JVM_CONSTANT_Fieldref:
+                            fieldRefCache.put(fieldRefCount++ * 256, i);
+                            break;
+                        case JVM_CONSTANT_Methodref:
+                            methodRefCache.put(methodRefCount++ * 256, i);
+                            break;
+                    }
+                    refCache.put(refCount++ * 256, i);
+                    break;
+                }
+                case JVM_CONSTANT_String:
+                case JVM_CONSTANT_MethodHandle:
+                case JVM_CONSTANT_MethodType:
+                    refString.put(stringCount++, i);
+                    break;
+                case JVM_CONSTANT_Long:
+                case JVM_CONSTANT_Double:
+                    i++;
+                    break;
             }
         }
+
+        System.out.println("utf8SymbolMap: " + Arrays.toString(utf8SymbolMap.entrySet().toArray()));
+        System.out.println("classSymbolMap: " + Arrays.toString(classSymbolMap.entrySet().toArray()));
+        System.out.println("refCache: " + Arrays.toString(refCache.entrySet().toArray()));
+        System.out.println("refString: " + Arrays.toString(refString.entrySet().toArray()));
+        System.out.println("fieldRefCache: " + Arrays.toString(fieldRefCache.entrySet().toArray()));
+        System.out.println("methodRefCache: " + Arrays.toString(methodRefCache.entrySet().toArray()));
 
         // write constant pool
         for (int i = 1; i < getLength(); i++) {

@@ -25,12 +25,12 @@ public class Symbol extends DataOop<Byte> {
 
     @Override
     public Byte get(int index) {
-        return unsafe.getByte(dataBase + (long) index * unsafe.addressSize());
+        return unsafe.getByte(dataBase + (long) index);
     }
 
     @Override
     public void set(int index, Byte value) {
-        unsafe.putByte(dataBase + (long) index * unsafe.addressSize(), value);
+        unsafe.putByte(dataBase + (long) index, value);
     }
 
     public String asString() {
