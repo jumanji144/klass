@@ -23,7 +23,7 @@ public final class Venuzdonoa {
         try {
             InnerClassLoader cl = new InnerClassLoader();
             // Step 1: load java.dll into the class loader
-            // Loading it into system class loader wont work,
+            // Loading it into system class loader won't work,
             // see ClassLoader::findNative
             ClassWriter writer = new ClassWriter(0);
             writer.visit(V1_6, ACC_PUBLIC, "dev/xdark/venuzdonoa/LibraryLoader", null, "java/lang/Object", null);
