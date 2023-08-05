@@ -16,12 +16,15 @@ import java.util.List;
 public class InstanceKlass extends Klass implements Dumpable {
 
     private final Array methods;
+    private final Array fields;
     private List<Method> methodList;
+    private List<Field> fieldList;
     private final ConstantPool constantPool;
 
     public InstanceKlass(long base) {
         super(base, Structs.instanceKlass);
         this.methods = new Array(struct.getAddress(base, "_methods"), Types.getType("Method*"));
+        this.fields = new Array(struct.getAddress(base, "_fields"), Types.getType("u2"));
         this.constantPool = new ConstantPool(struct.getAddress(base, "_constants"));
     }
 
@@ -31,11 +34,6 @@ public class InstanceKlass extends Klass implements Dumpable {
 
     public static InstanceKlass of(long base) {
         return OopCache.getOrPut(base, InstanceKlass::new);
-    }
-
-    public static InstanceKlass fromOop(long oop) {
-        long address = oop + Types.getOffset("oopDesc::_metadata._compressed_klass");
-        return new InstanceKlass(address);
     }
 
     public static InstanceKlass cast(Klass klass) {
@@ -71,6 +69,39 @@ public class InstanceKlass extends Klass implements Dumpable {
             }
         }
         return methodList;
+    }
+
+    public List<Field> getFields() {
+        if(fieldList == null) {
+            fieldList = new ArrayList<>();
+            // fields are stored in tuples of 6 u2 values
+            int genericSignatureCount = 0;
+            int fieldCount = this.fields.length() / 6;
+            for (int i = 0; i < this.fields.length(); i += 6) {
+                short accessFlags = this.fields.getShort(i);
+
+                if((accessFlags & 0x00000800) != 0) {
+                    genericSignatureCount++;
+                    fieldCount--;
+                }
+            }
+
+            int genericSignatureIndex = fieldCount * 6;
+
+            for (int i = 0; i < fieldCount; i++) {
+                short accessFlags = this.fields.getShort(i * 6);
+                short nameIndex = this.fields.getShort(i * 6 + 1);
+                short signatureIndex = this.fields.getShort(i * 6 + 2);
+                short initialValIndex = this.fields.getShort(i * 6 + 3);
+                short lowOffset = this.fields.getShort(i * 6 + 4);
+                short highOffset = this.fields.getShort(i * 6 + 5);
+
+                Field field = new Field(constantPool, accessFlags, nameIndex, signatureIndex, initialValIndex,
+                        lowOffset, highOffset);
+                fieldList.add(field);
+            }
+        }
+        return fieldList;
     }
 
     public Method findMethod(String name, String signature) {
