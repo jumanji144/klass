@@ -58,7 +58,7 @@ public class ConstantPool extends Oop implements Dumpable, ConstantPoolTags {
 
     public Symbol getSymbol(int index) {
         long address = unsafe.getAddress(index(index));
-        return new Symbol(address);
+        return Symbol.of(address);
     }
 
     public String getString(int index) {

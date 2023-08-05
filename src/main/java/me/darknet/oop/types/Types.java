@@ -12,6 +12,7 @@ public class Types {
 
     private static final Map<String, Type> types = new HashMap<>();
     private static final Map<String, Field> fields = new HashMap<>();
+    private static final Map<String, Constant> constants = new HashMap<>();
 
     public static Type getType(String name) {
         return types.get(name);
@@ -34,6 +35,17 @@ public class Types {
         if(field == null)
             return -1L;
         return field.offset;
+    }
+
+    public static Constant getConstant(String name) {
+        return constants.get(name);
+    }
+
+    public static long getValue(String name) {
+        Constant constant = getConstant(name);
+        if(constant == null)
+            return -1L;
+        return constant.value;
     }
 
     public static void initialize() throws IOException {
@@ -123,9 +135,39 @@ public class Types {
 
                 // add type to database
                 types.put(typeName, typeObj);
+            } else if (type.equals("constant")) {
+                t.nextToken();
+                String superClassName = t.sval;
+                t.nextToken();
+                String constantName = t.sval;
+                t.nextToken();
+                String constantType = t.sval;
+                t.nextToken();
+                long value = Long.parseLong(t.sval.substring(2), 16);
+
+                // lookup constant type
+                Type typeObj = types.get(constantType);
+
+                // create constant object
+                Constant constant = new Constant();
+                constant.name = constantName;
+                constant.superType = types.get(superClassName);
+                constant.type = typeObj;
+                constant.value = value;
+
+                // add constant to database
+                constants.put(superClassName + "::" + constantName, constant);
             } else {
                 throw new InternalError("\"" + t.sval + "\"");
             }
+        }
+    }
+
+    static {
+        try {
+            initialize();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 }

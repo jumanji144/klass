@@ -1,6 +1,7 @@
 package me.darknet.oop.klass;
 
 import me.darknet.oop.DataOop;
+import me.darknet.oop.OopCache;
 import me.darknet.oop.Structs;
 import me.darknet.oop.data.Struct;
 
@@ -9,8 +10,12 @@ import java.io.DataInputStream;
 
 public class Symbol extends DataOop<Byte> {
 
-    public Symbol(long base) {
+    Symbol(long base) {
         super(base, base + Structs.symbol.getOffset("_body"), Structs.symbol);
+    }
+
+    public static Symbol of(long base) {
+        return OopCache.getOrPut(base, Symbol::new);
     }
 
     @Override

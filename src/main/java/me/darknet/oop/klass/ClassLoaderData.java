@@ -2,7 +2,7 @@ package me.darknet.oop.klass;
 
 import me.darknet.oop.Oop;
 import me.darknet.oop.Structs;
-import me.darknet.oop.data.Struct;
+import me.darknet.oop.jvm.NativeOopHandle;
 
 public class ClassLoaderData extends Oop {
 
@@ -15,11 +15,11 @@ public class ClassLoaderData extends Oop {
     }
 
     public Klass getKlasses() {
-        return new Klass(struct.getAddress(base, "_klasses"));
+        return Klass.of(struct.getAddress(base, "_klasses"));
     }
 
-    public long getClassLoader() {
-        return struct.getAddress(base, "_class_loader");
+    public NativeOopHandle getClassLoader() {
+        return new NativeOopHandle(struct.getAddress(base, "_class_loader"));
     }
 
 }

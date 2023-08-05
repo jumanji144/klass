@@ -2,8 +2,11 @@ package me.darknet.oop.data;
 
 import me.darknet.oop.klass.ConstantPool;
 
-public class CodeTransformer implements Opcodes, ReservedOpcodes{
+public class CodeTransformer implements Opcodes, ReservedOpcodes {
 
+    /**
+     * Remap rewritten instructions
+     */
     public static byte[] transform(ConstantPool pool, byte[] code) {
         for (int i = 0; i < code.length; i++) {
             int opcode = code[i] & 0xff;
@@ -203,6 +206,7 @@ public class CodeTransformer implements Opcodes, ReservedOpcodes{
                 case SIPUSH:
                 case IINC:
                 case LDC_W:
+                case LDC2_W:
                     i++;
                     i++;
                     break;
@@ -226,7 +230,50 @@ public class CodeTransformer implements Opcodes, ReservedOpcodes{
                 // lookupswitch
                 case LOOKUPSWITCH: {
                     // padding
-
+                    int padding = (i + 1) % 4;
+                    if (padding != 0) {
+                        padding = 4 - padding;
+                    }
+                    i += padding;
+                    // default
+                    i+=4;
+                    // npairs
+                    int npairs = (code[i + 1] & 0xff) << 24 | (code[i + 2] & 0xff) << 16 | (code[i + 3] & 0xff) << 8 | (code[i + 4] & 0xff);
+                    i += 4;
+                    // pairs
+                    i += npairs * 8;
+                    break;
+                }
+                // tableswitch
+                case TABLESWITCH: {
+                    // padding
+                    int padding = (i + 1) % 4;
+                    if (padding != 0) {
+                        padding = 4 - padding;
+                    }
+                    i += padding;
+                    // default
+                    i+=4;
+                    // low
+                    i+=4;
+                    // high
+                    i+=4;
+                    // offsets
+                    int high = (code[i + 1] & 0xff) << 24 | (code[i + 2] & 0xff) << 16 | (code[i + 3] & 0xff) << 8 | (code[i + 4] & 0xff);
+                    i += 4;
+                    i += (high + 1) * 4;
+                    break;
+                }
+                // multianewarray
+                case MULTIANEWARRAY: {
+                    // rewrite
+                    short index = (short) ((code[i + 1] & 0xff) << 8 | (code[i + 2] & 0xff));
+                    short refIndex = (short) pool.getRefIndex(index);
+                    code[i + 1] = (byte) (refIndex >> 8);
+                    code[i + 2] = (byte) (refIndex & 0xff);
+                    // dimensions
+                    i += 3;
+                    break;
                 }
                 case fast_aldc: {
                     code[i] = LDC;

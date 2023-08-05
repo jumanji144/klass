@@ -11,8 +11,12 @@ public class Unsafe {
     private static final MethodHandle getLong, getInt, getByte, getShort, getChar, getFloat, getDouble,
                                 putLong, putInt, putByte, putShort, putChar, putFloat, putDouble,
                                 getAddress, putAddress,
-                                getLongObject, getIntObject;
-    private static final MethodHandle arrayBaseOffset, arrayIndexScale;
+                                getLongObject, getIntObject, getByteObject, getShortObject, getCharObject,
+                                putLongObject, putIntObject, putByteObject, putShortObject, putCharObject,
+                                getFloatObject, getDoubleObject, putFloatObject, putDoubleObject,
+
+                                getObject;
+    private static final MethodHandle arrayBaseOffset, arrayIndexScale, staticFieldBase, staticFieldOffset;
     private static final MethodHandle copyMemory, copyMemoryObject;
     private static final MethodHandle addressSize;
 
@@ -67,6 +71,14 @@ public class Unsafe {
     public double getDouble(long address) {
         try {
             return (double) getDouble.invoke(theUnsafe, address);
+        } catch (Throwable throwable) {
+            throw new RuntimeException(throwable);
+        }
+    }
+
+    public Object getObject(Object object, long offset) {
+        try {
+            return getObject.invoke(theUnsafe, object, offset);
         } catch (Throwable throwable) {
             throw new RuntimeException(throwable);
         }
@@ -160,6 +172,102 @@ public class Unsafe {
         }
     }
 
+    public byte getByte(Object object, long offset) {
+        try {
+            return (byte) getByteObject.invoke(theUnsafe, object, offset);
+        } catch (Throwable throwable) {
+            throw new RuntimeException(throwable);
+        }
+    }
+
+    public short getShort(Object object, long offset) {
+        try {
+            return (short) getShortObject.invoke(theUnsafe, object, offset);
+        } catch (Throwable throwable) {
+            throw new RuntimeException(throwable);
+        }
+    }
+
+    public char getChar(Object object, long offset) {
+        try {
+            return (char) getCharObject.invoke(theUnsafe, object, offset);
+        } catch (Throwable throwable) {
+            throw new RuntimeException(throwable);
+        }
+    }
+
+    public float getFloat(Object object, long offset) {
+        try {
+            return (float) getFloatObject.invoke(theUnsafe, object, offset);
+        } catch (Throwable throwable) {
+            throw new RuntimeException(throwable);
+        }
+    }
+
+    public double getDouble(Object object, long offset) {
+        try {
+            return (double) getDoubleObject.invoke(theUnsafe, object, offset);
+        } catch (Throwable throwable) {
+            throw new RuntimeException(throwable);
+        }
+    }
+
+    public void putLong(Object object, long offset, long value) {
+        try {
+            putLongObject.invoke(theUnsafe, object, offset, value);
+        } catch (Throwable throwable) {
+            throw new RuntimeException(throwable);
+        }
+    }
+
+    public void putInt(Object object, long offset, int value) {
+        try {
+            putIntObject.invoke(theUnsafe, object, offset, value);
+        } catch (Throwable throwable) {
+            throw new RuntimeException(throwable);
+        }
+    }
+
+    public void putByte(Object object, long offset, byte value) {
+        try {
+            putByteObject.invoke(theUnsafe, object, offset, value);
+        } catch (Throwable throwable) {
+            throw new RuntimeException(throwable);
+        }
+    }
+
+    public void putShort(Object object, long offset, short value) {
+        try {
+            putShortObject.invoke(theUnsafe, object, offset, value);
+        } catch (Throwable throwable) {
+            throw new RuntimeException(throwable);
+        }
+    }
+
+    public void putChar(Object object, long offset, char value) {
+        try {
+            putCharObject.invoke(theUnsafe, object, offset, value);
+        } catch (Throwable throwable) {
+            throw new RuntimeException(throwable);
+        }
+    }
+
+    public void putFloat(Object object, long offset, float value) {
+        try {
+            putFloatObject.invoke(theUnsafe, object, offset, value);
+        } catch (Throwable throwable) {
+            throw new RuntimeException(throwable);
+        }
+    }
+
+    public void putDouble(Object object, long offset, double value) {
+        try {
+            putDoubleObject.invoke(theUnsafe, object, offset, value);
+        } catch (Throwable throwable) {
+            throw new RuntimeException(throwable);
+        }
+    }
+
     public long arrayBaseOffset(Class<?> clazz) {
         try {
             return (long) arrayBaseOffset.invoke(theUnsafe, clazz);
@@ -171,6 +279,22 @@ public class Unsafe {
     public long arrayIndexScale(Class<?> clazz) {
         try {
             return (long) arrayIndexScale.invoke(theUnsafe, clazz);
+        } catch (Throwable throwable) {
+            throw new RuntimeException(throwable);
+        }
+    }
+
+    public long staticFieldOffset(Field field) {
+        try {
+            return (long) staticFieldOffset.invoke(theUnsafe, field);
+        } catch (Throwable throwable) {
+            throw new RuntimeException(throwable);
+        }
+    }
+
+    public Object staticFieldBase(Field field) {
+        try {
+            return staticFieldBase.invoke(theUnsafe, field);
         } catch (Throwable throwable) {
             throw new RuntimeException(throwable);
         }
@@ -231,6 +355,19 @@ public class Unsafe {
 
             getLongObject = lookup.unreflect(unsafeClass.getMethod("getLong", Object.class, long.class));
             getIntObject = lookup.unreflect(unsafeClass.getMethod("getInt", Object.class, long.class));
+            getByteObject = lookup.unreflect(unsafeClass.getMethod("getByte", Object.class, long.class));
+            getShortObject = lookup.unreflect(unsafeClass.getMethod("getShort", Object.class, long.class));
+            getCharObject = lookup.unreflect(unsafeClass.getMethod("getChar", Object.class, long.class));
+            getFloatObject = lookup.unreflect(unsafeClass.getMethod("getFloat", Object.class, long.class));
+            getDoubleObject = lookup.unreflect(unsafeClass.getMethod("getDouble", Object.class, long.class));
+
+            putLongObject = lookup.unreflect(unsafeClass.getMethod("putLong", Object.class, long.class, long.class));
+            putIntObject = lookup.unreflect(unsafeClass.getMethod("putInt", Object.class, long.class, int.class));
+            putByteObject = lookup.unreflect(unsafeClass.getMethod("putByte", Object.class, long.class, byte.class));
+            putShortObject = lookup.unreflect(unsafeClass.getMethod("putShort", Object.class, long.class, short.class));
+            putCharObject = lookup.unreflect(unsafeClass.getMethod("putChar", Object.class, long.class, char.class));
+            putFloatObject = lookup.unreflect(unsafeClass.getMethod("putFloat", Object.class, long.class, float.class));
+            putDoubleObject = lookup.unreflect(unsafeClass.getMethod("putDouble", Object.class, long.class, double.class));
 
             arrayBaseOffset = lookup.unreflect(unsafeClass.getMethod("arrayBaseOffset", Class.class));
             arrayIndexScale = lookup.unreflect(unsafeClass.getMethod("arrayIndexScale", Class.class));
@@ -239,6 +376,11 @@ public class Unsafe {
             copyMemory = lookup.unreflect(unsafeClass.getMethod("copyMemory", long.class, long.class, long.class));
 
             addressSize = lookup.unreflect(unsafeClass.getMethod("addressSize"));
+
+            staticFieldBase = lookup.unreflect(unsafeClass.getMethod("staticFieldBase", Field.class));
+            staticFieldOffset = lookup.unreflect(unsafeClass.getMethod("staticFieldOffset", Field.class));
+
+            getObject = lookup.unreflect(unsafeClass.getMethod("getObject", Object.class, long.class));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

@@ -1,7 +1,10 @@
 package me.darknet.oop;
 
+import me.darknet.oop.klass.Symbol;
+
 import java.util.HashMap;
 import java.util.Map;
+import java.util.function.Function;
 
 public class OopCache {
 
@@ -16,4 +19,8 @@ public class OopCache {
         return (T) cache.get(base);
     }
 
+    public static <T extends Oop> T getOrPut(long base, Function<Long, T> function) {
+        cache.putIfAbsent(base, function.apply(base));
+        return get(base);
+    }
 }

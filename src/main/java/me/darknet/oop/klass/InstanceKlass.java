@@ -1,11 +1,11 @@
 package me.darknet.oop.klass;
 
-import me.darknet.oop.Offsets;
+import me.darknet.oop.OopCache;
 import me.darknet.oop.Structs;
 import me.darknet.oop.Dumpable;
 import me.darknet.oop.jvm.Array;
+import me.darknet.oop.jvm.ProxyOopHandle;
 import me.darknet.oop.types.Types;
-import me.darknet.oop.util.OopUtil;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -17,11 +17,7 @@ public class InstanceKlass extends Klass implements Dumpable {
 
     private final Array methods;
     private List<Method> methodList;
-    private ConstantPool constantPool;
-
-    public InstanceKlass(Class<?> clazz) {
-        this(unsafe.getLong(clazz, Offsets._klass_offset));
-    }
+    private final ConstantPool constantPool;
 
     public InstanceKlass(long base) {
         super(base, Structs.instanceKlass);
@@ -29,10 +25,17 @@ public class InstanceKlass extends Klass implements Dumpable {
         this.constantPool = new ConstantPool(struct.getAddress(base, "_constants"));
     }
 
+    public static InstanceKlass of(Object oop) {
+        return (InstanceKlass) new ProxyOopHandle(oop).getKlass();
+    }
+
+    public static InstanceKlass of(long base) {
+        return OopCache.getOrPut(base, InstanceKlass::new);
+    }
+
     public static InstanceKlass fromOop(long oop) {
         long address = oop + Types.getOffset("oopDesc::_metadata._compressed_klass");
-        long decompAddress = OopUtil.readCompKlassAddress(address);
-        return new InstanceKlass(decompAddress);
+        return new InstanceKlass(address);
     }
 
     public static InstanceKlass cast(Klass klass) {

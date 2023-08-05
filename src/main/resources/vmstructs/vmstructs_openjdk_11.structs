@@ -1531,3 +1531,8 @@ field BlockOffsetArrayNonContigSpace _unallocated_block HeapWord* false 48 0x0
 field vframeArrayElement _frame frame false 0 0x0
 field vframeArrayElement _bci int false 48 0x0
 field vframeArrayElement _method Method* false 56 0x0
+constant Universe _narrow_klass._shift int 0x0
+constant Universe _narrow_klass._base intptr_t 0x800000000
+constant Universe _narrow_oop._shift int 0x3
+constant Universe _narrow_oop._base intptr_t 0x0
+constant java_lang_Class _klass_offset int 0x50
