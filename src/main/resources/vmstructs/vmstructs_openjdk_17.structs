@@ -1,0 +1,2110 @@
+type JNIHandleBlock null false false false 312
+type ciInstanceKlass* null false false false 8
+type Abstract_VM_Version null false false false 1
+type Node null false false false 56
+type VectorNode Node false false false 64
+type VectorLoadMaskNode VectorNode false false false 64
+type JVMState null false false false 64
+type SubVFNode VectorNode false false false 64
+type StackObj null false false false -1
+type URShiftVINode VectorNode false false false 64
+type JavaThread::AsyncExceptionCondition null false true false 4
+type GrowableArray<InlineTree*> null false false false 24
+type AbstractLockNode null false false false -1
+type UnlockNode AbstractLockNode false false false 136
+type MulVSNode VectorNode false false false 64
+type JvmtiExport null false false false 1
+type Generation::StatRecord null false false false 32
+type CardTable*const null false false false 8
+type SubNode Node false false false 56
+type SubFPNode SubNode false false false 56
+type SubDNode SubFPNode false false false 56
+type ZAttachedArrayForForwarding null false false false 8
+type MultiNode Node false false false 56
+type SafePointNode MultiNode false false false 88
+type CallNode SafePointNode false false false 128
+type CallNativeNode CallNode false false false 184
+type AddNode Node false false false 56
+type AddDNode AddNode false false false 56
+type MulVDNode VectorNode false false false 64
+type Thread* null false false false 8
+type MoveL2DNode Node false false false 56
+type ssize_t null false true false 8
+type MergeMemNode Node false false false 56
+type LoadStoreConditionalNode null false false false -1
+type CompareAndSwapNode LoadStoreConditionalNode false false false 80
+type CompareAndSwapNNode CompareAndSwapNode false false false 80
+type LockNode AbstractLockNode false false false 136
+type typeArrayOop null true false false 8
+type CheckedExceptionElement null false false false 2
+type MethodParametersElement null false false false 4
+type MemNode Node false false false 56
+type LoadNode MemNode false false false 72
+type LoadINode LoadNode false false false 72
+type ciBaseObject null false false false 16
+type ciMetadata ciBaseObject false false false 24
+type ciType ciMetadata false false false 32
+type ciKlass ciType false false false 48
+type ciArrayKlass ciKlass false false false 48
+type ciObjArrayKlass ciArrayKlass false false false 64
+type CodeBlob null false false false 104
+type RuntimeBlob CodeBlob false false false 104
+type SingletonBlob RuntimeBlob false false false 104
+type SafepointBlob SingletonBlob false false false 104
+type jbyte** null false false false 8
+type MachNode Node false false false 72
+type MachJumpNode MachNode false false false 120
+type address null false false false 8
+type ReductionNode Node false false false 64
+type MulReductionVLNode ReductionNode false false false 64
+type TypeNode Node false false false 64
+type CMoveNode TypeNode false false false 64
+type CMoveNNode CMoveNode false false false 64
+type CmpNode SubNode false false false 56
+type OverflowNode CmpNode false false false 56
+type OverflowINode OverflowNode false false false 56
+type OverflowSubINode OverflowINode false false false 56
+type StartNode MultiNode false false false 64
+type StartOSRNode StartNode false false false 64
+type ClassLoaderDataGraph null false false false 1
+type AbsNode Node false false false 56
+type AbsINode AbsNode false false false 56
+type ZHeap null false false false 4032
+type CollectedHeap* null false false false 8
+type ciField null false false false 80
+type JNIHandleBlock* null false false false 8
+type PerfMemory null false false false 1
+type AddVDNode VectorNode false false false 64
+type PackNode VectorNode false false false 64
+type PackLNode PackNode false false false 64
+type CompressedWriteStream null false false false -1
+type LoadPNode LoadNode false false false 72
+type LoadKlassNode LoadPNode false false false 72
+type RegionNode Node false false false 56
+type LoopNode RegionNode false false false 72
+type PcDescCache null false false false 32
+type CodeBlob* null false false false 8
+type FastLockNode CmpNode false false false 80
+type Pack2DNode PackNode false false false 64
+type nmethod* null false false false 8
+type LoadStoreNode Node false false false 80
+type Location::Type null false true false 4
+type "unsigned char*" null false false false 8
+type VectorUnboxNode VectorNode false false false 72
+type NodeHash StackObj false false false 40
+type VectorMaskCmpNode VectorNode false false false 72
+type ciObjectFactory null false false false 656
+type OptoRegPair* null false false false 8
+type AddVSNode VectorNode false false false 64
+type CHeapObj<mtInternal> null false false false 4
+type FileMapInfo CHeapObj<mtInternal> false false false 40
+type PerfDataEntry null false false false 20
+type GrowableArray<CodeHeap*> null false false false 24
+type LoadVectorNode LoadNode false false false 72
+type LoadVectorGatherNode LoadVectorNode false false false 72
+type BlockOffsetTable null false false false 24
+type BlockOffsetArray BlockOffsetTable false false false 48
+type BlockOffsetArrayContigSpace BlockOffsetArray false false false 64
+type ObjectSynchronizer null false false false 1
+type Mutex* null false false false 8
+type ConNode TypeNode false false false 64
+type ConNNode ConNode false false false 64
+type ObjArrayKlass* null false false false 8
+type SystemDictionary null false false false 1
+type MaxNode AddNode false false false 56
+type MinFNode MaxNode false false false 56
+type SafePointNode* null false false false 8
+type CmpPNode CmpNode false false false 56
+type CallRuntimeNode CallNode false false false 128
+type CallLeafNode CallRuntimeNode false false false 128
+type CallLeafNoFPNode CallLeafNode false false false 128
+type ConvD2FNode Node false false false 56
+type XorVNode VectorNode false false false 64
+type AbsVLNode VectorNode false false false 64
+type jchar null false false false 2
+type ContiguousSpace* null false false false 8
+type VectorCastB2XNode VectorNode false false false 64
+type ciInstanceKlass ciKlass false false false 144
+type CompressedWriteStream* null false false false 8
+type Klass* null false false false 8
+type GrowableArrayBase null false false false 8
+type MachIdealNode MachNode false false false 72
+type MachNullCheckNode MachIdealNode false false false 80
+type RuntimeStub RuntimeBlob false false false 104
+type StoreNode MemNode false false false 64
+type StoreLNode StoreNode false false false 64
+type HeapBlock::Header null false false false 16
+type DeoptimizationBlob SingletonBlob false false false 128
+type VectorInsertNode VectorNode false false false 64
+type ExtractNode Node false false false 56
+type ExtractSNode ExtractNode false false false 56
+type Threads null false false false 1
+type ModFNode Node false false false 56
+type NegVINode VectorNode false false false 64
+type CollectedHeap null false false false 96
+type GenCollectedHeap CollectedHeap false false false 192
+type intptr_t* null false false false 8
+type SubVDNode VectorNode false false false 64
+type OopStorage* null false false false 8
+type Annotations null false false false -1
+type BasicHashtableEntry<mtInternal> null false false false 16
+type ModINode Node false false false 56
+type GenCollectedHeap* null false false false 8
+type CheckCastPPNode TypeNode false false false 72
+type PSYoungGen null false false false 104
+type SATBMarkQueue null false false false 32
+type BufferBlob RuntimeBlob false false false 104
+type AdapterBlob BufferBlob false false false 104
+type MemRegion null false false false 16
+type URShiftINode Node false false false 56
+type Arena null false false false 48
+type MemBarNode MultiNode false false false 72
+type StoreFenceNode MemBarNode false false false 72
+type "volatile unsigned char*" null false false false 8
+type BlockOffsetSharedArray null false false false 152
+type MetaspaceObj null false false false 4
+type Metadata MetaspaceObj false false false 8
+type Klass Metadata false false false 208
+type StubRoutines null false false false 1
+type StoreVectorNode StoreNode false false false 72
+type MultiBranchNode MultiNode false false false 56
+type IfNode MultiBranchNode false false false 64
+type CountedLoopEndNode IfNode false false false 64
+type MinVNode VectorNode false false false 64
+type LShiftVSNode VectorNode false false false 64
+type LoadUSNode LoadNode false false false 72
+type MulNode Node false false false 56
+type Phase null false false false 16
+type PhaseRegAlloc Phase false false false 96
+type SerialHeap GenCollectedHeap false false false 216
+type "volatile Metadata" null false false false -1
+type CopySignFNode Node false false false 56
+type MaxReductionVNode ReductionNode false false false 64
+type ExtractBNode ExtractNode false false false 56
+type CMovePNode CMoveNode false false false 64
+type ciObjectFactory* null false false false 8
+type LoadPLockedNode LoadPNode false false false 72
+type OverflowLNode OverflowNode false false false 56
+type OverflowAddLNode OverflowLNode false false false 56
+type MachReturnNode MachNode false false false 96
+type MachSafePointNode MachReturnNode false false false 120
+type MachCallNode MachSafePointNode false false false 144
+type MachCallJavaNode MachCallNode false false false 160
+type MachCallStaticJavaNode MachCallJavaNode false false false 168
+type ExceptionTableElement null false false false 8
+type MulVBNode VectorNode false false false 64
+type CallJavaNode CallNode false false false 152
+type CallStaticJavaNode CallJavaNode false false false 152
+type VectorBoxAllocateNode CallStaticJavaNode false false false 152
+type FileMapInfo* null false false false 8
+type ThreadState null false true false 4
+type VectorTestNode Node false false false 56
+type CompareAndSwapPNode CompareAndSwapNode false false false 80
+type StoreCMNode StoreNode false false false 64
+type ZPage* null false false false 8
+type PSVirtualSpace null false false false 56
+type HeapRegionManager null false false false 248
+type DivLNode Node false false false 56
+type NegNode Node false false false 56
+type NegLNode NegNode false false false 56
+type ThreadShadow null false false false 32
+type Thread ThreadShadow false false false 640
+type JavaThread Thread false false false 1392
+type ServiceThread JavaThread false false false 1392
+type XorINode AddNode false false false 56
+type MoveD2LNode Node false false false 56
+type BasicHashtableEntry<mtInternal>* null false false false 8
+type ZGlobalsForVMStructs* null false false false 8
+type ConstMethod* null false false false 8
+type ProjNode Node false false false 64
+type CProjNode ProjNode false false false 64
+type IfFalseNode CProjNode false false false 64
+type SetVectMaskINode Node false false false 56
+type CompareAndExchangeNode LoadStoreNode false false false 80
+type CompareAndExchangeSNode CompareAndExchangeNode false false false 80
+type void null false false false -1
+type ExtractDNode ExtractNode false false false 56
+type PCTableNode MultiBranchNode false false false 56
+type uintptr_t null false true true 8
+type VectorCastL2XNode VectorNode false false false 64
+type jfloat* null false false false 8
+type StoreINode StoreNode false false false 64
+type Generation* null false false false 8
+type MinDNode MaxNode false false false 56
+type OverflowMulINode OverflowINode false false false 56
+type StubQueue null false false false 48
+type AddReductionVLNode ReductionNode false false false 64
+type ZForwarding** null false false false 8
+type MaxINode MaxNode false false false 56
+type VectorBlendNode VectorNode false false false 64
+type ExtractUBNode ExtractNode false false false 56
+type OverflowSubLNode OverflowLNode false false false 56
+type <opaque> null false false false -1
+type jniIdMapBase* null false false false 8
+type Compile null false false false 2304
+type GrowableArray<int> null false false false 24
+type WeakCompareAndSwapINode CompareAndSwapNode false false false 80
+type InstanceKlass Klass false false false 464
+type MethodData::CompilerCounters null false false false 80
+type LShiftVINode VectorNode false false false 64
+type "volatile signed char" null false true false 1
+type HeapWord* null false false false 8
+type ExtractCNode ExtractNode false false false 56
+type FmaVDNode VectorNode false false false 64
+type ConvD2INode Node false false false 56
+type HeapRegionType null false false false 4
+type u_char null false true true 1
+type unsigned null false true true 4
+type SignumDNode Node false false false 56
+type VectorStoreMaskNode VectorNode false false false 64
+type BasicHashtable<mtSymbol> null false false false 88
+type ciMethodData ciMetadata false false false 184
+type OSThread::thread_id_t null false true false 4
+type ZPageTable null false false false 16
+type "unsigned long" null false true true 8
+type VectorRearrangeNode VectorNode false false false 64
+type ReferenceType null false true false 4
+type StubQueue* null false false false 8
+type OverflowMulLNode OverflowLNode false false false 56
+type Conv2BNode Node false false false 56
+type WeakCompareAndSwapLNode CompareAndSwapNode false false false 80
+type JVMFlag null false false false 24
+type LoadSNode LoadNode false false false 72
+type PerfDataPrologue null false false false 32
+type AbsVBNode VectorNode false false false 64
+type pthread_t null false true true 8
+type ciKlass* null false false false 8
+type TenuredGeneration* null false false false 8
+type PackINode PackNode false false false 64
+type JProjNode ProjNode false false false 64
+type JumpProjNode JProjNode false false false 72
+type Block_Array null false false false 24
+type char* null false false false 8
+type MulReductionVINode ReductionNode false false false 64
+type FmaVFNode VectorNode false false false 64
+type PSYoungGen* null false false false 8
+type HeapRegion null false false false 296
+type PSOldGen* null false false false 8
+type BasicType null false true false 4
+type ReverseBytesINode Node false false false 56
+type OrReductionVNode ReductionNode false false false 64
+type OSThread* null false false false 8
+type PhaseChaitin PhaseRegAlloc false false false 368
+type MachTypeNode MachNode false false false 80
+type LShiftLNode Node false false false 56
+type CardTable null false false false 112
+type intptr_t null false true false 8
+type ArrayKlass Klass false false false 224
+type ObjArrayKlass ArrayKlass false false false 240
+type KlassHashtable null false false false -1
+type NegVFNode VectorNode false false false 64
+type SubVINode VectorNode false false false 64
+type VectorCastF2XNode VectorNode false false false 64
+type CompareAndSwapBNode CompareAndSwapNode false false false 80
+type StoreNKlassNode StoreNode false false false 64
+type OopMapValue StackObj false false false 4
+type CmpLNode CmpNode false false false 56
+type CatchNode PCTableNode false false false 56
+type ZForwarding* null false false false 8
+type URShiftVLNode VectorNode false false false 64
+type ConvF2DNode Node false false false 56
+type ciObject ciBaseObject false false false 32
+type ciInstance ciObject false false false 32
+type ShenandoahHeap* null false false false 8
+type NeverBranchNode MultiBranchNode false false false 56
+type HashtableBucket<mtInternal> null false false false 8
+type jbyte null false false false 1
+type MachNopNode MachIdealNode false false false 80
+type Dependencies* null false false false 8
+type PSOldGen null false false false 200
+type VectorCastD2XNode VectorNode false false false 64
+type ConstantPoolCacheEntry null false false false 32
+type BreakpointInfo* null false false false 8
+type NonJavaThread Thread false false false 648
+type WatcherThread NonJavaThread false false false 648
+type LocalVariableTableElement null false false false 12
+type RShiftINode Node false false false 56
+type AddVFNode VectorNode false false false 64
+type ReplicateDNode VectorNode false false false 64
+type VectorMaskWrapperNode VectorNode false false false 64
+type ciSymbol null false false false 32
+type PSVirtualSpace* null false false false 8
+type CMoveINode CMoveNode false false false 64
+type JDK_Version null false false false 5
+type ReplicateSNode VectorNode false false false 64
+type MaxLNode MaxNode false false false 56
+type ConstMethod MetaspaceObj false false false 48
+type VMReg null false false false 8
+type AndVNode VectorNode false false false 64
+type ZPageAllocator null false false false 608
+type bool null false true false 1
+type oopDesc null false false false 16
+type ConvL2INode Node false false false 64
+type NegFNode NegNode false false false 56
+type StoreLConditionalNode LoadStoreNode false false false 80
+type Runtime1 null false false false 1
+type CardTableRS* null false false false 8
+type CompareAndExchangeBNode CompareAndExchangeNode false false false 80
+type AbsFNode AbsNode false false false 56
+type BasicHashtable<mtInternal> null false false false 88
+type ParallelScavengeHeap CollectedHeap false false false 216
+type VtableBlob BufferBlob false false false 104
+type ConvI2DNode Node false false false 56
+type node_idx_t null false true true 4
+type CastX2PNode Node false false false 56
+type MachCallRuntimeNode MachCallNode false false false 160
+type AdapterHandlerEntry null false false false 56
+type OptoReg::Name null false true false 4
+type CompressedOops null false false false 1
+type MachBreakpointNode MachIdealNode false false false 72
+type Array<u2>* null false false false 8
+type LoadFNode LoadNode false false false 72
+type jniIdMapBase null false false false -1
+type short null false true false 2
+type LoadDNode LoadNode false false false 80
+type LoadD_unalignedNode LoadDNode false false false 80
+type uintx null false true true 8
+type CompareAndSwapSNode CompareAndSwapNode false false false 80
+type ShenandoahHeapRegion** null false false false 8
+type LShiftVLNode VectorNode false false false 64
+type uint64_t null false true true 8
+type AbsVDNode VectorNode false false false 64
+type Array<u2> MetaspaceObj false false false 8
+type PtrQueue null false false false 24
+type CMoveLNode CMoveNode false false false 64
+type VectorMaskCastNode VectorNode false false false 64
+type LoadFenceNode MemBarNode false false false 72
+type StoreFNode StoreNode false false false 64
+type MulVFNode VectorNode false false false 64
+type Space null false false false 32
+type CompactibleSpace Space false false false 64
+type ContiguousSpace CompactibleSpace false false false 80
+type OffsetTableContigSpace ContiguousSpace false false false 248
+type ConDNode ConNode false false false 64
+type AccessFlags null false true false 4
+type NotificationThread JavaThread false false false 1392
+type SqrtFNode Node false false false 56
+type AndReductionVNode ReductionNode false false false 64
+type NegINode NegNode false false false 56
+type Array<u1> MetaspaceObj false false false 8
+type PerfData CHeapObj<mtInternal> false false false 48
+type NamedThread NonJavaThread false false false 672
+type CmpDNode CmpNode false false false 56
+type CmpD3Node CmpDNode false false false 56
+type G1DirtyCardQueue null false false false 32
+type ZForwardingEntry null false false false 8
+type AbsDNode AbsNode false false false 56
+type RShiftVLNode VectorNode false false false 64
+type SubFNode SubFPNode false false false 56
+type CountedLoopNode LoopNode false false false 88
+type AddVBNode VectorNode false false false 64
+type JVMState* null false false false 8
+type ciMethod ciMetadata false false false 160
+type RShiftVINode VectorNode false false false 64
+type FmaDNode Node false false false 56
+type JNIid null false false false 24
+type HashtableBucket<mtInternal>* null false false false 8
+type CardTable* null false false false 8
+type DecodeNKlassNode TypeNode false false false 64
+type GenerationSpec* null false false false 8
+type AllocateNode CallNode false false false 136
+type AllocateArrayNode AllocateNode false false false 136
+type OSThread null false false false 216
+type uintptr_t* null false false false 8
+type ReturnNode Node false false false 56
+type TailCallNode ReturnNode false false false 56
+type ConstraintCastNode TypeNode false false false 72
+type char null false true false 1
+type ConvL2FNode Node false false false 56
+type ImmutableOopMapSet null false false false 8
+type "HeapRegionType::Tag volatile" null false true false 4
+type jbyte* null false false false 8
+type AsyncLogWriter NonJavaThread false false false 912
+type CmpNNode CmpNode false false false 56
+type jushort null false true true 2
+type ExceptionBlob SingletonBlob false false false 104
+type BinaryNode Node false false false 56
+type Node_Array null false false false 24
+type Node_List Node_Array false false false 32
+type MethodData* null false false false 8
+type ciObject* null false false false 8
+type Block** null false false false 8
+type CompressedStream null false false false 16
+type CallDynamicJavaNode CallJavaNode false false false 152
+type MemRegion* null false false false 8
+type oop* null false false false 8
+type ReplicateBNode VectorNode false false false 64
+type "unsigned int" null false true true 4
+type BitMap null false false false 16
+type u_char* null false false false 8
+type TypeArrayKlass ArrayKlass false false false 232
+type JavaCallWrapper null false false false 64
+type MemBarAcquireNode MemBarNode false false false 72
+type jmethodID* null false false false 8
+type Unique_Node_List Node_List false false false 72
+type ImmutableOopMapPair null false false false 8
+type InvocationCounter null false true true 4
+type ModDNode Node false false false 56
+type JavaFrameAnchor null false false false 24
+type LoadNNode LoadNode false false false 72
+type LoadNKlassNode LoadNNode false false false 72
+type SqrtDNode Node false false false 56
+type MulLNode MulNode false false false 56
+type KlassHashtableEntry null false false false -1
+type AddPNode Node false false false 56
+type DivModNode MultiNode false false false 56
+type DeoptimizationBlob* null false false false 8
+type MachFastLockNode MachNode false false false 96
+type CompressedKlassPointers null false false false 1
+type ShenandoahHeapRegion::RegionState null false false false 4
+type ConvI2FNode Node false false false 56
+type WeakCompareAndSwapNNode CompareAndSwapNode false false false 80
+type MethodData Metadata false false false 312
+type ciTypeArrayKlass ciArrayKlass false false false 48
+type MethodCounters* null false false false 8
+type CatchProjNode CProjNode false false false 64
+type CreateExNode TypeNode false false false 64
+type InlineTree* null false false false 8
+type MachSpillCopyNode MachIdealNode false false false 104
+type MoveI2FNode Node false false false 56
+type VectorLoadShuffleNode VectorNode false false false 64
+type BoxLockNode Node false false false 160
+type Pack2LNode PackNode false false false 64
+type OopStorage null false false false 136
+type "volatile Metadata*" null false false false 8
+type Method Metadata false false false 88
+type ReplicateINode VectorNode false false false 64
+type ConFNode ConNode false false false 64
+type BarrierSet null false false false 56
+type ModRefBarrierSet BarrierSet false false false 56
+type Generation null false false false 240
+type JvmtiAgentThread JavaThread false false false 1416
+type CardTableBarrierSet ModRefBarrierSet false false false 72
+type IntptrHashtableEntry BasicHashtableEntry<mtInternal> false false false 24
+type Matcher null false false false 3392
+type CardGeneration Generation false false false 288
+type CompareAndExchangeLNode CompareAndExchangeNode false false false 80
+type Array<Klass*> MetaspaceObj false false false 16
+type ConstantPool* null false false false 8
+type FileMapHeader* null false false false 8
+type OopMapCache* null false false false 8
+type Array<Klass*>* null false false false 8
+type Array<InstanceKlass*> null false false false -1
+type ThreadsList null false false false 32
+type MinLNode MaxNode false false false 56
+type OffsetTableContigSpace* null false false false 8
+type ciConstant null false false false 16
+type FmaFNode Node false false false 56
+type RootNode* null false false false 8
+type EncodePKlassNode TypeNode false false false 64
+type PackSNode PackNode false false false 64
+type OopHandle null false false false 8
+type AbsVFNode VectorNode false false false 64
+type GenerationSpec null false false false 32
+type G1MonitoringSupport null false false false 544
+type StoreDNode StoreNode false false false 64
+type MachPrologNode MachIdealNode false false false 72
+type OrINode AddNode false false false 56
+type vtableEntry null false false false 8
+type CompiledMethod CodeBlob false false false 192
+type nmethod CompiledMethod false false false 352
+type DivModINode DivModNode false false false 56
+type ClassLoaderData null false false false 152
+type MachTempNode MachNode false false false 80
+type BasicLock null false false false 8
+type BarrierSet* null false false false 8
+type LoadBNode LoadNode false false false 72
+type InstanceKlass* null false false false 8
+type ThreadsList* null false false false 8
+type SubLNode SubNode false false false 56
+type "HeapWord* volatile" null false false false 8
+type MulReductionVDNode ReductionNode false false false 64
+type HeapRegionSetBase null false false false 40
+type "unsigned short" null false true true 2
+type BasicObjectLock null false false false 16
+type ZPhysicalMemoryManager null false false false 160
+type G1HeapRegionTable null false false false 56
+type ExceptionCache null false false false 288
+type ConvL2DNode Node false false false 56
+type LoadRangeNode LoadINode false false false 72
+type LShiftINode Node false false false 56
+type HeapBlock null false false false 16
+type UncommonTrapBlob RuntimeBlob false false false 104
+type SubVLNode VectorNode false false false 64
+type MachProjNode ProjNode false false false 168
+type SCMemProjNode ProjNode false false false 64
+type MulINode MulNode false false false 56
+type InstanceRefKlass InstanceKlass false false false 464
+type CDSFileMapRegion null false false false 72
+type NegVDNode VectorNode false false false 64
+type InstanceClassLoaderKlass InstanceKlass false false false 464
+type BarrierSet::Name null false false false 4
+type ciEnv* null false false false 8
+type WeakCompareAndSwapBNode CompareAndSwapNode false false false 80
+type frame null false false false 48
+type InlineTree null false false false 80
+type MulVLNode VectorNode false false false 64
+type juint null false true true 4
+type CardTable::CardValue* null false false false 8
+type EpsilonHeap CollectedHeap false false false 480
+type MachIfNode MachNode false false false 80
+type IntptrHashtable BasicHashtable<mtInternal> false false false 88
+type WeakCompareAndSwapPNode CompareAndSwapNode false false false 80
+type RuntimeBlob* null false false false 8
+type EncodePNode TypeNode false false false 64
+type elapsedTimer null false false false 24
+type MachCallDynamicJavaNode MachCallJavaNode false false false 160
+type AddReductionVFNode ReductionNode false false false 64
+type RuntimeStub* null false false false 8
+type Stub null false false false 1
+type Universe null false false false 1
+type StoreCNode StoreNode false false false 64
+type TenuredSpace OffsetTableContigSpace false false false 248
+type CastPPNode ConstraintCastNode false false false 72
+type jdouble null false false false 8
+type IfTrueNode CProjNode false false false 64
+type PackDNode PackNode false false false 64
+type PopCountVINode VectorNode false false false 64
+type AbstractInterpreter null false false false 1
+type Array<Method*>* null false false false 8
+type ConvI2LNode TypeNode false false false 64
+type XorLNode AddNode false false false 56
+type MethodCounters MetaspaceObj false false false 56
+type OrVNode VectorNode false false false 64
+type RShiftLNode Node false false false 56
+type CmpLTMaskNode Node false false false 56
+type narrowOop null true false false 4
+type Mutex null false false false -1
+type JavaThread::TerminatedTypes null false true false 4
+type VMError null false false false 1
+type SharedRuntime null false false false 1
+type jshort null false false false 2
+type HeapWord null false false false 8
+type GenerationSpec** null false false false 8
+type AddVINode VectorNode false false false 64
+type InstanceMirrorKlass InstanceKlass false false false 464
+type ImmutableOopMap null false false false 4
+type ShenandoahHeapRegion* null false false false 8
+type Opaque1Node Node false false false 56
+type AbsVSNode VectorNode false false false 64
+type Array<int> MetaspaceObj false false false 8
+type Metadata* null false false false 8
+type PcDesc null false false false 16
+type SubINode SubNode false false false 56
+type StoreBNode StoreNode false false false 64
+type ExceptionCache* null false false false 8
+type GotoNode Node false false false 56
+type FreeBlock HeapBlock false false false 24
+type ZVirtualMemory null false false false 16
+type Annotations* null false false false 8
+type BreakpointInfo null false false false 24
+type ShenandoahHeap CollectedHeap false false false 2680
+type CompileTask* null false false false 8
+type MulVINode VectorNode false false false 64
+type URShiftVSNode VectorNode false false false 64
+type MonitorList null false false false 24
+type ThreadLocalNode Node false false false 56
+type ReplicateFNode VectorNode false false false 64
+type ObjectMonitor null false false false 208
+type CodeHeap null false false false 344
+type ObjectMonitor* null false false false 8
+type MemBarCPUOrderNode MemBarNode false false false 72
+type Location::Where null false true false 4
+type Node** null false false false 8
+type G1CollectedHeap* null false false false 8
+type size_t null false true true 8
+type MachCallNativeNode MachCallNode false false false 200
+type MulReductionVFNode ReductionNode false false false 64
+type ZForwarding null false false false 136
+type AddLNode AddNode false false false 56
+type PackFNode PackNode false false false 64
+type OrLNode AddNode false false false 56
+type GrowableArray<ciMetadata*> null false false false 24
+type PhiNode TypeNode false false false 88
+type BlockOffsetSharedArray* null false false false 8
+type ZGranuleMapForPageTable null false false false 16
+type VirtualSpace null false false false 112
+type MemBarReleaseNode MemBarNode false false false 72
+type GrowableArray<ciSymbol*> null false false false 24
+type HeapRegion* null false false false 8
+type CmpINode CmpNode false false false 56
+type ConvF2INode Node false false false 56
+type ZCollectedHeap CollectedHeap false false false 4352
+type VectorBoxNode Node false false false 72
+type char** null false false false 8
+type Dictionary KlassHashtable false false false 104
+type VectorCastI2XNode VectorNode false false false 64
+type julong null false true true 8
+type GrowableArray<CodeHeap*>* null false false false 8
+type LoadLNode LoadNode false false false 80
+type LoadL_unalignedNode LoadLNode false false false 80
+type markWord null false true false 8
+type Symbol null false false false 8
+type java_lang_Class null false false false 1
+type AddReductionVDNode ReductionNode false false false 64
+type ParallelScavengeHeap* null false false false 8
+type JNIHandles null false false false 1
+type TenuredGeneration CardGeneration false false false 312
+type DivModLNode DivModNode false false false 56
+type AbsVINode VectorNode false false false 64
+type jmethodID null false false false -1
+type ExtractLNode ExtractNode false false false 56
+type CMoveFNode CMoveNode false false false 64
+type JVMFlag* null false false false 8
+type ciMethod* null false false false 8
+type NegDNode NegNode false false false 56
+type CompareAndExchangeINode CompareAndExchangeNode false false false 80
+type os null false false false 1
+type DivDNode Node false false false 56
+type MachEpilogNode MachIdealNode false false false 80
+type objArrayOop null true false false 8
+type vmClasses null false false false 1
+type ThreadsSMRSupport null false false false 1
+type PerfDataPrologue* null false false false 8
+type address* null false false false 8
+type OptoRegPair null false false false 4
+type CompileTask null false false false 144
+type ResourceArea* null false false false 8
+type ReverseBytesLNode Node false false false 56
+type CardTableRS CardTable false false false 112
+type URShiftVBNode VectorNode false false false 64
+type JavaThreadState null false true false 4
+type instanceOopDesc oopDesc false false false 16
+type ShenandoahHeapRegion null false false false 96
+type CompareAndExchangePNode CompareAndExchangeNode false false false 80
+type AddReductionVINode ReductionNode false false false 64
+type DivFNode Node false false false 56
+type ConvF2LNode Node false false false 56
+type MaxFNode MaxNode false false false 56
+type ThreadLocalAllocBuffer null false false false 120
+type ZRelocate null false false false 8
+type PartialSubtypeCheckNode Node false false false 56
+type int* null false false false 8
+type SubVBNode VectorNode false false false 64
+type XorReductionVNode ReductionNode false false false 64
+type PhaseRegAlloc* null false false false 8
+type JVMFlag::Flags null false true false 4
+type WeakCompareAndSwapSNode CompareAndSwapNode false false false 80
+type Array<u1>* null false false false 8
+type Node* null false false false 8
+type uint8_t null false true true 1
+type Block_List Block_Array false false false 32
+type Symbol* null false false false 8
+type vframeArray null false false false 5464
+type PhaseCFG* null false false false 8
+type vframeArray* null false false false 8
+type RethrowNode Node false false false 56
+type long null false true false 8
+type arrayOopDesc oopDesc false false false 16
+type G1CollectedHeap CollectedHeap false false false 1432
+type ConPNode ConNode false false false 64
+type BitMapView BitMap false false false 16
+type intx null false true false 8
+type ZForwardingTable null false false false 16
+type Array<int>* null false false false 8
+type u1 null false true true 1
+type u2 null false true true 2
+type u4 null false true true 4
+type DataLayout null false false false 16
+type u8 null false true true 8
+type ParmNode ProjNode false false false 64
+type ConINode ConNode false false false 64
+type uint32_t null false true true 4
+type CopySignDNode Node false false false 56
+type "JavaThread *const *const" null false false false 8
+type BlackholeNode MultiNode false false false 56
+type ConstantPool Metadata false false false 72
+type CMoveVFNode VectorNode false false false 64
+type MulFNode MulNode false false false 56
+type jobject null false false false 8
+type CompiledMethod* null false false false 8
+type void** null false false false 8
+type JNIid* null false false false 8
+type CompareAndSwapINode CompareAndSwapNode false false false 80
+type jfloat null false false false 4
+type ExtractFNode ExtractNode false false false 56
+type CompilerThread JavaThread false false false 1456
+type CmpL3Node CmpLNode false false false 56
+type oop null true false false 8
+type uint32_t* null false false false 8
+type DictionaryEntry KlassHashtableEntry false false false 32
+type Dependencies null false false false 192
+type AtanDNode Node false false false 56
+type SignumFNode Node false false false 56
+type vmSymbols null false false false 1
+type StorePNode StoreNode false false false 64
+type MachHaltNode MachReturnNode false false false 112
+type InitializeNode MemBarNode false false false 80
+type LShiftVBNode VectorNode false false false 64
+type ImmutableOopMapSet* null false false false 8
+type Array<jushort> null false false false -1
+type MethodHandlesAdapterBlob BufferBlob false false false 104
+type InterpreterCodelet Stub false false false 16
+type VectorReinterpretNode VectorNode false false false 72
+type Opaque2Node Node false false false 56
+type MemBarVolatileNode MemBarNode false false false 72
+type CardTableBarrierSet** null false false false 8
+type AddINode AddNode false false false 56
+type PhaseCFG Phase false false false 160
+type DivVFNode VectorNode false false false 64
+type AdapterHandlerEntry* null false false false 8
+type CMoveDNode CMoveNode false false false 64
+type StorePConditionalNode LoadStoreNode false false false 80
+type ResourceArea Arena false false false 48
+type ciEnv null false false false 232
+type AndLNode MulLNode false false false 56
+type ClearArrayNode Node false false false 56
+type ZPage null false false false 136
+type CmpFNode CmpNode false false false 56
+type StoreVectorScatterNode StoreVectorNode false false false 72
+type CmpF3Node CmpFNode false false false 56
+type CompareAndExchangeNNode CompareAndExchangeNode false false false 80
+type Arguments null false false false 1
+type MaxVNode VectorNode false false false 64
+type MonitorDeflationThread JavaThread false false false 1392
+type CastP2XNode Node false false false 56
+type objArrayOopDesc arrayOopDesc false false false 16
+type "volatile unsigned char" null false false false -1
+type AddFNode AddNode false false false 56
+type CompareAndSwapLNode CompareAndSwapNode false false false 80
+type CmpULNode CmpNode false false false 56
+type MaxDNode MaxNode false false false 56
+type CastIINode ConstraintCastNode false false false 72
+type MutableSpace null false false false 64
+type CardTableBarrierSet* null false false false 8
+type Arena* null false false false 8
+type Dictionary* null false false false 8
+type ModLNode Node false false false 56
+type CodeHeap* null false false false 8
+type FastUnlockNode CmpNode false false false 56
+type BoolNode Node false false false 56
+type VectorCastS2XNode VectorNode false false false 64
+type Deoptimization::UnrollBlock null false false false 80
+type MulHiLNode Node false false false 56
+type OopMapCache null false false false -1
+type Array<jushort>* null false false false 8
+type ConvD2LNode Node false false false 56
+type MulDNode MulNode false false false 56
+type ConstantPoolCache* null false false false 8
+type Method* null false false false 8
+type jboolean null false false false 1
+type CFGElement null false false false 16
+type CMoveVDNode VectorNode false false false 64
+type ExtractINode ExtractNode false false false 56
+type HaltNode Node false false false 72
+type BarrierSet::FakeRtti null false false false 16
+type "unsigned char" null false true true 1
+type uint null false true true 4
+type ciSymbol* null false false false 8
+type TailJumpNode ReturnNode false false false 56
+type jint null false false false 4
+type CmpUNode CmpNode false false false 56
+type OnSpinWaitNode MemBarNode false false false 72
+type AndINode MulINode false false false 56
+type jint* null false false false 8
+type VMRegImpl null false false false 1
+type MutableSpace* null false false false 8
+type CallLeafVectorNode CallLeafNode false false false 136
+type ConLNode ConNode false false false 64
+type ZGlobalsForVMStructs null false false false 80
+type StoreNNode StoreNode false false false 64
+type ciMetadata* null false false false 8
+type Block* null false false false 8
+type RShiftVBNode VectorNode false false false 64
+type Deoptimization null false false false 1
+type URShiftLNode Node false false false 56
+type DefNewGeneration* null false false false 8
+type void* null false false false 8
+type Array<Method*> MetaspaceObj false false false 16
+type Bytecodes::Code null false true false 4
+type DecodeNNode TypeNode false false false 64
+type FileMapHeader null false false false 952
+type ClassLoaderData* null false false false 8
+type Array<InstanceKlass*>* null false false false 8
+type G1MonitoringSupport* null false false false 8
+type ConstantPoolCache MetaspaceObj false false false 40
+type InstanceKlass::ClassState null false true false 4
+type Block CFGElement false false false 144
+type CodeCacheSweeperThread JavaThread false false false 1400
+type MinReductionVNode ReductionNode false false false 64
+type AddVLNode VectorNode false false false 64
+type RootNode LoopNode false false false 72
+type CodeCache null false false false 1
+type SubVSNode VectorNode false false false 64
+type DivVDNode VectorNode false false false 64
+type PackBNode PackNode false false false 64
+type CompiledICHolder null false false false 32
+type DivINode Node false false false 56
+type RShiftVSNode VectorNode false false false 64
+type MoveF2INode Node false false false 56
+type AgeTable null false false false 256
+type Generation::Name null false true false 4
+type ReplicateLNode VectorNode false false false 64
+type CardTable::CardValue null false false false 1
+type MachUEPNode MachIdealNode false false false 72
+type ThreadLocalAllocBuffer* null false false false 8
+type ZGranuleMapForForwarding null false false false 16
+type narrowKlass null false false false 4
+type jlong null false false false 8
+type int null false true false 4
+type JumpNode PCTableNode false false false 72
+type ZPage** null false false false 8
+type OverflowAddINode OverflowINode false false false 56
+type DefNewGeneration Generation false false false 768
+type JavaThread* null false false false 8
+type MinINode MaxNode false false false 56
+type vframeArrayElement null false false false 88
+type Space* null false false false 8
+field JNIHandleBlock _handles <opaque> false 0 0x0
+field JNIHandleBlock _top int false 256 0x0
+field JNIHandleBlock _next JNIHandleBlock* false 264 0x0
+field JVMState _caller JVMState* false 0 0x0
+field JVMState _depth uint false 8 0x0
+field JVMState _locoff uint false 12 0x0
+field JVMState _stkoff uint false 16 0x0
+field JVMState _monoff uint false 20 0x0
+field JVMState _scloff uint false 24 0x0
+field JVMState _endoff uint false 28 0x0
+field JVMState _sp uint false 32 0x0
+field JVMState _bci int false 36 0x0
+field JVMState _method ciMethod* false 48 0x0
+field JVMState _map SafePointNode* false 56 0x0
+field GrowableArray<InlineTree*> _len int false 0 0x0
+field GrowableArray<InlineTree*> _max int false 4 0x0
+field Generation::StatRecord invocations int false 0 0x0
+field Generation::StatRecord accumulated_time elapsedTimer false 8 0x0
+field ZAttachedArrayForForwarding _length size_t false 0 0x0
+field CallNode _entry_point address false 96 0x0
+field CheckedExceptionElement class_cp_index u2 false 0 0x0
+field ciObjArrayKlass _element_klass ciKlass* false 48 0x0
+field ciObjArrayKlass _base_element_klass ciKlass* false 56 0x0
+field MachJumpNode _probs jfloat* false 112 0x0
+field ZHeap _page_allocator ZPageAllocator false 112 0x0
+field ZHeap _page_table ZPageTable false 720 0x0
+field ZHeap _forwarding_table ZForwardingTable false 736 0x0
+field ZHeap _relocate ZRelocate false 3344 0x0
+field ciField _holder ciInstanceKlass* false 8 0x0
+field ciField _name ciSymbol* false 16 0x0
+field ciField _signature ciSymbol* false 24 0x0
+field ciField _offset int false 40 0x0
+field ciField _is_constant bool false 44 0x0
+field ciField _constant_value ciConstant false 64 0x0
+field ciObjectFactory _ci_metadata GrowableArray<ciMetadata*> false 8 0x0
+field ciObjectFactory _symbols GrowableArray<ciSymbol*> false 128 0x0
+field FileMapInfo _header FileMapHeader* false 32 0x0
+field PerfDataEntry entry_length jint false 0 0x0
+field PerfDataEntry name_offset jint false 4 0x0
+field PerfDataEntry vector_length jint false 8 0x0
+field PerfDataEntry data_type jbyte false 12 0x0
+field PerfDataEntry flags jbyte false 13 0x0
+field PerfDataEntry data_units jbyte false 14 0x0
+field PerfDataEntry data_variability jbyte false 15 0x0
+field PerfDataEntry data_offset jint false 16 0x0
+field GrowableArray<CodeHeap*> _len int false 0 0x0
+field GrowableArray<CodeHeap*> _max int false 4 0x0
+field BlockOffsetArrayContigSpace _next_offset_threshold HeapWord* false 48 0x0
+field BlockOffsetArrayContigSpace _next_offset_index size_t false 56 0x0
+field ciInstanceKlass _init_state InstanceKlass::ClassState false 64 0x0
+field ciInstanceKlass _is_shared bool false 68 0x0
+field GrowableArrayBase _len int false 0 0x0
+field GrowableArrayBase _max int false 4 0x0
+field RuntimeStub _caller_must_gc_arguments bool false 88 0x0
+field HeapBlock::Header _length size_t false 0 0x0
+field HeapBlock::Header _used bool false 8 0x0
+field DeoptimizationBlob _unpack_offset int false 104 0x0
+field GenCollectedHeap _young_gen Generation* false 96 0x0
+field GenCollectedHeap _old_gen Generation* false 104 0x0
+field GenCollectedHeap _young_gen_spec GenerationSpec* false 112 0x0
+field GenCollectedHeap _old_gen_spec GenerationSpec* false 120 0x0
+field BasicHashtableEntry<mtInternal> _next BasicHashtableEntry<mtInternal>* false 8 0x0
+field BasicHashtableEntry<mtInternal> _hash "unsigned int" false 0 0x0
+field SafePointNode _jvms JVMState* false 56 0x0
+field PSYoungGen _reserved MemRegion false 8 0x0
+field PSYoungGen _virtual_space PSVirtualSpace* false 24 0x0
+field PSYoungGen _eden_space MutableSpace* false 32 0x0
+field PSYoungGen _from_space MutableSpace* false 40 0x0
+field PSYoungGen _to_space MutableSpace* false 48 0x0
+field PSYoungGen _min_gen_size size_t false 56 0x0
+field PSYoungGen _max_gen_size size_t false 64 0x0
+field SATBMarkQueue _active bool false 24 0x0
+field MemRegion _start HeapWord* false 0 0x0
+field MemRegion _word_size size_t false 8 0x0
+field BlockOffsetSharedArray _reserved MemRegion false 8 0x0
+field BlockOffsetSharedArray _end HeapWord* false 24 0x0
+field BlockOffsetSharedArray _vs VirtualSpace false 32 0x0
+field BlockOffsetSharedArray _offset_array u_char* false 144 0x0
+field Klass _super_check_offset juint false 20 0x0
+field Klass _secondary_super_cache Klass* false 32 0x0
+field Klass _secondary_supers Array<Klass*>* false 40 0x0
+field Klass _primary_supers[0] Klass* false 48 0x0
+field Klass _java_mirror OopHandle false 112 0x0
+field Klass _modifier_flags jint false 16 0x0
+field Klass _super Klass* false 120 0x0
+field Klass _subklass Klass* false 128 0x0
+field Klass _layout_helper jint false 8 0x0
+field Klass _name Symbol* false 24 0x0
+field Klass _access_flags AccessFlags false 164 0x0
+field Klass _prototype_header markWord false 184 0x0
+field Klass _next_sibling Klass* false 136 0x0
+field Klass _next_link Klass* false 144 0x0
+field Klass _vtable_len int false 160 0x0
+field Klass _class_loader_data ClassLoaderData* false 152 0x0
+field PhaseRegAlloc _node_regs OptoRegPair* false 24 0x0
+field PhaseRegAlloc _node_regs_max_index uint false 32 0x0
+field PhaseRegAlloc _framesize uint false 80 0x0
+field PhaseRegAlloc _max_reg OptoReg::Name false 84 0x0
+field MachCallStaticJavaNode _name char* false 160 0x0
+field ExceptionTableElement start_pc u2 false 0 0x0
+field ExceptionTableElement end_pc u2 false 2 0x0
+field ExceptionTableElement handler_pc u2 false 4 0x0
+field ExceptionTableElement catch_type_index u2 false 6 0x0
+field PSVirtualSpace _alignment size_t false 8 0x0
+field PSVirtualSpace _reserved_low_addr char* false 16 0x0
+field PSVirtualSpace _reserved_high_addr char* false 24 0x0
+field PSVirtualSpace _committed_low_addr char* false 32 0x0
+field PSVirtualSpace _committed_high_addr char* false 40 0x0
+field HeapRegionManager _regions G1HeapRegionTable false 96 0x0
+field StubQueue _stub_buffer address false 8 0x0
+field StubQueue _buffer_limit int false 20 0x0
+field StubQueue _queue_begin int false 24 0x0
+field StubQueue _queue_end int false 28 0x0
+field StubQueue _number_of_stubs int false 32 0x0
+field Compile _root RootNode* false 720 0x0
+field Compile _unique uint false 576 0x0
+field Compile _entry_bci int false 40 0x0
+field Compile _top Node* false 728 0x0
+field Compile _cfg PhaseCFG* false 2120 0x0
+field Compile _regalloc PhaseRegAlloc* false 2144 0x0
+field Compile _method ciMethod* false 32 0x0
+field Compile _compile_id int false 16 0x0
+field Compile _subsume_loads bool false 20 0x0
+field Compile _do_escape_analysis bool false 21 0x0
+field Compile _eliminate_boxing bool false 23 0x0
+field Compile _ilt InlineTree* false 56 0x0
+field GrowableArray<int> _data int* false 8 0x0
+field InstanceKlass _array_klasses ObjArrayKlass* false 224 0x0
+field InstanceKlass _methods Array<Method*>* false 408 0x0
+field InstanceKlass _default_methods Array<Method*>* false 416 0x0
+field InstanceKlass _local_interfaces Array<InstanceKlass*>* false 424 0x0
+field InstanceKlass _transitive_interfaces Array<InstanceKlass*>* false 432 0x0
+field InstanceKlass _fields Array<u2>* false 456 0x0
+field InstanceKlass _java_fields_count u2 false 310 0x0
+field InstanceKlass _constants ConstantPool* false 232 0x0
+field InstanceKlass _source_debug_extension char* false 280 0x0
+field InstanceKlass _inner_classes Array<jushort>* false 240 0x0
+field InstanceKlass _nonstatic_field_size int false 288 0x0
+field InstanceKlass _static_field_size int false 292 0x0
+field InstanceKlass _static_oop_field_count u2 false 308 0x0
+field InstanceKlass _nonstatic_oop_map_size int false 296 0x0
+field InstanceKlass _is_marked_dependent bool false 314 0x0
+field InstanceKlass _misc_flags u2 false 318 0x0
+field InstanceKlass _init_state u1 false 315 0x0
+field InstanceKlass _init_thread Thread* false 320 0x0
+field InstanceKlass _itable_len int false 300 0x0
+field InstanceKlass _reference_type u1 false 316 0x0
+field InstanceKlass _oop_map_cache OopMapCache* false 328 0x0
+field InstanceKlass _jni_ids JNIid* false 336 0x0
+field InstanceKlass _osr_nmethods_head nmethod* false 368 0x0
+field InstanceKlass _breakpoints BreakpointInfo* false 376 0x0
+field InstanceKlass _methods_jmethod_ids jmethodID* false 344 0x0
+field InstanceKlass _idnum_allocated_count u2 false 312 0x0
+field InstanceKlass _annotations Annotations* false 208 0x0
+field InstanceKlass _method_ordering Array<int>* false 440 0x0
+field InstanceKlass _default_vtable_indices Array<int>* false 448 0x0
+field HeapRegionType _tag "HeapRegionType::Tag volatile" false 0 0x0
+field ciMethodData _data_size int false 24 0x0
+field ciMethodData _state u_char false 44 0x0
+field ciMethodData _extra_data_size int false 28 0x0
+field ciMethodData _data intptr_t* false 32 0x0
+field ciMethodData _hint_di int false 40 0x0
+field ciMethodData _eflags intx false 48 0x0
+field ciMethodData _arg_local intx false 56 0x0
+field ciMethodData _arg_stack intx false 64 0x0
+field ciMethodData _arg_returned intx false 72 0x0
+field ciMethodData _current_mileage int false 84 0x0
+field ciMethodData _orig MethodData::CompilerCounters false 96 0x0
+field Node _in Node** false 8 0x0
+field Node _out Node** false 16 0x0
+field Node _cnt node_idx_t false 24 0x0
+field Node _max node_idx_t false 28 0x0
+field Node _outcnt node_idx_t false 32 0x0
+field Node _outmax node_idx_t false 36 0x0
+field Node _idx node_idx_t false 40 0x0
+field Node _class_id juint false 44 0x0
+field Node _flags juint false 48 0x0
+field ZPageTable _map ZGranuleMapForPageTable false 0 0x0
+field ciType _basic_type BasicType false 24 0x0
+field JVMFlag _type int false 20 0x0
+field JVMFlag _name char* false 8 0x0
+field JVMFlag _addr <opaque> false 0 0x0
+field JVMFlag _flags JVMFlag::Flags false 16 0x0
+field PerfDataPrologue magic jint false 0 0x0
+field PerfDataPrologue byte_order jbyte false 4 0x0
+field PerfDataPrologue major_version jbyte false 5 0x0
+field PerfDataPrologue minor_version jbyte false 6 0x0
+field PerfDataPrologue accessible jbyte false 7 0x0
+field PerfDataPrologue used jint false 8 0x0
+field PerfDataPrologue overflow jint false 12 0x0
+field PerfDataPrologue mod_time_stamp jlong false 16 0x0
+field PerfDataPrologue entry_offset jint false 24 0x0
+field PerfDataPrologue num_entries jint false 28 0x0
+field Block_Array _size uint false 0 0x0
+field Block_Array _blocks Block** false 16 0x0
+field Block_Array _arena Arena* false 8 0x0
+field HeapRegion _type HeapRegionType false 188 0x0
+field HeapRegion _bottom HeapWord* false 0 0x0
+field HeapRegion _top "HeapWord* volatile" false 16 0x0
+field HeapRegion _end HeapWord* false 8 0x0
+field HeapRegion _compaction_top HeapWord* false 24 0x0
+field PhaseChaitin _trip_cnt int false 96 0x0
+field PhaseChaitin _alternate int false 100 0x0
+field PhaseChaitin _lo_degree uint false 184 0x0
+field PhaseChaitin _lo_stk_degree uint false 188 0x0
+field PhaseChaitin _hi_degree uint false 192 0x0
+field PhaseChaitin _simplified uint false 196 0x0
+field CardTable _whole_heap MemRegion false 8 0x0
+field CardTable _guard_index size_t false 24 0x0
+field CardTable _last_valid_index size_t false 32 0x0
+field CardTable _page_size size_t false 40 0x0
+field CardTable _byte_map_size size_t false 48 0x0
+field CardTable _byte_map CardTable::CardValue* false 56 0x0
+field CardTable _cur_covered_regions int false 72 0x0
+field CardTable _covered MemRegion* false 80 0x0
+field CardTable _committed MemRegion* false 88 0x0
+field CardTable _guard_region MemRegion false 96 0x0
+field CardTable _byte_map_base CardTable::CardValue* false 64 0x0
+field ObjArrayKlass _element_klass Klass* false 224 0x0
+field ObjArrayKlass _bottom_klass Klass* false 232 0x0
+field BlockOffsetTable _bottom HeapWord* false 8 0x0
+field BlockOffsetTable _end HeapWord* false 16 0x0
+field HashtableBucket<mtInternal> _entry BasicHashtableEntry<mtInternal>* false 0 0x0
+field PSOldGen _reserved MemRegion false 8 0x0
+field PSOldGen _virtual_space PSVirtualSpace* false 24 0x0
+field PSOldGen _object_space MutableSpace* false 160 0x0
+field PSOldGen _min_gen_size size_t false 184 0x0
+field PSOldGen _max_gen_size size_t false 192 0x0
+field ConstantPoolCacheEntry _indices intx false 0 0x0
+field ConstantPoolCacheEntry _f1 Metadata* false 8 0x0
+field ConstantPoolCacheEntry _f2 intx false 16 0x0
+field ConstantPoolCacheEntry _flags intx false 24 0x0
+field LocalVariableTableElement start_bci u2 false 0 0x0
+field LocalVariableTableElement length u2 false 2 0x0
+field LocalVariableTableElement name_cp_index u2 false 4 0x0
+field LocalVariableTableElement descriptor_cp_index u2 false 6 0x0
+field LocalVariableTableElement signature_cp_index u2 false 8 0x0
+field LocalVariableTableElement slot u2 false 10 0x0
+field ciSymbol _symbol Symbol* false 16 0x0
+field JDK_Version _major "unsigned char" false 0 0x0
+field ConstMethod _fingerprint uint64_t false 0 0x0
+field ConstMethod _constants ConstantPool* false 8 0x0
+field ConstMethod _stackmap_data Array<u1>* false 16 0x0
+field ConstMethod _constMethod_size int false 24 0x0
+field ConstMethod _flags u2 false 28 0x0
+field ConstMethod _code_size u2 false 32 0x0
+field ConstMethod _name_index u2 false 34 0x0
+field ConstMethod _signature_index u2 false 36 0x0
+field ConstMethod _method_idnum u2 false 38 0x0
+field ConstMethod _max_stack u2 false 40 0x0
+field ConstMethod _max_locals u2 false 42 0x0
+field ConstMethod _size_of_parameters u2 false 44 0x0
+field ZPageAllocator _max_capacity size_t false 392 0x0
+field ZPageAllocator _capacity size_t false 408 0x0
+field ZPageAllocator _used size_t false 424 0x0
+field oopDesc _mark markWord false 0 0x0
+field oopDesc _metadata._klass Klass* false 8 0x0
+field oopDesc _metadata._compressed_klass narrowKlass false 8 0x0
+field BasicHashtable<mtInternal> _table_size int false 0 0x0
+field BasicHashtable<mtInternal> _buckets HashtableBucket<mtInternal>* false 8 0x0
+field MachSafePointNode _jvms JVMState* false 104 0x0
+field MachSafePointNode _jvmadj uint false 112 0x0
+field MachCallRuntimeNode _name char* false 144 0x0
+field Array<u2> _data <opaque> false 4 0x0
+field PtrQueue _buf void** false 16 0x0
+field PtrQueue _index size_t false 0 0x0
+field OffsetTableContigSpace _offsets BlockOffsetArray false 80 0x0
+field AccessFlags _flags jint false 0 0x0
+field Array<u1> _data <opaque> false 4 0x0
+field NamedThread _name char* false 648 0x0
+field NamedThread _processed_thread Thread* false 656 0x0
+field ZForwardingEntry _entry uint64_t false 0 0x0
+field ciArrayKlass _dimension jint false 44 0x0
+field ciMethod _interpreter_invocation_count int false 96 0x0
+field ciMethod _interpreter_throwout_count int false 100 0x0
+field ciMethod _instructions_size int false 104 0x0
+field JNIid _holder Klass* false 0 0x0
+field JNIid _next JNIid* false 8 0x0
+field JNIid _offset int false 16 0x0
+field ThreadShadow _pending_exception oop false 8 0x0
+field ThreadShadow _exception_file char* false 16 0x0
+field ThreadShadow _exception_line int false 24 0x0
+field OSThread _state ThreadState false 16 0x0
+field OSThread _thread_id OSThread::thread_id_t false 208 0x0
+field OSThread _pthread_id pthread_t false 24 0x0
+field CallStaticJavaNode _name char* false 120 0x0
+field ImmutableOopMapSet _count int false 0 0x0
+field ImmutableOopMapSet _size int false 4 0x0
+field Node_List _cnt uint false 24 0x0
+field JavaThread _threadObj OopHandle false 648 0x0
+field JavaThread _anchor JavaFrameAnchor false 656 0x0
+field JavaThread _vm_result oop false 744 0x0
+field JavaThread _vm_result_2 Metadata* false 752 0x0
+field JavaThread _current_pending_monitor ObjectMonitor* false 776 0x0
+field JavaThread _current_pending_monitor_is_from_java bool false 784 0x0
+field JavaThread _current_waiting_monitor ObjectMonitor* false 792 0x0
+field JavaThread _suspend_flags uint32_t false 816 0x0
+field JavaThread _async_exception_condition JavaThread::AsyncExceptionCondition false 820 0x0
+field JavaThread _pending_async_exception oop false 824 0x0
+field JavaThread _exception_oop oop false 984 0x0
+field JavaThread _exception_pc address false 992 0x0
+field JavaThread _is_method_handle_return int false 1008 0x0
+field JavaThread _saved_exception_pc address false 864 0x0
+field JavaThread _thread_state JavaThreadState false 832 0x0
+field JavaThread _osthread OSThread* false 560 0x0
+field JavaThread _stack_base address false 592 0x0
+field JavaThread _stack_size size_t false 600 0x0
+field JavaThread _vframe_array_head vframeArray* false 712 0x0
+field JavaThread _vframe_array_last vframeArray* false 720 0x0
+field JavaThread _terminated JavaThread::TerminatedTypes false 872 0x0
+field CompressedStream _buffer u_char* false 0 0x0
+field CompressedStream _position int false 8 0x0
+field ArrayKlass _dimension int false 204 0x0
+field ArrayKlass _higher_dimension Klass* false 208 0x0
+field ArrayKlass _lower_dimension Klass* false 216 0x0
+field TypeArrayKlass _max_length jint false 224 0x0
+field JavaCallWrapper _anchor JavaFrameAnchor false 32 0x0
+field ImmutableOopMapPair _pc_offset int false 0 0x0
+field ImmutableOopMapPair _oopmap_offset int false 4 0x0
+field InvocationCounter _counter "unsigned int" false 0 0x0
+field JavaFrameAnchor _last_Java_sp intptr_t* false 0 0x0
+field JavaFrameAnchor _last_Java_pc address false 8 0x0
+field JavaFrameAnchor _last_Java_fp intptr_t* false 16 0x0
+field MethodData _size int false 16 0x0
+field MethodData _method Method* false 8 0x0
+field MethodData _data_size int false 296 0x0
+field MethodData _data[0] intptr_t false 304 0x0
+field MethodData _parameters_type_data_di int false 300 0x0
+field MethodData _compiler_counters._nof_decompiles uint false 128 0x0
+field MethodData _compiler_counters._nof_overflow_recompiles uint false 132 0x0
+field MethodData _compiler_counters._nof_overflow_traps uint false 136 0x0
+field MethodData _compiler_counters._trap_hist._array[0] u1 false 144 0x0
+field MethodData _eflags intx false 208 0x0
+field MethodData _arg_local intx false 216 0x0
+field MethodData _arg_stack intx false 224 0x0
+field MethodData _arg_returned intx false 232 0x0
+field MethodData _tenure_traps uint false 260 0x0
+field MethodData _invoke_mask int false 264 0x0
+field MethodData _backedge_mask int false 268 0x0
+field Space _bottom HeapWord* false 8 0x0
+field Space _end HeapWord* false 16 0x0
+field Method _constMethod ConstMethod* false 8 0x0
+field Method _method_data MethodData* false 16 0x0
+field Method _method_counters MethodCounters* false 24 0x0
+field Method _access_flags AccessFlags false 40 0x0
+field Method _vtable_index int false 44 0x0
+field Method _intrinsic_id u2 false 48 0x0
+field Method _flags u2 false 50 0x0
+field Method _code CompiledMethod* false 72 0x0
+field Method _i2i_entry address false 56 0x0
+field Method _from_compiled_entry address false 64 0x0
+field Method _from_interpreted_entry address false 80 0x0
+field Generation _reserved MemRegion false 32 0x0
+field Generation _virtual_space VirtualSpace false 48 0x0
+field Generation _stat_record Generation::StatRecord false 208 0x0
+field ciKlass _name ciSymbol* false 32 0x0
+field ciMetadata _metadata Metadata* false 16 0x0
+field CardTableBarrierSet _defer_initial_card_mark bool false 56 0x0
+field CardTableBarrierSet _card_table CardTable* false 64 0x0
+field IntptrHashtableEntry _literal intptr_t false 16 0x0
+field CardGeneration _rs CardTableRS* false 240 0x0
+field CardGeneration _bts BlockOffsetSharedArray* false 248 0x0
+field CardGeneration _shrink_factor size_t false 256 0x0
+field CardGeneration _capacity_at_prologue size_t false 272 0x0
+field CardGeneration _used_at_prologue size_t false 280 0x0
+field Array<Klass*> _length int false 0 0x0
+field Array<Klass*> _data[0] Klass* false 8 0x0
+field Array<Klass*> _data <opaque> false 8 0x0
+field ThreadsList _length uint false 4 0x0
+field ThreadsList _threads "JavaThread *const *const" false 16 0x0
+field ciConstant _type BasicType false 0 0x0
+field ciConstant _value._int jint false 8 0x0
+field ciConstant _value._long jlong false 8 0x0
+field ciConstant _value._float jfloat false 8 0x0
+field ciConstant _value._double jdouble false 8 0x0
+field ciConstant _value._object ciObject* false 8 0x0
+field OopHandle _obj oop* false 0 0x0
+field GenerationSpec _name Generation::Name false 0 0x0
+field GenerationSpec _init_size size_t false 8 0x0
+field GenerationSpec _max_size size_t false 24 0x0
+field G1MonitoringSupport _eden_space_committed size_t false 504 0x0
+field G1MonitoringSupport _eden_space_used size_t false 512 0x0
+field G1MonitoringSupport _survivor_space_committed size_t false 520 0x0
+field G1MonitoringSupport _survivor_space_used size_t false 528 0x0
+field G1MonitoringSupport _old_gen_committed size_t false 496 0x0
+field G1MonitoringSupport _old_gen_used size_t false 536 0x0
+field vtableEntry _method Method* false 0 0x0
+field nmethod _entry_bci int false 192 0x0
+field nmethod _osr_link nmethod* false 200 0x0
+field nmethod _state "volatile signed char" false 315 0x0
+field nmethod _exception_offset int false 240 0x0
+field nmethod _orig_pc_offset int false 300 0x0
+field nmethod _stub_offset int false 252 0x0
+field nmethod _consts_offset int false 248 0x0
+field nmethod _oops_offset int false 256 0x0
+field nmethod _metadata_offset int false 260 0x0
+field nmethod _scopes_pcs_offset int false 268 0x0
+field nmethod _dependencies_offset int false 272 0x0
+field nmethod _handler_table_offset int false 280 0x0
+field nmethod _nul_chk_table_offset int false 284 0x0
+field nmethod _nmethod_end_offset int false 296 0x0
+field nmethod _entry_point address false 216 0x0
+field nmethod _verified_entry_point address false 224 0x0
+field nmethod _osr_entry_point address false 232 0x0
+field nmethod _lock_count jint false 320 0x0
+field nmethod _stack_traversal_mark long false 328 0x0
+field nmethod _compile_id int false 304 0x0
+field nmethod _comp_level int false 308 0x0
+field ClassLoaderData _class_loader OopHandle false 8 0x0
+field ClassLoaderData _next ClassLoaderData* false 112 0x0
+field ClassLoaderData _klasses Klass* false 56 0x0
+field ClassLoaderData _has_class_mirror_holder bool false 33 0x0
+field ClassLoaderData _dictionary Dictionary* false 88 0x0
+field BasicLock _displaced_header markWord false 0 0x0
+field HeapRegionSetBase _length uint false 16 0x0
+field CompiledMethod _method Method* false 112 0x0
+field CompiledMethod _exception_cache ExceptionCache* false 176 0x0
+field CompiledMethod _scopes_data_begin address false 120 0x0
+field CompiledMethod _deopt_handler_begin address false 128 0x0
+field CompiledMethod _deopt_mh_handler_begin address false 136 0x0
+field CallRuntimeNode _name char* false 120 0x0
+field BasicObjectLock _lock BasicLock false 0 0x0
+field BasicObjectLock _obj oop false 8 0x0
+field G1HeapRegionTable _base address false 16 0x0
+field G1HeapRegionTable _length size_t false 24 0x0
+field G1HeapRegionTable _biased_base address false 32 0x0
+field G1HeapRegionTable _bias size_t false 40 0x0
+field G1HeapRegionTable _shift_by uint false 48 0x0
+field HeapBlock _header HeapBlock::Header false 0 0x0
+field CDSFileMapRegion _mapped_base char* false 64 0x0
+field CDSFileMapRegion _used size_t false 40 0x0
+field InlineTree _caller_jvms JVMState* false 8 0x0
+field InlineTree _method ciMethod* false 16 0x0
+field InlineTree _caller_tree InlineTree* false 24 0x0
+field InlineTree _subtrees GrowableArray<InlineTree*> false 40 0x0
+field CallJavaNode _method ciMethod* false 136 0x0
+field EpsilonHeap _virtual_space VirtualSpace false 320 0x0
+field EpsilonHeap _space ContiguousSpace* false 312 0x0
+field MachIfNode _prob jfloat false 72 0x0
+field MachIfNode _fcnt jfloat false 76 0x0
+field ContiguousSpace _top HeapWord* false 64 0x0
+field ContiguousSpace _saved_mark_word HeapWord* false 24 0x0
+field elapsedTimer _counter jlong false 0 0x0
+field elapsedTimer _active bool false 16 0x0
+field MethodCounters _nmethod_age int false 28 0x0
+field MethodCounters _invoke_mask int false 32 0x0
+field MethodCounters _backedge_mask int false 36 0x0
+field MethodCounters _interpreter_throwout_count u2 false 44 0x0
+field MethodCounters _number_of_breakpoints u2 false 46 0x0
+field MethodCounters _invocation_counter InvocationCounter false 8 0x0
+field MethodCounters _backedge_counter InvocationCounter false 12 0x0
+field ImmutableOopMap _count int false 0 0x0
+field Array<int> _length int false 0 0x0
+field Array<int> _data <opaque> false 4 0x0
+field PcDesc _pc_offset int false 0 0x0
+field PcDesc _scope_decode_offset int false 4 0x0
+field PcDesc _obj_decode_offset int false 8 0x0
+field PcDesc _flags int false 12 0x0
+field MachCallJavaNode _method ciMethod* false 144 0x0
+field Node_Array _max uint false 8 0x0
+field Node_Array _nodes Node** false 16 0x0
+field Node_Array _a Arena* false 0 0x0
+field ZVirtualMemory _start uintptr_t false 0 0x0
+field ZVirtualMemory _end uintptr_t false 8 0x0
+field BreakpointInfo _orig_bytecode Bytecodes::Code false 0 0x0
+field BreakpointInfo _bci int false 4 0x0
+field BreakpointInfo _name_index u2 false 8 0x0
+field BreakpointInfo _signature_index u2 false 10 0x0
+field BreakpointInfo _next BreakpointInfo* false 16 0x0
+field ShenandoahHeap _num_regions size_t false 528 0x0
+field ShenandoahHeap _regions ShenandoahHeapRegion** false 536 0x0
+field ShenandoahHeap _log_min_obj_alignment_in_bytes int false 2064 0x0
+field ShenandoahHeap _used size_t false 392 0x0
+field ShenandoahHeap _committed size_t false 400 0x0
+field MonitorList _head ObjectMonitor* false 0 0x0
+field ObjectMonitor _header markWord false 0 0x0
+field ObjectMonitor _object <opaque> false 8 0x0
+field ObjectMonitor _owner <opaque> false 64 0x0
+field ObjectMonitor _next_om ObjectMonitor* false 128 0x0
+field ObjectMonitor _contentions jint false 184 0x0
+field ObjectMonitor _waiters jint false 200 0x0
+field ObjectMonitor _recursions intx false 136 0x0
+field CodeHeap _memory VirtualSpace false 8 0x0
+field CodeHeap _segmap VirtualSpace false 120 0x0
+field CodeHeap _log2_segment_size int false 256 0x0
+field ZForwarding _virtual ZVirtualMemory false 0 0x0
+field ZForwarding _object_alignment_shift size_t false 16 0x0
+field ZForwarding _ref_count int false 128 0x0
+field ZForwarding _entries ZAttachedArrayForForwarding false 24 0x0
+field GrowableArray<ciMetadata*> _len int false 0 0x0
+field GrowableArray<ciMetadata*> _max int false 4 0x0
+field ciObject _handle jobject false 16 0x0
+field ciObject _klass ciKlass* false 24 0x0
+field ZGranuleMapForPageTable _map ZPage** false 8 0x0
+field VirtualSpace _low_boundary char* false 0 0x0
+field VirtualSpace _high_boundary char* false 8 0x0
+field VirtualSpace _low char* false 16 0x0
+field VirtualSpace _high char* false 24 0x0
+field VirtualSpace _lower_high char* false 40 0x0
+field VirtualSpace _middle_high char* false 48 0x0
+field VirtualSpace _upper_high char* false 56 0x0
+field GrowableArray<ciSymbol*> _len int false 0 0x0
+field GrowableArray<ciSymbol*> _max int false 4 0x0
+field ZCollectedHeap _heap ZHeap false 192 0x0
+field Symbol _hash_and_refcount "unsigned int" false 0 0x0
+field Symbol _length u2 false 4 0x0
+field Symbol _body <opaque> false 6 0x0
+field Symbol _body[0] u1 false 6 0x0
+field TenuredGeneration _min_heap_delta_bytes size_t false 264 0x0
+field TenuredGeneration _the_space ContiguousSpace* false 288 0x0
+field OptoRegPair _first short false 2 0x0
+field OptoRegPair _second short false 0 0x0
+field CompileTask _method Method* false 16 0x0
+field CompileTask _osr_bci int false 32 0x0
+field CompileTask _comp_level int false 48 0x0
+field CompileTask _compile_id uint false 8 0x0
+field CompileTask _num_inlined_bytecodes int false 52 0x0
+field CompileTask _next CompileTask* false 64 0x0
+field CompileTask _prev CompileTask* false 72 0x0
+field ShenandoahHeapRegion _state ShenandoahHeapRegion::RegionState false 40 0x0
+field ShenandoahHeapRegion _index size_t false 0 0x0
+field ShenandoahHeapRegion _bottom HeapWord* false 8 0x0
+field ShenandoahHeapRegion _top HeapWord* false 48 0x0
+field ShenandoahHeapRegion _end HeapWord* false 16 0x0
+field ThreadLocalAllocBuffer _start HeapWord* false 0 0x0
+field ThreadLocalAllocBuffer _top HeapWord* false 8 0x0
+field ThreadLocalAllocBuffer _end HeapWord* false 24 0x0
+field ThreadLocalAllocBuffer _pf_top HeapWord* false 16 0x0
+field ThreadLocalAllocBuffer _desired_size size_t false 40 0x0
+field ThreadLocalAllocBuffer _refill_waste_limit size_t false 48 0x0
+field ThreadLocalAllocBuffer _number_of_refills unsigned false 72 0x0
+field ThreadLocalAllocBuffer _refill_waste unsigned false 76 0x0
+field ThreadLocalAllocBuffer _gc_waste unsigned false 80 0x0
+field ThreadLocalAllocBuffer _slow_allocations unsigned false 84 0x0
+field Block_List _cnt uint false 24 0x0
+field vframeArray _next vframeArray* false 8 0x0
+field vframeArray _original frame false 16 0x0
+field vframeArray _caller frame false 64 0x0
+field vframeArray _frames int false 172 0x0
+field G1CollectedHeap _summary_bytes_used size_t false 568 0x0
+field G1CollectedHeap _hrm HeapRegionManager false 304 0x0
+field G1CollectedHeap _g1mm G1MonitoringSupport* false 856 0x0
+field G1CollectedHeap _old_set HeapRegionSetBase false 160 0x0
+field G1CollectedHeap _archive_set HeapRegionSetBase false 200 0x0
+field G1CollectedHeap _humongous_set HeapRegionSetBase false 240 0x0
+field ZForwardingTable _map ZGranuleMapForForwarding false 0 0x0
+field DataLayout _header._struct._tag u1 false 0 0x0
+field DataLayout _header._struct._flags u1 false 1 0x0
+field DataLayout _header._struct._bci u2 false 2 0x0
+field DataLayout _header._struct._traps u4 false 4 0x0
+field DataLayout _cells[0] intptr_t false 8 0x0
+field ConstantPool _tags Array<u1>* false 8 0x0
+field ConstantPool _cache ConstantPoolCache* false 16 0x0
+field ConstantPool _pool_holder InstanceKlass* false 24 0x0
+field ConstantPool _operands Array<u2>* false 32 0x0
+field ConstantPool _resolved_klasses Array<Klass*>* false 40 0x0
+field ConstantPool _length int false 60 0x0
+field ConstantPool _minor_version u2 false 50 0x0
+field ConstantPool _major_version u2 false 48 0x0
+field ConstantPool _generic_signature_index u2 false 52 0x0
+field ConstantPool _source_file_name_index u2 false 54 0x0
+field CompilerThread _env ciEnv* false 1400 0x0
+field CompactibleSpace _compaction_top HeapWord* false 32 0x0
+field CompactibleSpace _first_dead HeapWord* false 48 0x0
+field CompactibleSpace _end_of_live HeapWord* false 56 0x0
+field InterpreterCodelet _size int false 8 0x0
+field InterpreterCodelet _description char* false 0 0x0
+field InterpreterCodelet _bytecode Bytecodes::Code false 12 0x0
+field PhaseCFG _number_of_blocks uint false 64 0x0
+field PhaseCFG _blocks Block_List false 32 0x0
+field PhaseCFG _node_to_block_mapping Block_Array false 104 0x0
+field PhaseCFG _root_block Block* false 24 0x0
+field ciEnv _compiler_data void* false 128 0x0
+field ciEnv _failure_reason char* false 88 0x0
+field ciEnv _factory ciObjectFactory* false 56 0x0
+field ciEnv _dependencies Dependencies* false 80 0x0
+field ciEnv _task CompileTask* false 112 0x0
+field ciEnv _arena Arena* false 0 0x0
+field ZPage _type uint8_t false 0 0x0
+field ZPage _seqnum uint32_t false 4 0x0
+field ZPage _virtual ZVirtualMemory false 8 0x0
+field ZPage _top uintptr_t false 24 0x0
+field MutableSpace _bottom HeapWord* false 40 0x0
+field MutableSpace _end HeapWord* false 56 0x0
+field MutableSpace _top HeapWord* false 48 0x0
+field Deoptimization::UnrollBlock _size_of_deoptimized_frame int false 0 0x0
+field Deoptimization::UnrollBlock _caller_adjustment int false 4 0x0
+field Deoptimization::UnrollBlock _number_of_frames int false 8 0x0
+field Deoptimization::UnrollBlock _total_frame_sizes int false 12 0x0
+field Deoptimization::UnrollBlock _unpack_kind int false 60 0x0
+field Deoptimization::UnrollBlock _frame_sizes intptr_t* false 16 0x0
+field Deoptimization::UnrollBlock _frame_pcs address* false 24 0x0
+field Deoptimization::UnrollBlock _register_block intptr_t* false 32 0x0
+field Deoptimization::UnrollBlock _return_type BasicType false 40 0x0
+field Deoptimization::UnrollBlock _initial_info intptr_t false 48 0x0
+field Deoptimization::UnrollBlock _caller_actual_parameters int false 56 0x0
+field CodeBlob _name char* false 96 0x0
+field CodeBlob _size int false 12 0x0
+field CodeBlob _header_size int false 16 0x0
+field CodeBlob _frame_complete_offset int false 20 0x0
+field CodeBlob _data_offset int false 24 0x0
+field CodeBlob _frame_size int false 28 0x0
+field CodeBlob _oop_maps ImmutableOopMapSet* false 80 0x0
+field CodeBlob _code_begin address false 32 0x0
+field CodeBlob _code_end address false 40 0x0
+field CodeBlob _content_begin address false 48 0x0
+field CodeBlob _data_end address false 56 0x0
+field CFGElement _freq jdouble false 8 0x0
+field BarrierSet::FakeRtti _concrete_tag BarrierSet::Name false 8 0x0
+field Thread _active_handles JNIHandleBlock* false 216 0x0
+field Thread _tlab ThreadLocalAllocBuffer false 256 0x0
+field Thread _allocated_bytes jlong false 376 0x0
+field Thread _resource_area ResourceArea* false 568 0x0
+field ZGlobalsForVMStructs _ZGlobalPhase uint32_t* false 0 0x0
+field ZGlobalsForVMStructs _ZGlobalSeqNum uint32_t* false 8 0x0
+field ZGlobalsForVMStructs _ZAddressOffsetMask uintptr_t* false 16 0x0
+field ZGlobalsForVMStructs _ZAddressMetadataMask uintptr_t* false 24 0x0
+field ZGlobalsForVMStructs _ZAddressMetadataFinalizable uintptr_t* false 32 0x0
+field ZGlobalsForVMStructs _ZAddressGoodMask uintptr_t* false 40 0x0
+field ZGlobalsForVMStructs _ZAddressBadMask uintptr_t* false 48 0x0
+field ZGlobalsForVMStructs _ZAddressWeakBadMask uintptr_t* false 56 0x0
+field ZGlobalsForVMStructs _ZObjectAlignmentSmallShift int* false 64 0x0
+field ZGlobalsForVMStructs _ZObjectAlignmentSmall int* false 72 0x0
+field CollectedHeap _reserved MemRegion false 32 0x0
+field CollectedHeap _is_gc_active bool false 48 0x0
+field CollectedHeap _total_collections "unsigned int" false 64 0x0
+field Array<Method*> _data <opaque> false 8 0x0
+field FileMapHeader _space[0] CDSFileMapRegion false 16 0x0
+field FileMapHeader _cloned_vtables_offset size_t false 584 0x0
+field FileMapHeader _mapped_base_address char* false 920 0x0
+field ConstantPoolCache _resolved_references OopHandle false 16 0x0
+field ConstantPoolCache _reference_map Array<u2>* false 24 0x0
+field ConstantPoolCache _length int false 0 0x0
+field ConstantPoolCache _constant_pool ConstantPool* false 8 0x0
+field Block _nodes Node_List false 16 0x0
+field Block _succs Block_Array false 48 0x0
+field Block _num_succs uint false 72 0x0
+field Block _pre_order uint false 76 0x0
+field Block _dom_depth uint false 80 0x0
+field Block _idom Block* false 88 0x0
+field Block _freq jdouble false 8 0x0
+field ciBaseObject _ident uint false 8 0x0
+field BlockOffsetArray _array BlockOffsetSharedArray* false 24 0x0
+field BlockOffsetArray _sp Space* false 32 0x0
+field BarrierSet _fake_rtti BarrierSet::FakeRtti false 8 0x0
+field CompiledICHolder _holder_metadata Metadata* false 0 0x0
+field CompiledICHolder _holder_klass Klass* false 8 0x0
+field AgeTable sizes <opaque> false 0 0x0
+field ZGranuleMapForForwarding _map ZForwarding** false 8 0x0
+field DefNewGeneration _old_gen Generation* false 240 0x0
+field DefNewGeneration _tenuring_threshold uint false 248 0x0
+field DefNewGeneration _age_table AgeTable false 256 0x0
+field DefNewGeneration _eden_space ContiguousSpace* false 736 0x0
+field DefNewGeneration _from_space ContiguousSpace* false 744 0x0
+field DefNewGeneration _to_space ContiguousSpace* false 752 0x0
+field vframeArrayElement _frame frame false 0 0x0
+field vframeArrayElement _bci int false 48 0x0
+field vframeArrayElement _method Method* false 56 0x0
+constant AbstractInterpreter _code StubQueue* 0x7fafe8196eb0
+constant Abstract_VM_Version _features uint64_t 0x61c05ddffff
+constant Abstract_VM_Version _vm_build_number int 0x7
+constant Abstract_VM_Version _vm_major_version int 0x11
+constant Abstract_VM_Version _vm_minor_version int 0x0
+constant Abstract_VM_Version _vm_security_version int 0x8
+constant Arguments _java_command char* 0x7fafe8001710
+constant Arguments _jvm_args_array char** 0x7fafe8003660
+constant Arguments _jvm_flags_array char** 0x0
+constant Arguments _num_jvm_args int 0x3
+constant Arguments _num_jvm_flags int 0x0
+constant BarrierSet _barrier_set BarrierSet* 0x7fafe8036d30
+constant CodeCache _high_bound address 0x7fafe0400000
+constant CodeCache _low_bound address 0x7fafd1400000
+constant CompressedKlassPointers _narrow_klass._base address 0x7faf5f000000
+constant CompressedKlassPointers _narrow_klass._shift int 0x0
+constant CompressedOops _narrow_oop._base address 0x0
+constant CompressedOops _narrow_oop._shift int 0x3
+constant CompressedOops _narrow_oop._use_implicit_null_checks bool 0x1
+constant HeapRegion GrainBytes size_t 0x800000
+constant HeapRegion LogOfHRGrainBytes int 0x17
+constant JVMFlag flags JVMFlag* 0x7faff0f183a0
+constant JVMFlag numFlags size_t 0x4f1
+constant JvmtiExport _can_access_local_variables bool 0x1
+constant JvmtiExport _can_hotswap_or_post_breakpoint bool 0x1
+constant JvmtiExport _can_post_on_exceptions bool 0x1
+constant JvmtiExport _can_walk_any_space bool 0x1
+constant MetaspaceObj _shared_metaspace_base void* 0x7faf5f000000
+constant MetaspaceObj _shared_metaspace_top void* 0x7faf5fbeb000
+constant ParallelScavengeHeap _old_gen PSOldGen* 0x0
+constant ParallelScavengeHeap _young_gen PSYoungGen* 0x0
+constant PerfMemory _capacity size_t 0x8000
+constant PerfMemory _end char* 0x7faff1291000
+constant PerfMemory _initialized int 0x1
+constant PerfMemory _prologue PerfDataPrologue* 0x7faff1289000
+constant PerfMemory _start char* 0x7faff1289000
+constant PerfMemory _top char* 0x7faff128c350
+constant ShenandoahHeapRegion RegionSizeBytes size_t 0x0
+constant ShenandoahHeapRegion RegionSizeBytesShift size_t 0x0
+constant StubRoutines _aescrypt_decryptBlock address 0x7fafd89704a0
+constant StubRoutines _aescrypt_encryptBlock address 0x7fafd8970380
+constant StubRoutines _arrayof_jbyte_arraycopy address 0x7fafd896ed20
+constant StubRoutines _arrayof_jbyte_disjoint_arraycopy address 0x7fafd896ec60
+constant StubRoutines _arrayof_jint_arraycopy address 0x7fafd896f020
+constant StubRoutines _arrayof_jint_disjoint_arraycopy address 0x7fafd896ef80
+constant StubRoutines _arrayof_jlong_arraycopy address 0x7fafd896f140
+constant StubRoutines _arrayof_jlong_disjoint_arraycopy address 0x7fafd896f0c0
+constant StubRoutines _arrayof_jshort_arraycopy address 0x7fafd896eec0
+constant StubRoutines _arrayof_jshort_disjoint_arraycopy address 0x7fafd896ee00
+constant StubRoutines _arrayof_oop_arraycopy address 0x7fafd896f420
+constant StubRoutines _arrayof_oop_arraycopy_uninit address 0x7fafd896f7e0
+constant StubRoutines _arrayof_oop_disjoint_arraycopy address 0x7fafd896f1e0
+constant StubRoutines _arrayof_oop_disjoint_arraycopy_uninit address 0x7fafd896f680
+constant StubRoutines _base64_decodeBlock address 0x0
+constant StubRoutines _base64_encodeBlock address 0x0
+constant StubRoutines _bigIntegerLeftShiftWorker address 0x0
+constant StubRoutines _bigIntegerRightShiftWorker address 0x0
+constant StubRoutines _call_stub_return_address address 0x7fafd8937cc9
+constant StubRoutines _checkcast_arraycopy address 0x7fafd896f960
+constant StubRoutines _checkcast_arraycopy_uninit address 0x7fafd896fbe0
+constant StubRoutines _cipherBlockChaining_decryptAESCrypt address 0x7fafd8970800
+constant StubRoutines _cipherBlockChaining_encryptAESCrypt address 0x7fafd89705c0
+constant StubRoutines _counterMode_AESCrypt address 0x7fafd8970fe0
+constant StubRoutines _crc32c_table_addr address 0x7faff0f7e9c0
+constant StubRoutines _crc_table_adr address 0x7faff0f2b3c0
+constant StubRoutines _dcos address 0x7fafd893a67a
+constant StubRoutines _dexp address 0x7fafd893865e
+constant StubRoutines _dlog address 0x7fafd8938986
+constant StubRoutines _dlog10 address 0x7fafd8938bfd
+constant StubRoutines _dpow address 0x7fafd8938eac
+constant StubRoutines _dsin address 0x7fafd8939fe4
+constant StubRoutines _dtan address 0x7fafd893acf2
+constant StubRoutines _electronicCodeBook_decryptAESCrypt address 0x0
+constant StubRoutines _electronicCodeBook_encryptAESCrypt address 0x0
+constant StubRoutines _generic_arraycopy address 0x7fafd896fdc0
+constant StubRoutines _ghash_processBlocks address 0x7fafd89759a0
+constant StubRoutines _jbyte_arraycopy address 0x7fafd896ed20
+constant StubRoutines _jbyte_disjoint_arraycopy address 0x7fafd896ec60
+constant StubRoutines _jint_arraycopy address 0x7fafd896f020
+constant StubRoutines _jint_disjoint_arraycopy address 0x7fafd896ef80
+constant StubRoutines _jlong_arraycopy address 0x7fafd896f140
+constant StubRoutines _jlong_disjoint_arraycopy address 0x7fafd896f0c0
+constant StubRoutines _jshort_arraycopy address 0x7fafd896eec0
+constant StubRoutines _jshort_disjoint_arraycopy address 0x7fafd896ee00
+constant StubRoutines _mulAdd address 0x7fafd89761c0
+constant StubRoutines _multiplyToLen address 0x7fafd8975e40
+constant StubRoutines _oop_arraycopy address 0x7fafd896f420
+constant StubRoutines _oop_arraycopy_uninit address 0x7fafd896f7e0
+constant StubRoutines _oop_disjoint_arraycopy address 0x7fafd896f1e0
+constant StubRoutines _oop_disjoint_arraycopy_uninit address 0x7fafd896f680
+constant StubRoutines _squareToLen address 0x7fafd8976080
+constant StubRoutines _unsafe_arraycopy address 0x7fafd896fd80
+constant StubRoutines _updateBytesAdler32 address 0x7fafd8938420
+constant StubRoutines _updateBytesCRC32 address 0x7fafd8937f20
+constant StubRoutines _updateBytesCRC32C address 0x7fafd89381a0
+constant StubRoutines _vectorizedMismatch address 0x7fafd89762c0
+constant StubRoutines _verify_oop_count jint 0x0
+constant Symbol _vm_symbols[0] Symbol* 0x0
+constant ThreadLocalAllocBuffer _reserve_for_allocation_prefetch int 0x48
+constant ThreadLocalAllocBuffer _target_refills unsigned 0x32
+constant Threads _number_of_non_daemon_threads int 0x1
+constant Threads _number_of_threads int 0xf
+constant Threads _return_code int 0x0
+constant Universe _collectedHeap CollectedHeap* 0x7fafe802c7f0
+constant VMError _thread Thread* 0x0
+constant VMRegImpl stack0 VMReg 0x248
+constant java_lang_Class _array_klass_offset int 0x18
+constant java_lang_Class _klass_offset int 0x10
+constant java_lang_Class _oop_size_offset int 0x20
+constant java_lang_Class _static_oop_field_count_offset int 0x24
+constant os _polling_page address 0x0
+constant null ALLOCATED int 0x0
+constant null ASSERT int 0x0
+constant null AgeTable::table_size int 0x10
+constant null BOTConstants::Base int 0x10
+constant null BOTConstants::LogBase int 0x4
+constant null BOTConstants::LogN int 0x9
+constant null BOTConstants::LogN_words int 0x6
+constant null BOTConstants::N_bytes int 0x200
+constant null BOTConstants::N_powers int 0xe
+constant null BOTConstants::N_words int 0x40
+constant null BREAKPOINTED int 0x6
+constant null BarrierSet::CardTableBarrierSet int 0x1
+constant null BarrierSet::G1BarrierSet int 0x3
+constant null BarrierSet::ModRef int 0x0
+constant null BytesPerLong int 0x8
+constant null BytesPerWord int 0x8
+constant null CONDVAR_WAIT int 0x4
+constant null C_SAVED_ON_ENTRY_REG_COUNT int 0xc
+constant null CardTable::ObjHeadPreciseArray int 0x1
+constant null CardTable::Precise int 0x0
+constant null CardTable::card_shift int 0x9
+constant null CardTable::card_size int 0x200
+constant null CardTable::card_size_in_words int 0x40
+constant null CardTable::clean_card int 0xff
+constant null CardTable::dirty_card int 0x0
+constant null CardTable::last_card int 0x1
+constant null CollectedHeap::G1 int 0x3
+constant null CollectedHeap::Parallel int 0x2
+constant null CollectedHeap::Serial int 0x1
+constant null CompLevel_all int 0xffffffffffffffff
+constant null CompLevel_any int 0xffffffffffffffff
+constant null CompLevel_full_optimization int 0x4
+constant null CompLevel_full_profile int 0x3
+constant null CompLevel_limited_profile int 0x2
+constant null CompLevel_none int 0x0
+constant null CompLevel_simple int 0x1
+constant null ConcreteRegisterImpl::number_of_registers int 0x241
+constant null ConstMethod::_has_checked_exceptions int 0x2
+constant null ConstMethod::_has_default_annotations int 0x400
+constant null ConstMethod::_has_exception_table int 0x8
+constant null ConstMethod::_has_generic_signature int 0x10
+constant null ConstMethod::_has_linenumber_table int 0x1
+constant null ConstMethod::_has_localvariable_table int 0x4
+constant null ConstMethod::_has_method_annotations int 0x80
+constant null ConstMethod::_has_method_parameters int 0x20
+constant null ConstMethod::_has_parameter_annotations int 0x100
+constant null ConstMethod::_has_type_annotations int 0x200
+constant null ConstantPool::CPCACHE_INDEX_TAG int 0x0
+constant null ConstantPool::_indy_argc_offset int 0x1
+constant null ConstantPool::_indy_argv_offset int 0x2
+constant null ConstantPool::_indy_bsm_offset int 0x0
+constant null ConstantPoolCacheEntry::is_field_entry_shift int 0x1a
+constant null ConstantPoolCacheEntry::is_final_shift int 0x16
+constant null ConstantPoolCacheEntry::is_forced_virtual_shift int 0x17
+constant null ConstantPoolCacheEntry::is_vfinal_shift int 0x14
+constant null ConstantPoolCacheEntry::is_volatile_shift int 0x15
+constant null ConstantPoolCacheEntry::tos_state_shift int 0x1c
+constant null DataLayout::arg_info_data_tag int 0x9
+constant null DataLayout::bit_data_tag int 0x1
+constant null DataLayout::branch_data_tag int 0x7
+constant null DataLayout::call_type_data_tag int 0xa
+constant null DataLayout::cell_size int 0x8
+constant null DataLayout::counter_data_tag int 0x2
+constant null DataLayout::jump_data_tag int 0x3
+constant null DataLayout::multi_branch_data_tag int 0x8
+constant null DataLayout::no_tag int 0x0
+constant null DataLayout::parameters_type_data_tag int 0xc
+constant null DataLayout::receiver_type_data_tag int 0x4
+constant null DataLayout::ret_data_tag int 0x6
+constant null DataLayout::speculative_trap_data_tag int 0xd
+constant null DataLayout::virtual_call_data_tag int 0x5
+constant null DataLayout::virtual_call_type_data_tag int 0xb
+constant null Deoptimization::Action_LIMIT int 0x5
+constant null Deoptimization::Action_make_not_compilable int 0x4
+constant null Deoptimization::Action_make_not_entrant int 0x3
+constant null Deoptimization::Action_maybe_recompile int 0x1
+constant null Deoptimization::Action_none int 0x0
+constant null Deoptimization::Action_reinterpret int 0x2
+constant null Deoptimization::Reason_LIMIT int 0x20
+constant null Deoptimization::Reason_RECORDED_LIMIT int 0x8
+constant null Deoptimization::Reason_age int 0x10
+constant null Deoptimization::Reason_aliasing int 0x1a
+constant null Deoptimization::Reason_array_check int 0x5
+constant null Deoptimization::Reason_bimorphic int 0x7
+constant null Deoptimization::Reason_class_check int 0x4
+constant null Deoptimization::Reason_constraint int 0xe
+constant null Deoptimization::Reason_div0_check int 0xf
+constant null Deoptimization::Reason_initialized int 0xb
+constant null Deoptimization::Reason_intrinsic int 0x6
+constant null Deoptimization::Reason_jsr_mismatch int 0x1e
+constant null Deoptimization::Reason_loop_limit_check int 0x12
+constant null Deoptimization::Reason_many int 0xffffffffffffffff
+constant null Deoptimization::Reason_none int 0x0
+constant null Deoptimization::Reason_not_compiled_exception_handler int 0x1c
+constant null Deoptimization::Reason_null_assert int 0x2
+constant null Deoptimization::Reason_null_check int 0x1
+constant null Deoptimization::Reason_predicate int 0x11
+constant null Deoptimization::Reason_profile_predicate int 0x8
+constant null Deoptimization::Reason_range_check int 0x3
+constant null Deoptimization::Reason_receiver_constraint int 0x19
+constant null Deoptimization::Reason_rtm_state_change int 0x16
+constant null Deoptimization::Reason_speculate_class_check int 0x13
+constant null Deoptimization::Reason_speculate_null_assert int 0x15
+constant null Deoptimization::Reason_speculate_null_check int 0x14
+constant null Deoptimization::Reason_tenured int 0x1f
+constant null Deoptimization::Reason_transfer_to_interpreter int 0x1b
+constant null Deoptimization::Reason_unhandled int 0xd
+constant null Deoptimization::Reason_uninitialized int 0xa
+constant null Deoptimization::Reason_unloaded int 0x9
+constant null Deoptimization::Reason_unreached int 0xc
+constant null Deoptimization::Reason_unresolved int 0x1d
+constant null Deoptimization::Reason_unstable_fused_if int 0x18
+constant null Deoptimization::Reason_unstable_if int 0x17
+constant null Deoptimization::Unpack_deopt int 0x0
+constant null Deoptimization::Unpack_exception int 0x1
+constant null Deoptimization::Unpack_reexecute int 0x3
+constant null Deoptimization::Unpack_uncommon_trap int 0x2
+constant null Deoptimization::_action_bits int 0x3
+constant null Deoptimization::_action_shift int 0x0
+constant null Deoptimization::_debug_id_bits int 0x17
+constant null Deoptimization::_debug_id_shift int 0x8
+constant null Deoptimization::_reason_bits int 0x5
+constant null Deoptimization::_reason_shift int 0x3
+constant null FIELDINFO_TAG_OFFSET int 0x1
+constant null FIELDINFO_TAG_SIZE int 0x2
+constant null FieldInfo::access_flags_offset int 0x0
+constant null FieldInfo::field_slots int 0x6
+constant null FieldInfo::high_packed_offset int 0x5
+constant null FieldInfo::initval_index_offset int 0x3
+constant null FieldInfo::low_packed_offset int 0x4
+constant null FieldInfo::name_index_offset int 0x1
+constant null FieldInfo::signature_index_offset int 0x2
+constant null G1CardTable::g1_young_gen int 0x4
+constant null Generation::DefNew int 0x0
+constant null Generation::GenGrain int 0x10000
+constant null Generation::LogOfGenGrain int 0x10
+constant null Generation::MarkSweepCompact int 0x1
+constant null Generation::Other int 0x2
+constant null HeapRegionType::ArchiveMask int 0x20
+constant null HeapRegionType::ContinuesHumongousTag int 0xd
+constant null HeapRegionType::EdenTag int 0x2
+constant null HeapRegionType::FreeTag int 0x0
+constant null HeapRegionType::HumongousMask int 0x4
+constant null HeapRegionType::OldMask int 0x10
+constant null HeapRegionType::PinnedMask int 0x8
+constant null HeapRegionType::StartsHumongousTag int 0xc
+constant null HeapRegionType::SurvTag int 0x3
+constant null HeapRegionType::YoungMask int 0x2
+constant null HeapWordSize int 0x8
+constant null INCLUDE_JVMCI int 0x1
+constant null INITIALIZED int 0x1
+constant null InstanceKlass::_misc_declares_nonstatic_concrete_methods int 0x40
+constant null InstanceKlass::_misc_has_been_redefined int 0x80
+constant null InstanceKlass::_misc_has_nonstatic_concrete_methods int 0x20
+constant null InstanceKlass::_misc_has_nonstatic_fields int 0x2
+constant null InstanceKlass::_misc_is_contended int 0x10
+constant null InstanceKlass::_misc_is_scratch_class int 0x200
+constant null InstanceKlass::_misc_is_shared_app_class int 0x1000
+constant null InstanceKlass::_misc_is_shared_boot_class int 0x400
+constant null InstanceKlass::_misc_is_shared_platform_class int 0x800
+constant null InstanceKlass::_misc_rewritten int 0x1
+constant null InstanceKlass::_misc_should_verify_class int 0x4
+constant null InstanceKlass::allocated int 0x0
+constant null InstanceKlass::being_initialized int 0x3
+constant null InstanceKlass::enclosing_method_attribute_size int 0x2
+constant null InstanceKlass::fully_initialized int 0x4
+constant null InstanceKlass::initialization_error int 0x5
+constant null InstanceKlass::inner_class_access_flags_offset int 0x3
+constant null InstanceKlass::inner_class_inner_class_info_offset int 0x0
+constant null InstanceKlass::inner_class_inner_name_offset int 0x2
+constant null InstanceKlass::inner_class_next_offset int 0x4
+constant null InstanceKlass::inner_class_outer_class_info_offset int 0x1
+constant null InstanceKlass::linked int 0x2
+constant null InstanceKlass::loaded int 0x1
+constant null InvocationEntryBci int 0xffffffffffffffff
+constant null JNIHandleBlock::block_size_in_oops int 0x20
+constant null JVMFlag::VALUE_ORIGIN_MASK int 0xf
+constant null JVMFlag::WAS_SET_ON_COMMAND_LINE int 0x20000
+constant null JVMFlagOrigin::ATTACH_ON_DEMAND int 0x6
+constant null JVMFlagOrigin::COMMAND_LINE int 0x1
+constant null JVMFlagOrigin::CONFIG_FILE int 0x3
+constant null JVMFlagOrigin::DEFAULT int 0x0
+constant null JVMFlagOrigin::ENVIRON_VAR int 0x2
+constant null JVMFlagOrigin::ERGONOMIC int 0x5
+constant null JVMFlagOrigin::INTERNAL int 0x7
+constant null JVMFlagOrigin::JIMAGE_RESOURCE int 0x8
+constant null JVMFlagOrigin::MANAGEMENT int 0x4
+constant null JVM_ACC_FIELD_ACCESS_WATCHED int 0x2000
+constant null JVM_ACC_FIELD_HAS_GENERIC_SIGNATURE int 0x800
+constant null JVM_ACC_FIELD_INTERNAL int 0x400
+constant null JVM_ACC_FIELD_MODIFICATION_WATCHED int 0x8000
+constant null JVM_ACC_FIELD_STABLE int 0x20
+constant null JVM_ACC_HAS_CHECKED_EXCEPTIONS int 0x400000
+constant null JVM_ACC_HAS_FINALIZER int 0x40000000
+constant null JVM_ACC_HAS_JSRS int 0x800000
+constant null JVM_ACC_HAS_LINE_NUMBER_TABLE int 0x100000
+constant null JVM_ACC_HAS_LOCAL_VARIABLE_TABLE int 0x200000
+constant null JVM_ACC_HAS_LOOPS int 0x40000000
+constant null JVM_ACC_HAS_MIRANDA_METHODS int 0x10000000
+constant null JVM_ACC_HAS_MONITOR_BYTECODES int 0x20000000
+constant null JVM_ACC_HAS_VANILLA_CONSTRUCTOR int 0x20000000
+constant null JVM_ACC_IS_CLONEABLE_FAST int 0xffffffff80000000
+constant null JVM_ACC_IS_OBSOLETE int 0x20000
+constant null JVM_ACC_IS_OLD int 0x10000
+constant null JVM_ACC_IS_PREFIXED_NATIVE int 0x40000
+constant null JVM_ACC_LOOPS_FLAG_INIT int 0xffffffff80000000
+constant null JVM_ACC_MONITOR_MATCH int 0x10000000
+constant null JVM_ACC_NOT_C2_OSR_COMPILABLE int 0x8000000
+constant null JVM_ACC_PROMOTED_FLAGS int 0x200000
+constant null JVM_ACC_QUEUED int 0x1000000
+constant null JVM_ACC_WRITTEN_FLAGS int 0x7fff
+constant null JVM_CONSTANT_Class int 0x7
+constant null JVM_CONSTANT_ClassIndex int 0x65
+constant null JVM_CONSTANT_Double int 0x6
+constant null JVM_CONSTANT_Dynamic int 0x11
+constant null JVM_CONSTANT_DynamicInError int 0x6a
+constant null JVM_CONSTANT_ExternalMax int 0x14
+constant null JVM_CONSTANT_Fieldref int 0x9
+constant null JVM_CONSTANT_Float int 0x4
+constant null JVM_CONSTANT_Integer int 0x3
+constant null JVM_CONSTANT_InterfaceMethodref int 0xb
+constant null JVM_CONSTANT_InternalMax int 0x6a
+constant null JVM_CONSTANT_InternalMin int 0x64
+constant null JVM_CONSTANT_Invalid int 0x0
+constant null JVM_CONSTANT_InvokeDynamic int 0x12
+constant null JVM_CONSTANT_Long int 0x5
+constant null JVM_CONSTANT_MethodHandle int 0xf
+constant null JVM_CONSTANT_MethodHandleInError int 0x68
+constant null JVM_CONSTANT_MethodType int 0x10
+constant null JVM_CONSTANT_MethodTypeInError int 0x69
+constant null JVM_CONSTANT_Methodref int 0xa
+constant null JVM_CONSTANT_Module int 0x13
+constant null JVM_CONSTANT_NameAndType int 0xc
+constant null JVM_CONSTANT_Package int 0x14
+constant null JVM_CONSTANT_String int 0x8
+constant null JVM_CONSTANT_StringIndex int 0x66
+constant null JVM_CONSTANT_Unicode int 0x2
+constant null JVM_CONSTANT_UnresolvedClass int 0x64
+constant null JVM_CONSTANT_UnresolvedClassInError int 0x67
+constant null JVM_CONSTANT_Utf8 int 0x1
+constant null JavaThread::_has_async_exception int 0x1
+constant null JavaThread::_not_terminated int 0xdeab
+constant null JavaThread::_thread_exiting int 0xdeac
+constant null JavaThreadStatus::BLOCKED_ON_MONITOR_ENTER int 0x401
+constant null JavaThreadStatus::IN_OBJECT_WAIT int 0x191
+constant null JavaThreadStatus::IN_OBJECT_WAIT_TIMED int 0x1a1
+constant null JavaThreadStatus::NEW int 0x0
+constant null JavaThreadStatus::PARKED int 0x291
+constant null JavaThreadStatus::PARKED_TIMED int 0x2a1
+constant null JavaThreadStatus::RUNNABLE int 0x5
+constant null JavaThreadStatus::SLEEPING int 0xe1
+constant null JavaThreadStatus::TERMINATED int 0x2
+constant null Klass::_lh_array_tag_obj_value int 0xfffffffffffffffe
+constant null Klass::_lh_array_tag_shift int 0x1e
+constant null Klass::_lh_array_tag_type_value int 0xffffffffffffffff
+constant null Klass::_lh_element_type_mask int 0xff
+constant null Klass::_lh_element_type_shift int 0x8
+constant null Klass::_lh_header_size_mask int 0xff
+constant null Klass::_lh_header_size_shift int 0x10
+constant null Klass::_lh_instance_slow_path_bit int 0x1
+constant null Klass::_lh_log2_element_size_mask int 0x3f
+constant null Klass::_lh_log2_element_size_shift int 0x0
+constant null Klass::_lh_neutral_value int 0x0
+constant null Klass::_primary_super_limit int 0x8
+constant null Location::OFFSET_MASK int 0xffffffffffffffe0
+constant null Location::OFFSET_SHIFT int 0x5
+constant null Location::TYPE_MASK int 0xf
+constant null Location::TYPE_SHIFT int 0x0
+constant null Location::WHERE_MASK int 0x10
+constant null Location::WHERE_SHIFT int 0x4
+constant null Location::addr int 0x8
+constant null Location::dbl int 0x6
+constant null Location::float_in_dbl int 0x5
+constant null Location::in_register int 0x1
+constant null Location::int_in_long int 0x3
+constant null Location::invalid int 0x0
+constant null Location::lng int 0x4
+constant null Location::narrowoop int 0x9
+constant null Location::normal int 0x1
+constant null Location::on_stack int 0x0
+constant null Location::oop int 0x2
+constant null LogBytesPerWord int 0x3
+constant null LogHeapWordSize int 0x3
+constant null LogKlassAlignmentInBytes int 0x3
+constant null MONITOR_WAIT int 0x3
+constant null Matcher::interpreter_frame_pointer_reg int 0x16
+constant null Method::_caller_sensitive int 0x1
+constant null Method::_dont_inline int 0x4
+constant null Method::_force_inline int 0x2
+constant null Method::_hidden int 0x8
+constant null Method::extra_stack_entries_for_jsr292 int 0x1
+constant null Method::nonvirtual_vtable_index int 0xfffffffffffffffe
+constant null OBJECT_WAIT int 0x5
+constant null OopMapValue::callee_saved_value int 0x2
+constant null OopMapValue::derived_oop_value int 0x3
+constant null OopMapValue::narrowoop_value int 0x1
+constant null OopMapValue::oop_value int 0x0
+constant null OopMapValue::register_bits int 0xe
+constant null OopMapValue::register_mask int 0x3fff
+constant null OopMapValue::register_mask_in_place int 0xfffc
+constant null OopMapValue::register_shift int 0x2
+constant null OopMapValue::type_bits int 0x2
+constant null OopMapValue::type_mask int 0x3
+constant null OopMapValue::type_mask_in_place int 0x3
+constant null OopMapValue::type_shift int 0x0
+constant null OopMapValue::unused_value int 0xffffffffffffffff
+constant null PERFDATA_BIG_ENDIAN int 0x0
+constant null PERFDATA_LITTLE_ENDIAN int 0x1
+constant null PERFDATA_MAJOR_VERSION int 0x2
+constant null PERFDATA_MINOR_VERSION int 0x0
+constant null PcDesc::PCDESC_is_method_handle_invoke int 0x2
+constant null PcDesc::PCDESC_reexecute int 0x1
+constant null PcDesc::PCDESC_return_oop int 0x4
+constant null PerfData::U_Bytes int 0x2
+constant null PerfData::U_Events int 0x4
+constant null PerfData::U_Hertz int 0x6
+constant null PerfData::U_None int 0x1
+constant null PerfData::U_String int 0x5
+constant null PerfData::U_Ticks int 0x3
+constant null REG_COUNT int 0x22f
+constant null RUNNABLE int 0x2
+constant null RegisterImpl::number_of_registers int 0x10
+constant null SAVED_ON_ENTRY_REG_COUNT int 0x0
+constant null SLEEPING int 0x7
+constant null ShenandoahHeapRegion::_cset int 0x6
+constant null ShenandoahHeapRegion::_empty_committed int 0x1
+constant null ShenandoahHeapRegion::_empty_uncommitted int 0x0
+constant null ShenandoahHeapRegion::_humongous_cont int 0x4
+constant null ShenandoahHeapRegion::_humongous_start int 0x3
+constant null ShenandoahHeapRegion::_pinned int 0x7
+constant null ShenandoahHeapRegion::_pinned_cset int 0x8
+constant null ShenandoahHeapRegion::_pinned_humongous_start int 0x5
+constant null ShenandoahHeapRegion::_regular int 0x2
+constant null ShenandoahHeapRegion::_trash int 0x9
+constant null Symbol::max_symbol_length int 0xffff
+constant null T_ADDRESS int 0xf
+constant null T_ARRAY int 0xd
+constant null T_ARRAY_size int 0x1
+constant null T_BOOLEAN int 0x4
+constant null T_BOOLEAN_size int 0x1
+constant null T_BYTE int 0x8
+constant null T_BYTE_size int 0x1
+constant null T_CHAR int 0x5
+constant null T_CHAR_size int 0x1
+constant null T_CONFLICT int 0x13
+constant null T_DOUBLE int 0x7
+constant null T_DOUBLE_size int 0x2
+constant null T_FLOAT int 0x6
+constant null T_FLOAT_size int 0x1
+constant null T_ILLEGAL int 0x63
+constant null T_INT int 0xa
+constant null T_INT_size int 0x1
+constant null T_LONG int 0xb
+constant null T_LONG_size int 0x2
+constant null T_METADATA int 0x11
+constant null T_NARROWKLASS int 0x12
+constant null T_NARROWKLASS_size int 0x1
+constant null T_NARROWOOP int 0x10
+constant null T_NARROWOOP_size int 0x1
+constant null T_OBJECT int 0xc
+constant null T_OBJECT_size int 0x1
+constant null T_SHORT int 0x9
+constant null T_SHORT_size int 0x1
+constant null T_VOID int 0xe
+constant null T_VOID_size int 0x0
+constant null VMRegImpl::stack_slot_size int 0x4
+constant null ZOMBIE int 0x8
+constant null ZObjectAlignmentLargeShift int 0x15
+constant null ZObjectAlignmentMediumShift int 0x0
+constant null ZPageTypeLarge int 0x2
+constant null ZPageTypeMedium int 0x1
+constant null ZPageTypeSmall int 0x0
+constant null ZPhaseRelocate int 0x2
+constant null _thread_blocked int 0xa
+constant null _thread_blocked_trans int 0xb
+constant null _thread_in_Java int 0x8
+constant null _thread_in_Java_trans int 0x9
+constant null _thread_in_native int 0x4
+constant null _thread_in_native_trans int 0x5
+constant null _thread_in_vm int 0x6
+constant null _thread_in_vm_trans int 0x7
+constant null _thread_new int 0x2
+constant null _thread_new_trans int 0x3
+constant null _thread_uninitialized int 0x0
+constant null frame::arg_reg_save_area_bytes int 0x0
+constant null frame::entry_frame_call_wrapper_offset int 0xfffffffffffffffa
+constant null frame::interpreter_frame_last_sp_offset int 0xfffffffffffffffe
+constant null frame::interpreter_frame_sender_sp_offset int 0xffffffffffffffff
+constant null frame::pc_return_offset int 0x0
+constant null oopSize int 0x8
+constant null vmIntrinsics::_invokeBasic int 0x155
+constant null vmIntrinsics::_linkToInterface int 0x159
+constant null vmIntrinsics::_linkToNative int 0x15a
+constant null vmIntrinsics::_linkToSpecial int 0x158
+constant null vmIntrinsics::_linkToStatic int 0x157
+constant null vmIntrinsics::_linkToVirtual int 0x156
+constant null vmSymbols::FIRST_SID int 0x1
+constant null vmSymbols::SID_LIMIT int 0x452
+constant null InvocationCounter::count_increment long 0x2
+constant null InvocationCounter::count_shift long 0x1
+constant null VM_Version::CPU_3DNOW_PREFETCH long 0x20
+constant null VM_Version::CPU_ADX long 0x4000000
+constant null VM_Version::CPU_AES long 0x100000
+constant null VM_Version::CPU_AVX long 0x40000
+constant null VM_Version::CPU_AVX2 long 0x80000
+constant null VM_Version::CPU_AVX512BW long 0x100000000
+constant null VM_Version::CPU_AVX512CD long 0x80000000
+constant null VM_Version::CPU_AVX512DQ long 0x10000000
+constant null VM_Version::CPU_AVX512ER long 0x40000000
+constant null VM_Version::CPU_AVX512F long 0x8000000
+constant null VM_Version::CPU_AVX512PF long 0x20000000
+constant null VM_Version::CPU_AVX512VL long 0x200000000
+constant null VM_Version::CPU_AVX512_VAES long 0x8000000000
+constant null VM_Version::CPU_AVX512_VBMI long 0x200000000000
+constant null VM_Version::CPU_AVX512_VBMI2 long 0x100000000000
+constant null VM_Version::CPU_AVX512_VNNI long 0x10000000000
+constant null VM_Version::CPU_AVX512_VPCLMULQDQ long 0x4000000000
+constant null VM_Version::CPU_AVX512_VPOPCNTDQ long 0x2000000000
+constant null VM_Version::CPU_BMI1 long 0x800000
+constant null VM_Version::CPU_BMI2 long 0x1000000
+constant null VM_Version::CPU_CLMUL long 0x400000
+constant null VM_Version::CPU_CLWB long 0x80000000000
+constant null VM_Version::CPU_CMOV long 0x2
+constant null VM_Version::CPU_CX8 long 0x1
+constant null VM_Version::CPU_ERMS long 0x200000
+constant null VM_Version::CPU_FLUSH long 0x20000000000
+constant null VM_Version::CPU_FLUSHOPT long 0x40000000000
+constant null VM_Version::CPU_FMA long 0x800000000
+constant null VM_Version::CPU_FXSR long 0x4
+constant null VM_Version::CPU_HT long 0x8
+constant null VM_Version::CPU_HV long 0x400000000000
+constant null VM_Version::CPU_LZCNT long 0x4000
+constant null VM_Version::CPU_MMX long 0x10
+constant null VM_Version::CPU_POPCNT long 0x2000
+constant null VM_Version::CPU_RTM long 0x2000000
+constant null VM_Version::CPU_SHA long 0x400000000
+constant null VM_Version::CPU_SSE long 0x40
+constant null VM_Version::CPU_SSE2 long 0x80
+constant null VM_Version::CPU_SSE3 long 0x100
+constant null VM_Version::CPU_SSE4A long 0x400
+constant null VM_Version::CPU_SSE4_1 long 0x800
+constant null VM_Version::CPU_SSE4_2 long 0x1000
+constant null VM_Version::CPU_SSSE3 long 0x200
+constant null VM_Version::CPU_TSC long 0x8000
+constant null VM_Version::CPU_TSCINV long 0x20000
+constant null VM_Version::CPU_TSCINV_BIT long 0x10000
+constant null VM_Version::CPU_VZEROUPPER long 0x1000000000
+constant null ZAddressOffsetBits long 0x0
+constant null ZAddressOffsetMask long 0x0
+constant null ZAddressOffsetMax long 0x0
+constant null ZAddressOffsetShift long 0x0
+constant null ZGranuleSizeShift long 0x15
+constant null ZPageSizeMediumShift long 0x0
+constant null ZPageSizeSmallShift long 0x15
+constant null markWord::age_bits long 0x4
+constant null markWord::age_mask long 0xf
+constant null markWord::age_mask_in_place long 0x78
+constant null markWord::age_shift long 0x3
+constant null markWord::biased_lock_alignment long 0x800
+constant null markWord::biased_lock_bit_in_place long 0x4
+constant null markWord::biased_lock_bits long 0x1
+constant null markWord::biased_lock_mask long 0x7
+constant null markWord::biased_lock_mask_in_place long 0x7
+constant null markWord::biased_lock_pattern long 0x5
+constant null markWord::biased_lock_shift long 0x2
+constant null markWord::epoch_mask long 0x3
+constant null markWord::epoch_mask_in_place long 0x300
+constant null markWord::hash_bits long 0x1f
+constant null markWord::hash_mask long 0x7fffffff
+constant null markWord::hash_mask_in_place long 0x7fffffff00
+constant null markWord::hash_shift long 0x8
+constant null markWord::lock_bits long 0x2
+constant null markWord::lock_mask long 0x3
+constant null markWord::lock_mask_in_place long 0x3
+constant null markWord::lock_shift long 0x0
+constant null markWord::locked_value long 0x0
+constant null markWord::marked_value long 0x3
+constant null markWord::max_age long 0xf
+constant null markWord::max_hash_bits long 0x39
+constant null markWord::monitor_value long 0x2
+constant null markWord::no_hash long 0x0
+constant null markWord::no_hash_in_place long 0x0
+constant null markWord::no_lock_in_place long 0x1
+constant null markWord::unlocked_value long 0x1
