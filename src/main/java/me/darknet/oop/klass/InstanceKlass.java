@@ -17,6 +17,8 @@ public class InstanceKlass extends Klass implements Dumpable {
 
     private final Array methods;
     private final Array fields;
+    private final Array interfaces;
+    private List<Klass> interfaceList;
     private List<Method> methodList;
     private List<Field> fieldList;
     private final ConstantPool constantPool;
@@ -25,6 +27,7 @@ public class InstanceKlass extends Klass implements Dumpable {
         super(base, Structs.instanceKlass);
         this.methods = new Array(struct.getAddress(base, "_methods"), Types.getType("Method*"));
         this.fields = new Array(struct.getAddress(base, "_fields"), Types.getType("u2"));
+        this.interfaces = new Array(struct.getAddress(base, "_local_interfaces"), Types.getType("Klass*"));
         this.constantPool = new ConstantPool(struct.getAddress(base, "_constants"));
     }
 
@@ -38,6 +41,16 @@ public class InstanceKlass extends Klass implements Dumpable {
 
     public static InstanceKlass cast(Klass klass) {
         return new InstanceKlass(klass.getBase());
+    }
+
+    public List<Klass> getInterfaces() {
+        if(interfaceList == null) {
+            interfaceList = new ArrayList<>();
+            for (int i = 0; i < this.interfaces.length(); i++) {
+                interfaceList.add(Klass.of(this.interfaces.getAddress(i)));
+            }
+        }
+        return interfaceList;
     }
 
     public boolean isFlagSet(InstanceKlassFlag flag) {
@@ -76,7 +89,7 @@ public class InstanceKlass extends Klass implements Dumpable {
             fieldList = new ArrayList<>();
             // fields are stored in tuples of 6 u2 values
             int genericSignatureCount = 0;
-            int fieldCount = this.fields.length() / 6;
+            int fieldCount = this.fields.length();
             for (int i = 0; i < this.fields.length(); i += 6) {
                 short accessFlags = this.fields.getShort(i);
 
@@ -86,7 +99,8 @@ public class InstanceKlass extends Klass implements Dumpable {
                 }
             }
 
-            int genericSignatureIndex = fieldCount * 6;
+            int genericSignatureIndex = fieldCount;
+            fieldCount = fieldCount / 6;
 
             for (int i = 0; i < fieldCount; i++) {
                 short accessFlags = this.fields.getShort(i * 6);
@@ -124,7 +138,7 @@ public class InstanceKlass extends Klass implements Dumpable {
 
     public int majorVersion() {
         long version = struct.getOffset("_major_version");
-        if(version == 0) {
+        if(version == -1) {
             return getConstantPool().majorVersion();
         }
         return struct.getInt(base, "_major_version");
@@ -132,7 +146,7 @@ public class InstanceKlass extends Klass implements Dumpable {
 
     public int minorVersion() {
         long version = struct.getOffset("_minor_version");
-        if(version == 0) {
+        if(version == -1) {
             return getConstantPool().minorVersion();
         }
         return struct.getInt(base, "_minor_version");
@@ -143,12 +157,24 @@ public class InstanceKlass extends Klass implements Dumpable {
         out.writeInt(0xCAFEBABE);
         out.writeShort(minorVersion());
         out.writeShort(majorVersion());
+        constantPool.buildIndexes();
+        if(isFlagSet(InstanceKlassFlag.HAS_DEFAULT_METHODS) && getAllAccessFlags().contains(AccessFlags.ACC_INTERFACE)) {
+            if(constantPool.getUtf8SymbolIndex("Code") == -1) {
+                constantPool.addVirtualEntry("Code");
+            }
+        }
         constantPool.dump(out);
         out.writeShort(getAccessFlags() & 0xFFFF);
         out.writeShort(constantPool.getClassSymbolIndex(getName()));
         out.writeShort(constantPool.getClassSymbolIndex(getSuperKlass().getName()));
-        out.writeShort(0); // interfaces count
-        out.writeShort(0); // fields count
+        out.writeShort(getInterfaces().size());
+        for (Klass iface : getInterfaces()) {
+            out.writeShort(constantPool.getClassSymbolIndex(iface.getName()));
+        }
+        out.writeShort(getFields().size());
+        for (Field field : getFields()) {
+            field.dump(out);
+        }
         out.writeShort(getMethods().size());
         for (Method method : getMethods()) {
             method.dump(out);

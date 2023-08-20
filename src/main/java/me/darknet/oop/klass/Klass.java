@@ -5,6 +5,8 @@ import me.darknet.oop.OopCache;
 import me.darknet.oop.Structs;
 import me.darknet.oop.data.Struct;
 
+import java.util.EnumSet;
+
 public class Klass extends Oop {
 
     private static final int _lh_array_tag_type_value = ~0;
@@ -52,8 +54,8 @@ public class Klass extends Oop {
         return Symbol.of(struct.getAddress(base, "_name")).asString();
     }
 
-    public InstanceKlass getSuperKlass() {
-        return InstanceKlass.of(struct.getAddress(base, "_super"));
+    public Klass getSuperKlass() {
+        return Klass.of(struct.getAddress(base, "_super"));
     }
 
     public Klass getNextSibling() {
@@ -70,5 +72,14 @@ public class Klass extends Oop {
 
     public int getAccessFlags() {
         return struct.getInt(base, "_access_flags");
+    }
+
+    public EnumSet<AccessFlags> getAllAccessFlags() {
+        return AccessFlags.getFlags(getAccessFlags(), AccessFlags.Scope.CLASS);
+    }
+
+    @Override
+    public String toString() {
+        return getName();
     }
 }

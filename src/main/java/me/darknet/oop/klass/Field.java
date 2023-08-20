@@ -1,13 +1,18 @@
 package me.darknet.oop.klass;
 
-public class Field {
+import me.darknet.oop.Dumpable;
 
-    private ConstantPool pool;
-    private short accessFlags;
-    private short nameIndex;
-    private short descriptorIndex;
+import java.io.DataOutputStream;
+import java.io.IOException;
+
+public class Field implements Dumpable {
+
+    private final ConstantPool pool;
+    private final short accessFlags;
+    private final short nameIndex;
+    private final short descriptorIndex;
     private short initialValIndex;
-    private int offset;
+    private final int offset;
 
     public Field(ConstantPool pool, short accessFlags, short nameIndex, short descriptorIndex, short initialValIndex,
                  short lowOffset, short highOffset) {
@@ -20,6 +25,9 @@ public class Field {
     }
 
     public String getName() {
+        if((accessFlags & 0x00000400) != 0) {
+
+        }
         return pool.getSymbol(nameIndex).asString();
     }
 
@@ -36,5 +44,15 @@ public class Field {
     }
 
 
+    @Override
+    public void dump(DataOutputStream out) throws IOException {
+        out.writeShort(accessFlags);
+        out.writeShort(nameIndex);
+        out.writeShort(descriptorIndex);
+        out.writeShort(0); // No attributes
+    }
 
+    public long getNameIndex() {
+        return nameIndex;
+    }
 }

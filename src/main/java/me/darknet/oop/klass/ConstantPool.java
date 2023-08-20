@@ -8,9 +8,7 @@ import me.darknet.oop.types.Types;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 public class ConstantPool extends Oop implements Dumpable, ConstantPoolTags {
 
@@ -19,10 +17,9 @@ public class ConstantPool extends Oop implements Dumpable, ConstantPoolTags {
     protected final int elementSize;
     protected Map<String, Integer> utf8SymbolMap;
     protected Map<String, Integer> classSymbolMap;
-    protected Map<Integer, Integer> refCache;
-    protected Map<Integer, Integer> fieldRefCache;
-    protected Map<Integer, Integer> methodRefCache;
-    protected Map<Integer, Integer> refString;
+    protected List<Short> refEntries = new ArrayList<>();
+    protected Map<Short, Short> refString;
+    protected List<Object> virtualEntries = new ArrayList<>();
 
     public ConstantPool(long base) {
         super(base, Structs.constantPool);
@@ -37,13 +34,13 @@ public class ConstantPool extends Oop implements Dumpable, ConstantPoolTags {
 
     public int majorVersion() {
         long version = struct.getOffset("_major_version");
-        if(version == 0) return 0;
+        if(version == -1) return 0;
         return struct.getInt(base, "_major_version");
     }
 
     public int minorVersion() {
         long version = struct.getOffset("_minor_version");
-        if(version == 0) return 0;
+        if(version == -1) return 0;
         return struct.getInt(base, "_minor_version");
     }
 
@@ -98,7 +95,7 @@ public class ConstantPool extends Oop implements Dumpable, ConstantPoolTags {
     }
 
     public int getUtf8SymbolIndex(String symbol) {
-        return utf8SymbolMap.get(symbol);
+        return utf8SymbolMap.getOrDefault(symbol, -1);
     }
 
     public int getClassSymbolIndex(String symbol) {
@@ -109,53 +106,29 @@ public class ConstantPool extends Oop implements Dumpable, ConstantPoolTags {
         return new ConstantPoolCache(struct.getAddress(base, "_cache"));
     }
 
-    public int getRefIndex(int index) {
-        return refCache.get(index);
+    public short getRefIndex(short index) {
+        return refEntries.get(index);
     }
 
-    public int getStringIndex(int index) {
+    public short getStringIndex(short index) {
         return refString.get(index);
     }
 
-    public Map<String, Integer> getUtf8SymbolMap() {
-        return utf8SymbolMap;
+    public void addVirtualEntry(Object entry) {
+        virtualEntries.add(entry);
     }
 
-    public Map<String, Integer> getClassSymbolMap() {
-        return classSymbolMap;
-    }
-
-    public Map<Integer, Integer> getRefCache() {
-        return refCache;
-    }
-
-    public Map<Integer, Integer> getRefString() {
-        return refString;
-    }
-
-    public Map<Integer, Integer> getFieldRefCache() {
-        return fieldRefCache;
-    }
-
-    public Map<Integer, Integer> getMethodRefCache() {
-        return methodRefCache;
-    }
-
-    @Override
-    public void dump(DataOutputStream out) throws IOException {
-        out.writeShort(getLength());
-
+    public void buildIndexes() {
         // initialize utf8SymbolMap
         utf8SymbolMap = new HashMap<>();
         classSymbolMap = new HashMap<>();
-        refCache = new HashMap<>();
         refString = new HashMap<>();
-        fieldRefCache = new HashMap<>();
-        methodRefCache = new HashMap<>();
-        int refCount = 0;
-        int fieldRefCount = 1;
-        int methodRefCount = 1;
-        int stringCount = 0;
+        refEntries = new ArrayList<>();
+        short refCount = 0;
+        short fieldRefCount = 1;
+        short methodRefCount = 1;
+        short stringCount = 0;
+
         for (int i = 1; i < getLength(); i++) {
             byte type = getTag(i);
             switch (type) {
@@ -187,21 +160,13 @@ public class ConstantPool extends Oop implements Dumpable, ConstantPoolTags {
                 case JVM_CONSTANT_Fieldref:
                 case JVM_CONSTANT_Methodref:
                 case JVM_CONSTANT_InterfaceMethodref: {
-                    switch (type) {
-                        case JVM_CONSTANT_Fieldref:
-                            fieldRefCache.put(fieldRefCount++ * 256, i);
-                            break;
-                        case JVM_CONSTANT_Methodref:
-                            methodRefCache.put(methodRefCount++ * 256, i);
-                            break;
-                    }
-                    refCache.put(refCount++ * 256, i);
+                    refEntries.add((short) i);
                     break;
                 }
                 case JVM_CONSTANT_String:
                 case JVM_CONSTANT_MethodHandle:
                 case JVM_CONSTANT_MethodType:
-                    refString.put(stringCount++, i);
+                    refString.put(stringCount++, (short) i);
                     break;
                 case JVM_CONSTANT_Long:
                 case JVM_CONSTANT_Double:
@@ -209,13 +174,11 @@ public class ConstantPool extends Oop implements Dumpable, ConstantPoolTags {
                     break;
             }
         }
+    }
 
-        System.out.println("utf8SymbolMap: " + Arrays.toString(utf8SymbolMap.entrySet().toArray()));
-        System.out.println("classSymbolMap: " + Arrays.toString(classSymbolMap.entrySet().toArray()));
-        System.out.println("refCache: " + Arrays.toString(refCache.entrySet().toArray()));
-        System.out.println("refString: " + Arrays.toString(refString.entrySet().toArray()));
-        System.out.println("fieldRefCache: " + Arrays.toString(fieldRefCache.entrySet().toArray()));
-        System.out.println("methodRefCache: " + Arrays.toString(methodRefCache.entrySet().toArray()));
+    @Override
+    public void dump(DataOutputStream out) throws IOException {
+        out.writeShort(getLength() + virtualEntries.size());
 
         // write constant pool
         for (int i = 1; i < getLength(); i++) {
@@ -290,6 +253,16 @@ public class ConstantPool extends Oop implements Dumpable, ConstantPoolTags {
                     out.writeShort(higherShort(refIndex));
                     break;
                 }
+            }
+        }
+        int currentIndex = getLength();
+        for (Object virtualEntry : virtualEntries) {
+            if(virtualEntry instanceof String) {
+                String string = (String) virtualEntry;
+                out.writeByte(JVM_CONSTANT_Utf8);
+                out.writeShort(string.length());
+                out.write(string.getBytes());
+                utf8SymbolMap.put(string, currentIndex++);
             }
         }
     }

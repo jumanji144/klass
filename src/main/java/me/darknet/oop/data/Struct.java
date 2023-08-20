@@ -22,17 +22,13 @@ public class Struct {
         long offset = Types.getOffset(type.name + "::" + field);
         if(offset == -1L) {
             if(type.superType != null) return getOffset(type.superType, field);
-            else throw new RuntimeException(type.name);
+            else return -1L;
         }
         return offset;
     }
 
     public long getOffset(String field) {
-        try {
-            return getOffset(type, field);
-        } catch (RuntimeException e) {
-            throw new RuntimeException("Couldn't find field " + field + " in " + type.name + " or its super types.");
-        }
+        return getOffset(type, field);
     }
 
     public long getLong(long base, String field) {

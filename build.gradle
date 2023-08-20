@@ -1,8 +1,9 @@
 plugins {
     id 'java'
+    id 'maven-publish'
 }
 
-group = 'org.example'
+group = 'me.darknet'
 version = '1.0-SNAPSHOT'
 
 repositories {
@@ -19,4 +20,19 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+publishing {
+    repositories {
+        mavenLocal()
+        maven {
+            name = 'sources-repo'
+            url = 'file:///tmp/sources-repo'
+        }
+    }
+    publications {
+        maven(MavenPublication) {
+            from components.java
+        }
+    }
 }
