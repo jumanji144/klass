@@ -50,16 +50,27 @@ public class Util {
         return builder.toString();
     }
 
-    public static byte[] memoryView(long pointer) {
-        byte[] bytes = new byte[0xFFFF];
+    public static byte[] memoryView(long pointer, int size) {
+        byte[] bytes = new byte[size];
         for(int i = 0; i < bytes.length; i++) {
             bytes[i] = UnsafeAccessor.getUnsafe().getByte(pointer + i);
         }
         return bytes;
     }
 
-    public static void memoryDump(Path path, long pointer) throws IOException {
-        byte[] bytes = memoryView(pointer);
+    public static void memoryDump(Path path, long pointer, int size) throws IOException {
+        byte[] bytes = memoryView(pointer, size);
         Files.write(path, bytes);
+    }
+
+    public static String readCString(long base) {
+        // read until null terminator
+        StringBuilder builder = new StringBuilder();
+        byte b;
+        while((b = UnsafeAccessor.getUnsafe().getByte(base++)) != 0) {
+            builder.append((char) b);
+        }
+
+        return builder.toString();
     }
 }
