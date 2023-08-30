@@ -4,6 +4,7 @@ import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.security.ProtectionDomain;
 
 public class Unsafe {
 
@@ -17,8 +18,12 @@ public class Unsafe {
 
                                 getObject;
     private static final MethodHandle arrayBaseOffset, arrayIndexScale, staticFieldBase, staticFieldOffset;
+    private static final MethodHandle objectFieldOffset;
     private static final MethodHandle copyMemory, copyMemoryObject;
     private static final MethodHandle addressSize;
+    private static final MethodHandle allocateMemory, reallocateMemory, freeMemory;
+    private static final MethodHandle pageSize;
+    private static final MethodHandle defineClass, defineAnonymousClass, ensureClassInitialized;
 
     public long getLong(long address) {
         try {
@@ -292,6 +297,14 @@ public class Unsafe {
         }
     }
 
+    public long objectFieldOffset(Field field) {
+        try {
+            return (long) objectFieldOffset.invoke(theUnsafe, field);
+        } catch (Throwable throwable) {
+            throw new RuntimeException(throwable);
+        }
+    }
+
     public Object staticFieldBase(Field field) {
         try {
             return staticFieldBase.invoke(theUnsafe, field);
@@ -319,6 +332,74 @@ public class Unsafe {
     public long addressSize() {
         try {
             return (long) addressSize.invoke(theUnsafe);
+        } catch (Throwable throwable) {
+            throw new RuntimeException(throwable);
+        }
+    }
+
+    public long allocateMemory(long bytes) {
+        try {
+            return (long) allocateMemory.invoke(theUnsafe, bytes);
+        } catch (Throwable throwable) {
+            throw new RuntimeException(throwable);
+        }
+    }
+
+    public long reallocateMemory(long address, long bytes) {
+        try {
+            return (long) reallocateMemory.invoke(theUnsafe, address, bytes);
+        } catch (Throwable throwable) {
+            throw new RuntimeException(throwable);
+        }
+    }
+
+    public void freeMemory(long address) {
+        try {
+            freeMemory.invoke(theUnsafe, address);
+        } catch (Throwable throwable) {
+            throw new RuntimeException(throwable);
+        }
+    }
+
+    public void writeBytes(byte[] bytes, long address) {
+        for (int i = 0; i < bytes.length; i++) {
+            putByte(address + i, bytes[i]);
+        }
+    }
+
+    public void clear(long base, long size) {
+        for (long i = 0; i < size; i++) {
+            putByte(base + i, (byte) 0);
+        }
+    }
+
+    public long pageSize() {
+        try {
+            return (long) pageSize.invoke(theUnsafe);
+        } catch (Throwable throwable) {
+            throw new RuntimeException(throwable);
+        }
+    }
+
+    public Class<?> defineClass(String name, byte[] bytes, int off, int len, ClassLoader loader, ProtectionDomain protectionDomain) {
+        try {
+            return (Class<?>) defineClass.invoke(theUnsafe, name, bytes, off, len, loader, protectionDomain);
+        } catch (Throwable throwable) {
+            throw new RuntimeException(throwable);
+        }
+    }
+
+    public Class<?> defineAnonymousClass(Class<?> hostClass, byte[] bytes, Object[] cpPatches) {
+        try {
+            return (Class<?>) defineAnonymousClass.invoke(theUnsafe, hostClass, bytes, cpPatches);
+        } catch (Throwable throwable) {
+            throw new RuntimeException(throwable);
+        }
+    }
+
+    public void ensureClassInitialized(Class<?> clazz) {
+        try {
+            ensureClassInitialized.invoke(theUnsafe, clazz);
         } catch (Throwable throwable) {
             throw new RuntimeException(throwable);
         }
@@ -380,7 +461,21 @@ public class Unsafe {
             staticFieldBase = lookup.unreflect(unsafeClass.getMethod("staticFieldBase", Field.class));
             staticFieldOffset = lookup.unreflect(unsafeClass.getMethod("staticFieldOffset", Field.class));
 
+            objectFieldOffset = lookup.unreflect(unsafeClass.getMethod("objectFieldOffset", Field.class));
+
             getObject = lookup.unreflect(unsafeClass.getMethod("getObject", Object.class, long.class));
+
+            allocateMemory = lookup.unreflect(unsafeClass.getMethod("allocateMemory", long.class));
+            reallocateMemory = lookup.unreflect(unsafeClass.getMethod("reallocateMemory", long.class, long.class));
+            freeMemory = lookup.unreflect(unsafeClass.getMethod("freeMemory", long.class));
+
+            pageSize = lookup.unreflect(unsafeClass.getMethod("pageSize"));
+
+            defineClass = lookup.unreflect(unsafeClass.getMethod("defineClass", String.class, byte[].class, int.class, int.class, ClassLoader.class, ProtectionDomain.class));
+
+            defineAnonymousClass = lookup.unreflect(unsafeClass.getMethod("defineAnonymousClass", Class.class, byte[].class, Object[].class));
+
+            ensureClassInitialized = lookup.unreflect(unsafeClass.getMethod("ensureClassInitialized", Class.class));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

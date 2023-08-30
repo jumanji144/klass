@@ -256,6 +256,31 @@ public class VMStructs {
                 .append("\n").toString();
     }
 
+    public static String dumpVMStaticOffsets(long baseAddress) {
+        Unsafe unsafe = UnsafeAccessor.getUnsafe();
+        Map<String, Field> gHotSpotVMFields = readVMStructs();
+
+        StringBuilder builder = new StringBuilder();
+        for (Field value : gHotSpotVMFields.values()) {
+            if(!value.isStatic) continue;
+            long offset = value.address - baseAddress;
+
+            String type = value.type;
+            if(type.contains(" ")) type = '"' + type + '"'; // 'type "Foo Bar" ...'
+
+            builder.append("field ")
+                    .append(value.parent).append(" ")
+                    .append(value.name).append(" ")
+                    .append(type).append(" ")
+                    .append("true ")
+                    .append(0).append(" ")
+                    .append("0x").append(Long.toHexString(offset))
+                    .append("\n");
+        }
+
+        return builder.toString();
+    }
+
     public static String dumpVMStructs() {
         Unsafe unsafe = UnsafeAccessor.getUnsafe();
         Map<String, Type> gHotSpotVMTypes = readVMTypes();

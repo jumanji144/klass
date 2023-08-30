@@ -1406,66 +1406,204 @@ field BlockOffsetArrayNonContigSpace _unallocated_block HeapWord* false 48 0x0
 field vframeArrayElement _frame frame false 0 0x0
 field vframeArrayElement _bci int false 48 0x0
 field vframeArrayElement _method Method* false 56 0x0
-constant AbstractInterpreter _code StubQueue* 0x7f984405b830
+field AbstractInterpreter _code StubQueue* true 0 0xde1498
+field Abstract_VM_Version _reserve_for_allocation_prefetch int true 0 0xe07858
+field Abstract_VM_Version _s_internal_vm_info_string "const char*" true 0 0xe07868
+field Abstract_VM_Version _s_vm_release "const char*" true 0 0xe07870
+field Abstract_VM_Version _vm_build_number int true 0 0xe0784c
+field Abstract_VM_Version _vm_major_version int true 0 0xe07854
+field Abstract_VM_Version _vm_minor_version int true 0 0xe07850
+field Arguments _java_command char* true 0 0xdd7c68
+field Arguments _jvm_args_array char** true 0 0xdd7c78
+field Arguments _jvm_flags_array char** true 0 0xdd7c88
+field Arguments _num_jvm_args int true 0 0xdd7c70
+field Arguments _num_jvm_flags int true 0 0xdd7c80
+field ClassLoaderDataGraph _head ClassLoaderData* true 0 0xddd068
+field CodeCache _heap CodeHeap* true 0 0xddd130
+field CodeCache _scavenge_root_nmethods nmethod* true 0 0xddd110
+field ConcurrentMarkSweepThread _collector CMSCollector* true 0 0xddf4e0
+field Deoptimization _trap_reason_name <opaque> true 0 0xdb08a0
+field Flag flags Flag* true 0 0xdb1a10
+field Flag numFlags size_t true 0 0xdb0d60
+field GenCollectedHeap _gch GenCollectedHeap* true 0 0xddfaf0
+field HeapRegion GrainBytes size_t true 0 0xde1230
+field HeapRegion LogOfHRGrainBytes int true 0 0xde123c
+field JDK_Version _current JDK_Version true 0 0xde1508
+field JNIHandles _deleted_handle oop true 0 0xde45b0
+field JNIHandles _global_handles JNIHandleBlock* true 0 0xde45c0
+field JNIHandles _weak_global_handles JNIHandleBlock* true 0 0xde45b8
+field JvmtiExport _can_access_local_variables bool true 0 0xde471c
+field JvmtiExport _can_hotswap_or_post_breakpoint bool true 0 0xde471b
+field JvmtiExport _can_post_on_exceptions bool true 0 0xde4712
+field JvmtiExport _can_walk_any_space bool true 0 0xde4719
+field Matcher _regEncode <opaque> true 0 0xb70a00
+field ObjectSynchronizer gBlockList ObjectMonitor* true 0 0xded7d8
+field ParallelScavengeHeap _old_gen PSOldGen* true 0 0xdec420
+field ParallelScavengeHeap _psh ParallelScavengeHeap* true 0 0xdec408
+field ParallelScavengeHeap _young_gen PSYoungGen* true 0 0xdec428
+field PerfMemory _capacity size_t true 0 0xdec4a8
+field PerfMemory _end char* true 0 0xdec4b8
+field PerfMemory _initialized jint true 0 0xdec4a0
+field PerfMemory _prologue PerfDataPrologue* true 0 0xdec498
+field PerfMemory _start char* true 0 0xdec4c0
+field PerfMemory _top char* true 0 0xdec4b0
+field Runtime1 _blobs <opaque> true 0 0xdda180
+field SharedRuntime _ic_miss_blob RuntimeStub* true 0 0xded140
+field StringTable _the_table StringTable* true 0 0xded788
+field StubRoutines _aescrypt_decryptBlock address true 0 0xded3d0
+field StubRoutines _aescrypt_encryptBlock address true 0 0xded3d8
+field StubRoutines _call_stub_return_address address true 0 0xded510
+field StubRoutines _cipherBlockChaining_decryptAESCrypt address true 0 0xded3c0
+field StubRoutines _cipherBlockChaining_encryptAESCrypt address true 0 0xded3c8
+field StubRoutines _crc_table_adr address true 0 0xded378
+field StubRoutines _ghash_processBlocks address true 0 0xded3b8
+field StubRoutines _mulAdd address true 0 0xded360
+field StubRoutines _multiplyToLen address true 0 0xded370
+field StubRoutines _squareToLen address true 0 0xded368
+field StubRoutines _updateBytesCRC32 address true 0 0xded380
+field StubRoutines _verify_oop_count jint true 0 0xded4c8
+field SymbolTable _the_table SymbolTable* true 0 0xded7a8
+field SystemDictionary _box_klasses[0] Klass* true 0 0xdee140
+field SystemDictionary _dictionary Dictionary* true 0 0xdee480
+field SystemDictionary _java_system_loader oop true 0 0xdee130
+field SystemDictionary _loader_constraints LoaderConstraintTable* true 0 0xdee468
+field SystemDictionary _placeholders PlaceholderTable* true 0 0xdee478
+field SystemDictionary _shared_dictionary Dictionary* true 0 0xdee470
+field SystemDictionary _system_loader_lock_obj oop true 0 0xdee448
+field SystemDictionary _well_known_klasses[SystemDictionary::AccessControlContext_klass_knum] Klass* true 0 0xdee238
+field SystemDictionary _well_known_klasses[SystemDictionary::ArrayStoreException_klass_knum] Klass* true 0 0xdee268
+field SystemDictionary _well_known_klasses[SystemDictionary::ClassCastException_klass_knum] Klass* true 0 0xdee260
+field SystemDictionary _well_known_klasses[SystemDictionary::ClassLoader_klass_knum] Klass* true 0 0xdee1e8
+field SystemDictionary _well_known_klasses[SystemDictionary::ClassNotFoundException_klass_knum] Klass* true 0 0xdee248
+field SystemDictionary _well_known_klasses[SystemDictionary::Class_klass_knum] Klass* true 0 0xdee1d8
+field SystemDictionary _well_known_klasses[SystemDictionary::Cloneable_klass_knum] Klass* true 0 0xdee1e0
+field SystemDictionary _well_known_klasses[SystemDictionary::Error_klass_knum] Klass* true 0 0xdee208
+field SystemDictionary _well_known_klasses[SystemDictionary::Exception_klass_knum] Klass* true 0 0xdee218
+field SystemDictionary _well_known_klasses[SystemDictionary::FinalReference_klass_knum] Klass* true 0 0xdee2a8
+field SystemDictionary _well_known_klasses[SystemDictionary::Finalizer_klass_knum] Klass* true 0 0xdee2b8
+field SystemDictionary _well_known_klasses[SystemDictionary::LinkageError_klass_knum] Klass* true 0 0xdee258
+field SystemDictionary _well_known_klasses[SystemDictionary::MethodHandle_klass_knum] Klass* true 0 0xdee348
+field SystemDictionary _well_known_klasses[SystemDictionary::NoClassDefFoundError_klass_knum] Klass* true 0 0xdee250
+field SystemDictionary _well_known_klasses[SystemDictionary::Object_klass_knum] Klass* true 0 0xdee1c8
+field SystemDictionary _well_known_klasses[SystemDictionary::OutOfMemoryError_klass_knum] Klass* true 0 0xdee278
+field SystemDictionary _well_known_klasses[SystemDictionary::PhantomReference_klass_knum] Klass* true 0 0xdee2b0
+field SystemDictionary _well_known_klasses[SystemDictionary::Properties_klass_knum] Klass* true 0 0xdee2d8
+field SystemDictionary _well_known_klasses[SystemDictionary::ProtectionDomain_klass_knum] Klass* true 0 0xdee230
+field SystemDictionary _well_known_klasses[SystemDictionary::Reference_klass_knum] Klass* true 0 0xdee290
+field SystemDictionary _well_known_klasses[SystemDictionary::RuntimeException_klass_knum] Klass* true 0 0xdee220
+field SystemDictionary _well_known_klasses[SystemDictionary::SecureClassLoader_klass_knum] Klass* true 0 0xdee240
+field SystemDictionary _well_known_klasses[SystemDictionary::Serializable_klass_knum] Klass* true 0 0xdee1f0
+field SystemDictionary _well_known_klasses[SystemDictionary::SoftReference_klass_knum] Klass* true 0 0xdee298
+field SystemDictionary _well_known_klasses[SystemDictionary::StackOverflowError_klass_knum] Klass* true 0 0xdee280
+field SystemDictionary _well_known_klasses[SystemDictionary::StringBuffer_klass_knum] Klass* true 0 0xdee398
+field SystemDictionary _well_known_klasses[SystemDictionary::String_klass_knum] Klass* true 0 0xdee1d0
+field SystemDictionary _well_known_klasses[SystemDictionary::System_klass_knum] Klass* true 0 0xdee1f8
+field SystemDictionary _well_known_klasses[SystemDictionary::ThreadDeath_klass_knum] Klass* true 0 0xdee210
+field SystemDictionary _well_known_klasses[SystemDictionary::ThreadGroup_klass_knum] Klass* true 0 0xdee2d0
+field SystemDictionary _well_known_klasses[SystemDictionary::Thread_klass_knum] Klass* true 0 0xdee2c8
+field SystemDictionary _well_known_klasses[SystemDictionary::Throwable_klass_knum] Klass* true 0 0xdee200
+field SystemDictionary _well_known_klasses[SystemDictionary::VirtualMachineError_klass_knum] Klass* true 0 0xdee270
+field SystemDictionary _well_known_klasses[SystemDictionary::WeakReference_klass_knum] Klass* true 0 0xdee2a0
+field ThreadLocalAllocBuffer _target_refills unsigned true 0 0xe02458
+field Threads _number_of_non_daemon_threads int true 0 0xe0214c
+field Threads _number_of_threads int true 0 0xe02150
+field Threads _return_code int true 0 0xe02148
+field Threads _thread_list JavaThread* true 0 0xe02158
+field Universe _arithmetic_exception_instance oop true 0 0xe02a70
+field Universe _base_vtable_size int true 0 0xe02a2c
+field Universe _boolArrayKlassObj Klass* true 0 0xe02cb0
+field Universe _bootstrapping bool true 0 0xe02a29
+field Universe _byteArrayKlassObj Klass* true 0 0xe02ca8
+field Universe _charArrayKlassObj Klass* true 0 0xe02ca0
+field Universe _collectedHeap CollectedHeap* true 0 0xe02a10
+field Universe _doubleArrayKlassObj Klass* true 0 0xe02c78
+field Universe _fully_initialized bool true 0 0xe02a28
+field Universe _intArrayKlassObj Klass* true 0 0xe02c98
+field Universe _longArrayKlassObj Klass* true 0 0xe02c88
+field Universe _main_thread_group oop true 0 0xe02b08
+field Universe _mirrors[0] oop true 0 0xe02b20
+field Universe _narrow_klass._base address true 0 0xdc1f60
+field Universe _narrow_klass._shift int true 0 0xdc1f68
+field Universe _narrow_oop._base address true 0 0xdc1f70
+field Universe _narrow_oop._shift int true 0 0xdc1f78
+field Universe _narrow_oop._use_implicit_null_checks bool true 0 0xdc1f7c
+field Universe _non_oop_bits intptr_t true 0 0xe02a00
+field Universe _null_ptr_exception_instance oop true 0 0xe02a78
+field Universe _shortArrayKlassObj Klass* true 0 0xe02c90
+field Universe _singleArrayKlassObj Klass* true 0 0xe02c80
+field Universe _system_thread_group oop true 0 0xe02b00
+field Universe _the_empty_class_klass_array objArrayOop true 0 0xe02af8
+field Universe _verify_count int true 0 0xe02a30
+field Universe _vm_exception oop true 0 0xe02a60
+field VMRegImpl regName[0] "const char*" true 0 0xe07a80
+field VMRegImpl stack0 VMReg true 0 0xdd4fb0
+field java_lang_Class _array_klass_offset int true 0 0xde1698
+field java_lang_Class _klass_offset int true 0 0xde169c
+field java_lang_Class _oop_size_offset int true 0 0xde1694
+field java_lang_Class _static_oop_field_count_offset int true 0 0xde1690
+field oopDesc _bs BarrierSet* true 0 0xde88c0
+field os _polling_page address true 0 0xde8960
+field vmSymbols _symbols[0] Symbol* true 0 0xe04f60
+constant AbstractInterpreter _code StubQueue* 0x7f998c05f460
 constant Abstract_VM_Version _reserve_for_allocation_prefetch int 0x0
 constant Abstract_VM_Version _vm_build_number int 0x5
 constant Abstract_VM_Version _vm_major_version int 0x19
 constant Abstract_VM_Version _vm_minor_version int 0x17e
-constant Arguments _java_command char* 0x7f9844004930
-constant Arguments _jvm_args_array char** 0x7f9844003d50
+constant Arguments _java_command char* 0x7f998c004ca0
+constant Arguments _jvm_args_array char** 0x7f998c003d50
 constant Arguments _jvm_flags_array char** 0x0
-constant Arguments _num_jvm_args int 0x2
+constant Arguments _num_jvm_args int 0x3
 constant Arguments _num_jvm_flags int 0x0
-constant CodeCache _heap CodeHeap* 0x56141b91bfc0
-constant CodeCache _scavenge_root_nmethods nmethod* 0x7f98351e6d90
+constant CodeCache _heap CodeHeap* 0x55bca82f2fe0
+constant CodeCache _scavenge_root_nmethods nmethod* 0x7f997d1f8090
 constant ConcurrentMarkSweepThread _collector CMSCollector* 0x0
-constant Flag flags Flag* 0x7f9849fb1a60
+constant Flag flags Flag* 0x7f99949b1a60
 constant Flag numFlags size_t 0x5a9
 constant GenCollectedHeap _gch GenCollectedHeap* 0x0
 constant HeapRegion GrainBytes size_t 0x0
 constant HeapRegion LogOfHRGrainBytes int 0x0
-constant JNIHandles _deleted_handle oop 0x6c5604110
-constant JNIHandles _global_handles JNIHandleBlock* 0x7f98440a52b0
-constant JNIHandles _weak_global_handles JNIHandleBlock* 0x7f98440a53f0
-constant JvmtiExport _can_access_local_variables bool 0x0
-constant JvmtiExport _can_hotswap_or_post_breakpoint bool 0x0
-constant JvmtiExport _can_post_on_exceptions bool 0x0
-constant JvmtiExport _can_walk_any_space bool 0x0
-constant ObjectSynchronizer gBlockList ObjectMonitor* 0x7f97e0000f98
-constant ParallelScavengeHeap _old_gen PSOldGen* 0x7f984401a910
-constant ParallelScavengeHeap _psh ParallelScavengeHeap* 0x7f984401a590
-constant ParallelScavengeHeap _young_gen PSYoungGen* 0x7f984401a880
+constant JNIHandles _deleted_handle oop 0x6c5784110
+constant JNIHandles _global_handles JNIHandleBlock* 0x7f998c0a8d90
+constant JNIHandles _weak_global_handles JNIHandleBlock* 0x7f998c0a8ed0
+constant JvmtiExport _can_access_local_variables bool 0x1
+constant JvmtiExport _can_hotswap_or_post_breakpoint bool 0x1
+constant JvmtiExport _can_post_on_exceptions bool 0x1
+constant JvmtiExport _can_walk_any_space bool 0x1
+constant ObjectSynchronizer gBlockList ObjectMonitor* 0x7f992c000f98
+constant ParallelScavengeHeap _old_gen PSOldGen* 0x7f998c01e590
+constant ParallelScavengeHeap _psh ParallelScavengeHeap* 0x7f998c01e210
+constant ParallelScavengeHeap _young_gen PSYoungGen* 0x7f998c01e500
 constant PerfMemory _capacity size_t 0x8000
-constant PerfMemory _end char* 0x7f984a410000
+constant PerfMemory _end char* 0x7f9994e20000
 constant PerfMemory _initialized jint 0x1
-constant PerfMemory _prologue PerfDataPrologue* 0x7f984a408000
-constant PerfMemory _start char* 0x7f984a408000
-constant PerfMemory _top char* 0x7f984a40c990
-constant StubRoutines _aescrypt_decryptBlock address 0x7f9835053cc0
-constant StubRoutines _aescrypt_encryptBlock address 0x7f9835053ba0
-constant StubRoutines _call_stub_return_address address 0x7f98350004e7
-constant StubRoutines _cipherBlockChaining_decryptAESCrypt address 0x7f9835054020
-constant StubRoutines _cipherBlockChaining_encryptAESCrypt address 0x7f9835053de0
-constant StubRoutines _crc_table_adr address 0x7f9849fc1700
-constant StubRoutines _ghash_processBlocks address 0x7f9835054420
-constant StubRoutines _mulAdd address 0x7f98350548e0
-constant StubRoutines _multiplyToLen address 0x7f9835054580
-constant StubRoutines _squareToLen address 0x7f98350547a0
-constant StubRoutines _updateBytesCRC32 address 0x7f9835000680
+constant PerfMemory _prologue PerfDataPrologue* 0x7f9994e18000
+constant PerfMemory _start char* 0x7f9994e18000
+constant PerfMemory _top char* 0x7f9994e1ca00
+constant StubRoutines _aescrypt_decryptBlock address 0x7f997d053cc0
+constant StubRoutines _aescrypt_encryptBlock address 0x7f997d053ba0
+constant StubRoutines _call_stub_return_address address 0x7f997d0004e7
+constant StubRoutines _cipherBlockChaining_decryptAESCrypt address 0x7f997d054020
+constant StubRoutines _cipherBlockChaining_encryptAESCrypt address 0x7f997d053de0
+constant StubRoutines _crc_table_adr address 0x7f99949c1700
+constant StubRoutines _ghash_processBlocks address 0x7f997d054420
+constant StubRoutines _mulAdd address 0x7f997d0548e0
+constant StubRoutines _multiplyToLen address 0x7f997d054580
+constant StubRoutines _squareToLen address 0x7f997d0547a0
+constant StubRoutines _updateBytesCRC32 address 0x7f997d000680
 constant StubRoutines _verify_oop_count jint 0x0
-constant SystemDictionary _java_system_loader oop 0x6c5650258
-constant SystemDictionary _system_loader_lock_obj oop 0x6c5600000
+constant SystemDictionary _java_system_loader oop 0x6c57d1cd0
+constant SystemDictionary _system_loader_lock_obj oop 0x6c5780000
 constant ThreadLocalAllocBuffer _target_refills unsigned 0x32
 constant Threads _number_of_non_daemon_threads int 0x1
-constant Threads _number_of_threads int 0xa
+constant Threads _number_of_threads int 0xc
 constant Threads _return_code int 0x0
-constant Threads _thread_list JavaThread* 0x7f984439e800
-constant Universe _arithmetic_exception_instance oop 0x6c5604518
+constant Threads _thread_list JavaThread* 0x7f998c295000
+constant Universe _arithmetic_exception_instance oop 0x6c5784518
 constant Universe _base_vtable_size int 0x5
 constant Universe _bootstrapping bool 0x0
-constant Universe _collectedHeap CollectedHeap* 0x7f984401a590
+constant Universe _collectedHeap CollectedHeap* 0x7f998c01e210
 constant Universe _fully_initialized bool 0x1
-constant Universe _main_thread_group oop 0x6c56057d0
+constant Universe _main_thread_group oop 0x6c57857d0
 constant Universe _mirrors[0] oop 0x0
 constant Universe _narrow_klass._base address 0x0
 constant Universe _narrow_klass._shift int 0x3
@@ -1473,18 +1611,18 @@ constant Universe _narrow_oop._base address 0x0
 constant Universe _narrow_oop._shift int 0x3
 constant Universe _narrow_oop._use_implicit_null_checks bool 0x1
 constant Universe _non_oop_bits intptr_t 0xffffffffffffffff
-constant Universe _null_ptr_exception_instance oop 0x6c5604478
-constant Universe _system_thread_group oop 0x6c5605768
-constant Universe _the_empty_class_klass_array objArrayOop 0x6c5604328
+constant Universe _null_ptr_exception_instance oop 0x6c5784478
+constant Universe _system_thread_group oop 0x6c5785768
+constant Universe _the_empty_class_klass_array objArrayOop 0x6c5784328
 constant Universe _verify_count int 0x0
-constant Universe _vm_exception oop 0x6c56045d8
+constant Universe _vm_exception oop 0x6c57845d8
 constant VMRegImpl stack0 VMReg 0xb8
 constant java_lang_Class _array_klass_offset int 0x50
 constant java_lang_Class _klass_offset int 0x48
 constant java_lang_Class _oop_size_offset int 0x5c
 constant java_lang_Class _static_oop_field_count_offset int 0x60
-constant oopDesc _bs BarrierSet* 0x7f984400e220
-constant os _polling_page address 0x7f984a586000
+constant oopDesc _bs BarrierSet* 0x7f998c011ea0
+constant os _polling_page address 0x7f9994e59000
 constant vmSymbols _symbols[0] Symbol* 0x0
 constant null ASSERT int 0x0
 constant null BarrierSet::CardTableExtension int 0x2

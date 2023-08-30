@@ -1,5 +1,6 @@
 package me.darknet.oop.types;
 
+import me.darknet.oop.util.JVMUtil;
 import me.darknet.oop.util.Util;
 
 import java.io.*;
@@ -25,7 +26,6 @@ public class Types {
 
     public static Field getField(String name) {
         return fields.get(name);
-
     }
 
     public static long getOffset(String name) {
@@ -91,7 +91,7 @@ public class Types {
                     t.nextToken();
                     long offset = Long.parseLong(t.sval);
                     t.nextToken();
-                    String staticAddress = t.sval;
+                    long staticAddress = Long.parseLong(t.sval.substring(2), 16);
 
                     // lookup field type
                     Type typeObj = types.get(fieldType);
@@ -101,7 +101,7 @@ public class Types {
                     field.name = containingType + "::" + fieldName;
                     field.type = typeObj;
                     field.isStatic = isStatic;
-                    field.offset = offset;
+                    field.offset = isStatic ? staticAddress : offset;
 
                     // add field to database
                     fields.put(field.name, field);

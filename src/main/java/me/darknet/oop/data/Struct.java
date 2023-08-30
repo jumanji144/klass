@@ -2,6 +2,7 @@ package me.darknet.oop.data;
 
 import me.darknet.oop.types.Type;
 import me.darknet.oop.types.Types;
+import me.darknet.oop.util.JVMUtil;
 import me.darknet.oop.util.Unsafe;
 import me.darknet.oop.util.UnsafeAccessor;
 
@@ -77,5 +78,17 @@ public class Struct {
 
     public void putChar(long base, String field, char value) {
         unsafe.putChar(base + getOffset(field), value);
+    }
+
+    public Field getStaticField(String field) {
+        me.darknet.oop.types.Field f = Types.getField(type.name + "::" + field);
+        if(!f.isStatic) return null;
+        return new Field(JVMUtil.getLibJvmBaseAddress() + f.offset, field);
+    }
+
+    public Field getField(long base, String field) {
+        long offset = getOffset(field);
+        if(offset == -1L) return null;
+        return new Field(base + offset, field);
     }
 }
