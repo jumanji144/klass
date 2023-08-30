@@ -18,7 +18,7 @@ public class ConstantPoolCache extends DataOop<ConstantPoolCacheEntry> {
 
     @Override
     public ConstantPoolCacheEntry get(int index) {
-        return new ConstantPoolCacheEntry(dataBase + index * unsafe.addressSize());
+        return new ConstantPoolCacheEntry(dataBase + (long) index * Types.getSize("ConstantPoolCacheEntry"));
     }
 
     @Override

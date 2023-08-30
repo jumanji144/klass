@@ -268,7 +268,7 @@ public class CodeTransformer implements Opcodes, ReservedOpcodes {
                 case INVOKESPECIAL: {
                     // rewrite
                     short index = readShort(code, i + 1, false);
-                    short refIndex = pool.getRefIndex(index);
+                    short refIndex = (short) pool.getCache().get(index).getCpIndex();
                     writeShort(code, i + 1, refIndex, true);
                     i += 2;
                     break;
@@ -279,7 +279,7 @@ public class CodeTransformer implements Opcodes, ReservedOpcodes {
                     code[i] = (byte) LOOKUPSWITCH;
                 case LOOKUPSWITCH: {
                     // padding
-                    i += 4 - (i & 3);
+                    i = i + 4 - (i & 3);
                     // default
                     i+=4;
                     // npairs
@@ -287,6 +287,10 @@ public class CodeTransformer implements Opcodes, ReservedOpcodes {
                     i += 4;
                     // pairs
                     i += npairs * 8;
+
+                    if(opcode == fast_linearswitch || opcode == fast_binaryswitch) {
+                        i--; // ???
+                    }
                     break;
                 }
                 // tableswitch
@@ -296,15 +300,27 @@ public class CodeTransformer implements Opcodes, ReservedOpcodes {
                     // default
                     i+=4;
                     // low
+                    int low = readInt(code, i, true);
                     i+=4;
                     // high
+                    int high = readInt(code, i, true);
                     i+=4;
                     // offsets
-                    int high = readInt(code, i - 4, true);
-                    i += high * 4;
+                    int count = high - low + 1;
+                    i += count * 4;
+
+                    i--;
                     break;
                 }
                 case INVOKEDYNAMIC: {
+                    int index = readInt(code, i + 1, false);
+                    index = ~index;
+
+                    int actual = pool.getCache().get(index).getCpIndex();
+
+                    writeShort(code, i + 1, (short) actual, true);
+                    writeShort(code, i + 3, (short) 0, true);
+
                     i += 4;
                     break;
                 }
@@ -346,7 +362,7 @@ public class CodeTransformer implements Opcodes, ReservedOpcodes {
                 }
                 case fast_aldc: {
                     code[i] = LDC;
-                    code[i + 1] = (byte) pool.getStringIndex(code[i + 1]);
+                    code[i + 1] = (byte)pool.getStringIndex((short) (code[i + 1] & 0xff));
                     i++;
                     break;
                 }
@@ -365,6 +381,7 @@ public class CodeTransformer implements Opcodes, ReservedOpcodes {
                 case fast_fgetfield:
                 case fast_igetfield:
                 case fast_lgetfield:
+                case fast_sgetfield:
                 case fast_aputfield:
                 case fast_zputfield:
                 case fast_bputfield:
@@ -372,7 +389,8 @@ public class CodeTransformer implements Opcodes, ReservedOpcodes {
                 case fast_dputfield:
                 case fast_fputfield:
                 case fast_iputfield:
-                case fast_lputfield: {
+                case fast_lputfield:
+                case fast_sputfield: {
                     code[i] = (byte) (opcode >= fast_aputfield ? PUTFIELD : GETFIELD);
                     short index = readShort(code, i + 1, false);
                     short i2 = pool.getRefIndex(index);
