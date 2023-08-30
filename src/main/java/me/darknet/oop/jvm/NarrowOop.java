@@ -11,7 +11,7 @@ public class NarrowOop {
     }
 
     private long decodeNarrowOop() {
-        long oopAddress = Memory.narrowOopBase + (address << Memory.narrowOopShift);
+        long oopAddress = Universe.getNarrowOopBase() + (address << Universe.getNarrowOopShift());
         // check valid oop address
         if(oopAddress % 8 != 0) {
             throw new IllegalStateException("Oop address unaligned, p=" + Long.toHexString(oopAddress));

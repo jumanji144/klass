@@ -1,6 +1,7 @@
-package me.darknet.oop.klass;
+package me.darknet.oop.jvm;
 
 import me.darknet.oop.data.Memory;
+import me.darknet.oop.klass.Klass;
 
 public class NarrowKlass {
 
@@ -11,7 +12,7 @@ public class NarrowKlass {
     }
 
     private long decodeNarrowKlass() {
-        long klassAddress = Memory.narrowKlassBase + (address << Memory.narrowKlassShift);
+        long klassAddress = Universe.getNarrowKlassBase() + (address << Universe.getNarrowKlassShift());
         // check valid klass address
         if(klassAddress % 8 != 0) {
             throw new IllegalStateException("Klass address unaligned, p=" + Long.toHexString(klassAddress));

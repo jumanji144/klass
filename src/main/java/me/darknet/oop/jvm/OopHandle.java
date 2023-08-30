@@ -1,7 +1,6 @@
 package me.darknet.oop.jvm;
 
 import me.darknet.oop.klass.Klass;
-import me.darknet.oop.klass.NarrowKlass;
 
 public interface OopHandle {
 

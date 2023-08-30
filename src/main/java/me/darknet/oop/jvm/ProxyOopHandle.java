@@ -2,7 +2,6 @@ package me.darknet.oop.jvm;
 
 import me.darknet.oop.Structs;
 import me.darknet.oop.klass.Klass;
-import me.darknet.oop.klass.NarrowKlass;
 import me.darknet.oop.util.Unsafe;
 import me.darknet.oop.util.UnsafeAccessor;
 

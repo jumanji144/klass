@@ -4,7 +4,6 @@ import com.sun.management.HotSpotDiagnosticMXBean;
 import me.darknet.oop.Oop;
 import me.darknet.oop.Structs;
 import me.darknet.oop.klass.Klass;
-import me.darknet.oop.klass.NarrowKlass;
 
 import java.lang.management.ManagementFactory;
 
@@ -132,12 +131,8 @@ public class NativeOopHandle extends Oop implements OopHandle {
     }
 
     static {
-        compressedOops = ManagementFactory.getPlatformMXBean(HotSpotDiagnosticMXBean.class)
-                .getVMOption("UseCompressedOops")
-                .getValue().equals("true");
-        compressedKlass = ManagementFactory.getPlatformMXBean(HotSpotDiagnosticMXBean.class)
-                .getVMOption("UseCompressedClassPointers")
-                .getValue().equals("true");
+        compressedOops = Flag.getFlag("UseCompressedOops").getValue().getByte() == 1;
+        compressedKlass = Flag.getFlag("UseCompressedClassPointers").getValue().getByte() == 1;
     }
 
 }
