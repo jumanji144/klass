@@ -10,7 +10,7 @@ public class ConstMethod extends DataOop<Byte> {
 
     public ConstMethod(long base) {
         super(base, base + Types.getSize("ConstMethod"), Structs.constMethod);
-        this.constantPool = new ConstantPool(struct.getAddress(base, "_constants"));
+        this.constantPool = ConstantPool.of(struct.getAddress(base, "_constants"));
     }
 
     @Override

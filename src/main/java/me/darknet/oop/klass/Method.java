@@ -15,8 +15,12 @@ public class Method extends Oop implements Dumpable {
 
     protected boolean rewritten = false;
 
-    public Method(long base) {
+    Method(long base) {
         super(base, Structs.method);
+    }
+
+    public static Method of(long base) {
+        return OopCache.getOrPut(base, Method::new);
     }
 
     public void setRewritten(boolean rewritten) {

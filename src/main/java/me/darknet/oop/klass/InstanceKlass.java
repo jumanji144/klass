@@ -28,7 +28,7 @@ public class InstanceKlass extends Klass implements Dumpable {
         this.methods = new Array(struct.getAddress(base, "_methods"), Types.getType("Method*"));
         this.fields = new Array(struct.getAddress(base, "_fields"), Types.getType("u2"));
         this.interfaces = new Array(struct.getAddress(base, "_local_interfaces"), Types.getType("Klass*"));
-        this.constantPool = new ConstantPool(struct.getAddress(base, "_constants"));
+        this.constantPool = ConstantPool.of(struct.getAddress(base, "_constants"));
     }
 
     public static InstanceKlass of(Object oop) {
@@ -76,7 +76,7 @@ public class InstanceKlass extends Klass implements Dumpable {
         if(methodList == null) {
             methodList = new ArrayList<>();
             for (int i = 0; i < this.methods.length(); i++) {
-                Method method = new Method(this.methods.getAddress(i));
+                Method method = Method.of(this.methods.getAddress(i));
                 method.setRewritten(rewritten);
                 methodList.add(method);
             }
@@ -154,19 +154,16 @@ public class InstanceKlass extends Klass implements Dumpable {
 
     @Override
     public void dump(DataOutputStream out) throws IOException {
+        ConstantPool pool = getConstantPool();
         out.writeInt(0xCAFEBABE);
         out.writeShort(minorVersion());
         out.writeShort(majorVersion());
         constantPool.buildIndexes();
-        if(isFlagSet(InstanceKlassFlag.HAS_DEFAULT_METHODS) && getAllAccessFlags().contains(AccessFlags.ACC_INTERFACE)) {
-            if(constantPool.getUtf8SymbolIndex("Code") == -1) {
-                constantPool.addVirtualEntry("Code");
-            }
-        }
         constantPool.dump(out);
         out.writeShort(getAccessFlags() & 0xFFFF);
         out.writeShort(constantPool.getClassSymbolIndex(getName()));
-        out.writeShort(constantPool.getClassSymbolIndex(getSuperKlass().getName()));
+        out.writeShort(getSuperKlass().getBase() == 0 ? 0 : constantPool.getClassSymbolIndex(
+                getSuperKlass().getName()));
         out.writeShort(getInterfaces().size());
         for (Klass iface : getInterfaces()) {
             out.writeShort(constantPool.getClassSymbolIndex(iface.getName()));
@@ -179,6 +176,31 @@ public class InstanceKlass extends Klass implements Dumpable {
         for (Method method : getMethods()) {
             method.dump(out);
         }
-        out.writeShort(0); // attributes count
+        out.writeShort(constantPool.operandArrayLength() > 0 ? 1 : 0); // attributes count
+        if(constantPool.operandArrayLength() != 0) {
+            pool.addStringIfAbsent("BootstrapMethods");
+            out.writeShort(pool.getUtf8SymbolIndex("BootstrapMethods"));
+
+            int length = 2;
+            int numBootstrapMethods = pool.operandArrayLength();
+            for (int i = 0; i < numBootstrapMethods; i++) {
+                int numBootstrapArguments = pool.operandArgumentCount(i);
+                length += 2 + 2 + (2 * numBootstrapArguments);
+            }
+
+            out.writeInt(length);
+
+            out.writeShort(numBootstrapMethods);
+            for (int i = 0; i < numBootstrapMethods; i++) {
+                int bsmRef = pool.operandBootstrapMethodRefIndex(i);
+                int numArgs = pool.operandArgumentCount(i);
+                out.writeShort(bsmRef);
+                out.writeShort(numArgs);
+                for (int i1 = 0; i1 < numArgs; i1++) {
+                    int arg = pool.operandArgumentIndex(i, i1);
+                    out.writeShort(arg);
+                }
+            }
+        }
     }
 }
