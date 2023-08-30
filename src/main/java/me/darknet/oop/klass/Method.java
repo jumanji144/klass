@@ -59,14 +59,10 @@ public class Method extends Oop implements Dumpable {
     @Override
     public void dump(DataOutputStream out) throws IOException {
         ConstMethod constMethod = getConstMethod();
-        System.out.println("Dumping method: " + constMethod.getName());
         ConstantPool pool = constMethod.getConstPool();
         out.writeShort(getAccessFlags());
         out.writeShort(constMethod.getNameIndex());
         out.writeShort(constMethod.getSignatureIndex());
-        for (AccessFlags flag : getFlags()) {
-            System.out.println("Flag: " + flag);
-        }
         int attributeCount = 0;
         boolean shouldWriteCode = false;
         if((getAccessFlags() & Opcodes.ACC_ABSTRACT) == 0) {

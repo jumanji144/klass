@@ -50,7 +50,6 @@ public class CodeTransformer implements Opcodes, ReservedOpcodes {
         if(code.length > 65565) throw new IllegalArgumentException("Code too large");
         for (int i = 0; i < code.length; i++) {
             int opcode = code[i] & 0xff;
-            System.out.println(i + ": " + opcode);
             switch (opcode) {
                 // zero operand
                 case NOP:
