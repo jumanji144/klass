@@ -16,8 +16,17 @@ public class Array {
 
     public Array(long base, Type type) {
         this.elementSize = type.getSize();
-        this.length = unsafe.getInt(base);
-        this.elementBase = base + Types.getOffset("Array<" + type.name + ">::_data");
+        if(base != 0) {
+            this.length = unsafe.getInt(base);
+            this.elementBase = base + Types.getOffset("Array<" + type.name + ">::_data");
+        } else {
+            this.length = 0;
+            this.elementBase = 0;
+        }
+    }
+
+    public boolean isNull() {
+        return elementBase == 0;
     }
 
     public long getLong(int index) {
