@@ -1,6 +1,7 @@
 package me.darknet.oop.klass;
 
 import me.darknet.oop.Dumpable;
+import me.darknet.oop.jvm.vmSymbols;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
@@ -26,12 +27,15 @@ public class Field implements Dumpable {
 
     public String getName() {
         if((accessFlags & 0x00000400) != 0) {
-
+            return vmSymbols.getSymbol(nameIndex).asString();
         }
         return pool.getSymbol(nameIndex).asString();
     }
 
     public String getDescriptor() {
+        if((accessFlags & 0x00000400) != 0) {
+            return vmSymbols.getSymbol(descriptorIndex).asString();
+        }
         return pool.getSymbol(descriptorIndex).asString();
     }
 

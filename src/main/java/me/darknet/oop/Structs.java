@@ -8,6 +8,9 @@ public class Structs {
     public static final Struct klass = new Struct("Klass");
     public static final Struct instanceKlass = new Struct("InstanceKlass");
     public static final Struct method = new Struct("Method");
+    public static final Struct nMethod = new Struct("nmethod");
+    public static final Struct methodCounters = new Struct("MethodCounters");
+    public static final Struct invocationCounter = new Struct("InvocationCounter");
     public static final Struct array = new Struct("Array");
     public static final Struct symbol = new Struct("Symbol");
     public static final Struct constMethod = new Struct("ConstMethod");

@@ -4,6 +4,7 @@ import me.darknet.oop.Oop;
 import me.darknet.oop.OopCache;
 import me.darknet.oop.Structs;
 import me.darknet.oop.data.Struct;
+import me.darknet.oop.jvm.vmSymbols;
 
 import java.util.EnumSet;
 
@@ -54,6 +55,10 @@ public class Klass extends Oop {
         return Symbol.of(struct.getAddress(base, "_name")).asString();
     }
 
+    public Symbol getNameSymbol() {
+        return Symbol.of(struct.getAddress(base, "_name"));
+    }
+
     public Klass getSuperKlass() {
         return Klass.of(struct.getAddress(base, "_super"));
     }
@@ -81,5 +86,9 @@ public class Klass extends Oop {
     @Override
     public String toString() {
         return getName();
+    }
+
+    public InstanceKlass asInstance() {
+        return (InstanceKlass) this;
     }
 }

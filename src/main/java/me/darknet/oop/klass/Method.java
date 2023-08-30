@@ -4,6 +4,7 @@ import me.darknet.oop.Oop;
 import me.darknet.oop.OopCache;
 import me.darknet.oop.Structs;
 import me.darknet.oop.Dumpable;
+import me.darknet.oop.code.NMethod;
 import me.darknet.oop.data.CodeTransformer;
 import org.objectweb.asm.Opcodes;
 
@@ -39,24 +40,44 @@ public class Method extends Oop implements Dumpable {
         return AccessFlags.getFlags(getAccessFlags(), AccessFlags.Scope.METHOD);
     }
 
+    public MethodCounters getCounters() {
+        return new MethodCounters(struct.getAddress(base, "_method_counters"));
+    }
+
+    public boolean isCompiled() {
+        return struct.getAddress(base, "_code") != 0;
+    }
+
+    public NMethod getNMethod() {
+        return NMethod.of(struct.getAddress(base, "_code"));
+    }
+
+    public long getNativeEntry() {
+        return struct.getAddress(base, "_from_compiled_entry");
+    }
+
     @Override
     public void dump(DataOutputStream out) throws IOException {
         ConstMethod constMethod = getConstMethod();
         System.out.println("Dumping method: " + constMethod.getName());
-        ConstantPool pool = OopCache.get(constMethod.getConstPool().getBase());
+        ConstantPool pool = constMethod.getConstPool();
         out.writeShort(getAccessFlags());
         out.writeShort(constMethod.getNameIndex());
         out.writeShort(constMethod.getSignatureIndex());
         for (AccessFlags flag : getFlags()) {
             System.out.println("Flag: " + flag);
         }
-        if((getAccessFlags() & Opcodes.ACC_ABSTRACT) != 0) {
-            out.writeShort(0); // Attribute count
-            return;
+        int attributeCount = 0;
+        boolean shouldWriteCode = false;
+        if((getAccessFlags() & Opcodes.ACC_ABSTRACT) == 0) {
+            attributeCount++; // code
+            pool.addStringIfAbsent("Code");
+            shouldWriteCode = true;
         }
-        out.writeShort(1); // Code
+        out.writeShort(attributeCount);
+        if(attributeCount == 0) return;
         byte[] code = constMethod.getCode();
-        if(rewritten) CodeTransformer.transform(pool, code);
+        if (rewritten) CodeTransformer.transform(pool, code);
         // write code attribute
         out.writeShort(pool.getUtf8SymbolIndex("Code"));
         out.writeInt(2 + 2 + 4 + code.length + 2 + 2);
@@ -70,6 +91,6 @@ public class Method extends Oop implements Dumpable {
 
     @Override
     public String toString() {
-        return getConstMethod().getName();
+        return getConstMethod().getName() + getConstMethod().getDescriptor();
     }
 }

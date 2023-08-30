@@ -16,6 +16,12 @@ dependencies {
 
     // objectweb asm
     implementation 'org.ow2.asm:asm:9.5'
+
+    // jelf
+    implementation 'net.fornwall:jelf:0.9.0'
+
+    // pe parser
+    implementation 'com.github.cademtz:JavaPeParser:2.2.3'
 }
 
 test {
