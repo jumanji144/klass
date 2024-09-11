@@ -1,6 +1,5 @@
 package me.darknet.oop.jvm;
 
-import me.darknet.oop.data.Memory;
 import me.darknet.oop.klass.Klass;
 
 public class NarrowKlass {

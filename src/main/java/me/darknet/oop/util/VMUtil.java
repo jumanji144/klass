@@ -1,6 +1,7 @@
 package me.darknet.oop.util;
 
 import me.darknet.oop.Universe;
+import me.darknet.oop.klass.InstanceKlass;
 import org.objectweb.asm.Type;
 
 import java.lang.invoke.MethodHandle;
@@ -15,14 +16,13 @@ public class VMUtil {
         return Type.getType(method).getDescriptor();
     }
 
-    public static me.darknet.oop.klass.Method makeHot(Universe universe, Method method, Object instance) throws Throwable {
+    public static me.darknet.oop.klass.Method makeHot(InstanceKlass klass, Method method, Object instance) throws Throwable {
         method.setAccessible(true);
         // obtain a method handle for the method
         MethodHandle methodHandle = MethodHandles.lookup().unreflect(method);
 
         // make the method hot
-        me.darknet.oop.klass.Method methodOop = universe.findKlass(method.getDeclaringClass().getName().replace('.', '/'))
-                .asInstance()
+        me.darknet.oop.klass.Method methodOop = klass
                 .findMethod(method.getName(), getSignature(method));
 
         boolean isStatic = (method.getModifiers() & java.lang.reflect.Modifier.STATIC) != 0;
@@ -33,23 +33,30 @@ public class VMUtil {
         if(!isStatic) args[i++] = instance;
         for (; i < params; i++) {
             Class<?> type = method.getParameterTypes()[i - (isStatic ? 0 : 1)];
-            if(type.isPrimitive()) args[i] = 0;
+            if(type.isPrimitive()) {
+                if(type == Boolean.TYPE)
+                    args[i] = false;
+                else
+                    args[i] = 0;
+            }
             else args[i] = null;
         }
 
         while (!methodOop.isCompiled()) {
             try {
                 methodHandle.invokeWithArguments(args);
-            } catch (Throwable ignored) {}
+            } catch (Throwable ignored) {
+                ignored.printStackTrace();
+            }
         }
 
         return methodOop;
     }
 
-    public static me.darknet.oop.klass.Method makeHot(Universe universe, String path, Object instance) throws Throwable {
+    public static me.darknet.oop.klass.Method makeHot(InstanceKlass klass, String path, Object instance) throws Throwable {
         // path is <class>.<name><signature>
         String[] split = path.split("\\.");
-        String klass = String.join(".", Arrays.copyOfRange(split, 0, split.length - 1));
+        String clazz = String.join(".", Arrays.copyOfRange(split, 0, split.length - 1));
         String name = split[split.length - 1];
 
         String signature = name.substring(name.indexOf('('));
@@ -62,9 +69,9 @@ public class VMUtil {
         for (int i = 0; i < asmTypes.length; i++) {
             types[i] = getMirrorType(asmTypes[i]);
         }
-        Method method = Class.forName(klass).getDeclaredMethod(name, types);
+        Method method = Class.forName(clazz).getDeclaredMethod(name, types);
 
-        return makeHot(universe, method, instance);
+        return makeHot(klass, method, instance);
     }
 
     public static void install(me.darknet.oop.klass.Method method, byte[] code) {
@@ -100,10 +107,10 @@ public class VMUtil {
         return null;
     }
 
-    public static me.darknet.oop.klass.Method install(Universe universe, String path, Object instance, byte[] payload) throws Throwable {
+    public static me.darknet.oop.klass.Method install(InstanceKlass klass, String path, Object instance, byte[] payload) throws Throwable {
         // path is <class>.<name><signature>
         String[] split = path.split("\\.");
-        String klass = String.join(".", Arrays.copyOfRange(split, 0, split.length - 1));
+        String clazz = String.join(".", Arrays.copyOfRange(split, 0, split.length - 1));
         String name = split[split.length - 1];
 
         String signature = name.substring(name.indexOf('('));
@@ -116,14 +123,13 @@ public class VMUtil {
         for (int i = 0; i < asmTypes.length; i++) {
             types[i] = getMirrorType(asmTypes[i]);
         }
-        Method method = Class.forName(klass).getDeclaredMethod(name, types);
+        Method method = Class.forName(clazz).getDeclaredMethod(name, types);
 
         // find universe method
-        me.darknet.oop.klass.Method methodOop = universe.findKlass(klass.replace('.', '/'))
-                .asInstance()
+        me.darknet.oop.klass.Method methodOop = klass
                 .findMethod(name, signature);
 
-        if(!methodOop.isCompiled()) makeHot(universe, method, instance);
+        if(!methodOop.isCompiled()) makeHot(klass, method, instance);
 
         // install the method
         install(methodOop, payload);
@@ -131,14 +137,47 @@ public class VMUtil {
         return methodOop;
     }
 
-    public static me.darknet.oop.klass.Method install(Universe universe, String path, Object instance, String hexString) throws Throwable {
+    public static me.darknet.oop.klass.Method install(InstanceKlass klass, String path, Object instance, String hexString) throws Throwable {
         // string is like <byte><byte>...
         byte[] bytes = new byte[hexString.length() / 2];
         for (int i = 0; i < bytes.length; i++) {
             bytes[i] = (byte) Integer.parseInt(hexString.substring(i * 2, i * 2 + 2), 16);
         }
 
-        return install(universe, path, instance, bytes);
+        return install(klass, path, instance, bytes);
+    }
+
+    public static me.darknet.oop.klass.Method install(InstanceKlass klass, String path, Object instance, long entryPoint) throws Throwable {
+        Unsafe unsafe = UnsafeAccessor.getUnsafe();
+
+        // call rel32
+        me.darknet.oop.klass.Method entry = install(klass, path, instance, "E800000000C3");
+
+        long nativeEntry = entry.getNativeEntry();
+        int rel32 = (int) (entryPoint - nativeEntry - 5);
+
+        unsafe.putInt(entry.getNativeEntry() + 1, rel32);
+
+        return entry;
+    }
+
+    public static me.darknet.oop.klass.Method install(String path, Object instance, long entryPoint) throws Throwable {
+        // path is <class>.<name><signature>
+        String[] split = path.split("\\.");
+        String klass = String.join(".", Arrays.copyOfRange(split, 0, split.length - 1));
+
+        Unsafe unsafe = UnsafeAccessor.getUnsafe();
+
+        // call rel32, ret
+        me.darknet.oop.klass.Method entry = install(Universe.getFromClass(Class.forName(klass)).asInstance(),
+                path, instance, "E800000000C3");
+
+        long nativeEntry = entry.getNativeEntry();
+        int rel32 = (int) (entryPoint - nativeEntry - 5);
+
+        unsafe.putInt(entry.getNativeEntry() + 1, rel32);
+
+        return entry;
     }
 
 }

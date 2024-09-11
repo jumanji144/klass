@@ -1,8 +1,8 @@
 package me.darknet.oop.data;
 
+import me.darknet.oop.jvm.BaseObtainStrategy;
 import me.darknet.oop.types.Type;
 import me.darknet.oop.types.Types;
-import me.darknet.oop.util.JVMUtil;
 import me.darknet.oop.util.Unsafe;
 import me.darknet.oop.util.UnsafeAccessor;
 
@@ -83,7 +83,7 @@ public class Struct {
     public Field getStaticField(String field) {
         me.darknet.oop.types.Field f = Types.getField(type.name + "::" + field);
         if(!f.isStatic) return null;
-        return new Field(JVMUtil.getLibJvmBaseAddress() + f.offset, field);
+        return new Field(BaseObtainStrategy.getStrategy().getBase() + f.offset, field);
     }
 
     public Field getField(long base, String field) {

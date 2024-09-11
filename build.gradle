@@ -8,6 +8,10 @@ version = '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    maven {
+        name = 'jitpack'
+        url = 'https://jitpack.io'
+    }
 }
 
 dependencies {
@@ -22,6 +26,9 @@ dependencies {
 
     // pe parser
     implementation 'com.github.cademtz:JavaPeParser:2.2.3'
+
+    // jetbrains annotations
+    implementation 'org.jetbrains:annotations:22.0.0'
 }
 
 test {

@@ -1,21 +1,21 @@
-import jdk.internal.org.objectweb.asm.ClassReader;
-import jdk.internal.org.objectweb.asm.tree.ClassNode;
 import me.darknet.oop.Universe;
+import me.darknet.oop.jithack.Linker;
 import me.darknet.oop.jithack.NativeAccess;
-import me.darknet.oop.jvm.NativeOopHandle;
-import me.darknet.oop.jvm.ProxyOopHandle;
+import me.darknet.oop.jithack.NativeInstall;
+import me.darknet.oop.jvm.Flag;
+import me.darknet.oop.jvm.base.SigScanStrategy;
+import me.darknet.oop.jvm.base.ThreadStrategy;
 import me.darknet.oop.klass.*;
-import me.darknet.oop.library.NativeLibrary;
+import me.darknet.oop.library.Library;
 import me.darknet.oop.util.*;
-import sun.nio.fs.UnixFileSystemProvider;
 
-import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.lang.invoke.MethodHandle;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.concurrent.ConcurrentMap;
+import java.util.Map;
 
 public class Test {
 
@@ -44,9 +44,9 @@ public class Test {
 		klass.dump(new DataOutputStream(Files.newOutputStream(path)));
 	}
 
-	public static void main(String[] args) throws IOException {
+	public static void test() {}
 
-		dumpAll();
+	public static void main(String[] args) throws Throwable {
 
 	}
 

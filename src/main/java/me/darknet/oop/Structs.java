@@ -7,6 +7,7 @@ public class Structs {
     public static final Struct oopDesc = new Struct("oopDesc");
     public static final Struct klass = new Struct("Klass");
     public static final Struct instanceKlass = new Struct("InstanceKlass");
+    public static final Struct javaThread = new Struct("JavaThread");
     public static final Struct method = new Struct("Method");
     public static final Struct nMethod = new Struct("nmethod");
     public static final Struct methodCounters = new Struct("MethodCounters");

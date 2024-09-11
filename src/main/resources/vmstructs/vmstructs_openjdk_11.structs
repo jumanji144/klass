@@ -1169,6 +1169,7 @@ field JavaThread _is_method_handle_return int false 1112 0x0
 field JavaThread _special_runtime_exit_condition JavaThread::AsyncRequests false 944 0x0
 field JavaThread _saved_exception_pc address false 976 0x0
 field JavaThread _thread_state JavaThreadState false 960 0x0
+field JavaThread _jni_environment int* false 840 0x0
 field JavaThread _osthread OSThread* false 624 0x0
 field JavaThread _stack_base address false 656 0x0
 field JavaThread _stack_size size_t false 664 0x0

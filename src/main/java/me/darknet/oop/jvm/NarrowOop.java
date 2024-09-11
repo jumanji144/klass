@@ -1,7 +1,5 @@
 package me.darknet.oop.jvm;
 
-import me.darknet.oop.data.Memory;
-
 public class NarrowOop {
 
     private final long address;

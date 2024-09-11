@@ -6,5 +6,10 @@ public enum SymbolType {
 
     UNKNOWN,
     FUNCTION,
-    OBJECT
+    SECTION,
+    OBJECT;
+
+    boolean isExternal() {
+        return this == FUNCTION || this == OBJECT;
+    }
 }

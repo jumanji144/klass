@@ -1,67 +1,62 @@
 package me.darknet.oop.jithack;
 
 import me.darknet.oop.Universe;
-import me.darknet.oop.klass.Method;
-import me.darknet.oop.util.Unsafe;
-import me.darknet.oop.util.UnsafeAccessor;
-import me.darknet.oop.util.VMUtil;
+import me.darknet.oop.jvm.base.ThreadStrategy;
+import me.darknet.oop.klass.InstanceKlass;
+import me.darknet.oop.library.Library;
+import me.darknet.oop.util.*;
+
+import java.lang.invoke.MethodHandle;
+import java.util.HashMap;
+import java.util.Map;
 
 public class NativeAccess {
-
-    private static final long proxyEntry;
-    private static final long proxyPage;
     private static final Unsafe unsafe = UnsafeAccessor.getUnsafe();
+    private static final Map<String, MethodHandle> handles = new HashMap<>();
 
-    /// Hot methods
-    static Object convert0(Object object) { return object; }
-    static Object convert1(long a) { return a; }
-    static void nativeptr0(Object o) {}
+    public static final int PROT_READ = 0x1;
+    public static final int PROT_WRITE = 0x2;
+    public static final int PROT_EXEC = 0x4;
 
-    public static long oopToHandle(Object o) {
-        nativeptr0(o);
+    public static final int MAP_SHARED = 0x01;
+    public static final int MAP_PRIVATE = 0x02;
+    public static final int MAP_FIXED = 0x10;
+    public static final int MAP_ANONYMOUS = 0x20;
 
-        return unsafe.getAddress(proxyPage);
+    public static long GetStringUTFChars(String string) {
+        byte[] bytes = string.getBytes();
+        long address = unsafe.allocateMemory(bytes.length + 1);
+        unsafe.copyMemory(bytes, unsafe.arrayBaseOffset(byte[].class), null, address, bytes.length);
+        unsafe.putByte(address + bytes.length, (byte) 0);
+        return address;
     }
 
-    public static Object handleToOop(long a) {
-        int offset = 2; // 2 bytes for the REX + MOVABS
+    public static void ReleaseStringUTFChars(long address) {
+        if(address != 0)
+            unsafe.freeMemory(address);
+    }
 
-        unsafe.putAddress(proxyEntry + offset, a);
+    public static String GetStringFromUTFChars(long address) {
+        if(address == 0) return null;
+        long length = 0;
+        while (unsafe.getByte(address + length) != 0) {
+            length++;
+        }
+        byte[] bytes = new byte[(int) length];
+        unsafe.copyMemory(null, address, bytes, unsafe.arrayBaseOffset(byte[].class), length);
+        return new String(bytes);
+    }
 
-        return convert1(a);
+    public static long mmap(long addr, long length, int prot, int flags, int fd, int offset) throws Throwable {
+        MethodHandle handle = handles.get("mmap");
+        return (long) handle.invokeExact(addr, length, prot, flags, fd, offset);
     }
 
     static {
         try {
-            Universe universe = Universe.obtainFrom(NativeAccess.class);
+            Library libC = Libraries.getLibC();
 
-            // calling convention:
-            // pure: rsi, rdx, rcx, r8, r9, rax
-            // stack: rsi, rbx, r11, r13
-            // this: rsi (first argument)
-            // non-void: rdx / rsi (return value)
-
-            Method convertMethod = VMUtil.makeHot(universe,
-                    "me.darknet.oop.jithack.NativeAccess.convert0(Ljava/lang/Object;)Ljava/lang/Object;",
-                    null);
-            Method proxyMethod = VMUtil.install(universe,
-                    "me.darknet.oop.jithack.NativeAccess.convert1(J)Ljava/lang/Object;",
-                    null,
-                    "48BEE8E6CAACDF7F000048B8E8E6CAACDF7F0000FFE0");
-            Method nativeptrMethod = VMUtil.install(universe,
-                    "me.darknet.oop.jithack.NativeAccess.nativeptr0(Ljava/lang/Object;)V",
-                    null,
-                    "48B800000000F07F0000488930C3");
-
-            proxyEntry = proxyMethod.getNativeEntry();
-            proxyPage = unsafe.allocateMemory(unsafe.pageSize());
-
-            int off = "48BEE8E6CAACDF7F0000".length() / 2 + 2;
-
-            long entry = proxyMethod.getNativeEntry();
-            unsafe.putLong(entry + off,     convertMethod.getNativeEntry());
-
-            unsafe.putAddress(nativeptrMethod.getNativeEntry() + 2, proxyPage);
+            handles.put("mmap", NativeInstall.install(libC.getExportAddr("mmap"), "(JJIIII)J"));
         } catch (Throwable thr) {
             throw new ExceptionInInitializerError(thr);
         }

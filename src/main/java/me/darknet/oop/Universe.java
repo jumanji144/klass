@@ -12,20 +12,34 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Universe {
 
     private final List<Klass> klasses;
 
-    private Universe(Class<?> clazz) {
+    private Universe(Class<?> clazz, boolean single) {
         ProxyOopHandle proxyOopHandle = new ProxyOopHandle(clazz);
         long klassAddress = proxyOopHandle.getLong(Types.getValue("java_lang_Class::_klass_offset"));
-        this.klasses = getLoadedKlassesFromBase(InstanceKlass.of(klassAddress));
+        if(!single)
+            this.klasses = getLoadedKlassesFromBase(InstanceKlass.of(klassAddress));
+        else
+            this.klasses = Collections.singletonList(InstanceKlass.of(klassAddress));
+    }
+
+    public static Klass getFromClass(Class<?> clazz) {
+        ProxyOopHandle proxyOopHandle = new ProxyOopHandle(clazz);
+        long klassAddress = proxyOopHandle.getLong(Types.getValue("java_lang_Class::_klass_offset"));
+        return InstanceKlass.of(klassAddress);
     }
 
     public static Universe obtainFrom(Class<?> clazz) {
-        return new Universe(clazz);
+        return new Universe(clazz, false);
+    }
+
+    public static Universe singleton(Class<?> clazz) {
+        return new Universe(clazz, true);
     }
 
     public static List<Klass> getLoadedKlassesFromBase(InstanceKlass instanceKlass) {

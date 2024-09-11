@@ -61,6 +61,18 @@ public class NMethod extends Oop {
         return getMetadataOffset() - getOopsOffset();
     }
 
+    private long getInstsBegin() {
+        return struct.getAddress(base, "_code_begin");
+    }
+
+    private long getInstsEnd() {
+        return base + struct.getInt(base, "_stub_offset");
+    }
+
+    public long getInstsSize() {
+        return getInstsEnd() - getInstsBegin();
+    }
+
     public NativeOopHandle getOop(int index) {
         return new NativeOopHandle(base + getOopsOffset() + ((long) index * Types.getSize("oop*")));
     }

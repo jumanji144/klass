@@ -3,7 +3,6 @@ package me.darknet.oop.util;
 import java.lang.invoke.MethodHandle;
 import java.lang.invoke.MethodHandles;
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 import java.security.ProtectionDomain;
 
 public class Unsafe {
@@ -23,7 +22,7 @@ public class Unsafe {
     private static final MethodHandle addressSize;
     private static final MethodHandle allocateMemory, reallocateMemory, freeMemory;
     private static final MethodHandle pageSize;
-    private static final MethodHandle defineClass, defineAnonymousClass, ensureClassInitialized;
+    private static final MethodHandle defineAnonymousClass, ensureClassInitialized;
 
     public long getLong(long address) {
         try {
@@ -381,14 +380,6 @@ public class Unsafe {
         }
     }
 
-    public Class<?> defineClass(String name, byte[] bytes, int off, int len, ClassLoader loader, ProtectionDomain protectionDomain) {
-        try {
-            return (Class<?>) defineClass.invoke(theUnsafe, name, bytes, off, len, loader, protectionDomain);
-        } catch (Throwable throwable) {
-            throw new RuntimeException(throwable);
-        }
-    }
-
     public Class<?> defineAnonymousClass(Class<?> hostClass, byte[] bytes, Object[] cpPatches) {
         try {
             return (Class<?>) defineAnonymousClass.invoke(theUnsafe, hostClass, bytes, cpPatches);
@@ -407,7 +398,12 @@ public class Unsafe {
 
     static {
         try {
-            Class<?> unsafeClass = Class.forName("sun.misc.Unsafe");
+            Class<?> unsafeClass;
+            try {
+                unsafeClass = Class.forName("sun.misc.Unsafe");
+            } catch (ClassNotFoundException e) {
+                unsafeClass = Class.forName("jdk.internal.misc.Unsafe");
+            }
             // obtain lookup instance
             Field field = unsafeClass.getDeclaredField("theUnsafe");
             field.setAccessible(true);
@@ -470,8 +466,6 @@ public class Unsafe {
             freeMemory = lookup.unreflect(unsafeClass.getMethod("freeMemory", long.class));
 
             pageSize = lookup.unreflect(unsafeClass.getMethod("pageSize"));
-
-            defineClass = lookup.unreflect(unsafeClass.getMethod("defineClass", String.class, byte[].class, int.class, int.class, ClassLoader.class, ProtectionDomain.class));
 
             defineAnonymousClass = lookup.unreflect(unsafeClass.getMethod("defineAnonymousClass", Class.class, byte[].class, Object[].class));
 

@@ -1,9 +1,12 @@
 package me.darknet.oop.util;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Util {
 
@@ -50,6 +53,16 @@ public class Util {
         return builder.toString();
     }
 
+    public static byte[] readStreamBytes(InputStream in) throws IOException {
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        byte[] buffer = new byte[1024];
+        int read;
+        while((read = in.read(buffer)) != -1) {
+            out.write(buffer, 0, read);
+        }
+        return out.toByteArray();
+    }
+
     public static byte[] memoryView(long pointer, int size) {
         byte[] bytes = new byte[size];
         for(int i = 0; i < bytes.length; i++) {
@@ -72,5 +85,25 @@ public class Util {
         }
 
         return builder.toString();
+    }
+
+    public static Os getOs() {
+        String os = System.getProperty("os.name").toLowerCase();
+        if(os.contains("win")) {
+            return Os.WINDOWS;
+        } else if(os.contains("mac")) {
+            return Os.MAC;
+        } else if(os.contains("nix") || os.contains("nux") || os.contains("aix")) {
+            return Os.LINUX;
+        }
+        return Os.LINUX;
+    }
+
+    public static boolean is64Bit() {
+        return System.getProperty("sun.arch.data.model").equals("64");
+    }
+
+    public static boolean isLittleEndian() {
+        return System.getProperty("sun.cpu.endian").equals("little");
     }
 }
