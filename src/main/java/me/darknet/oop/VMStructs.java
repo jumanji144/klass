@@ -166,6 +166,10 @@ public class VMStructs {
                 boolean isInteger = unsafe.getInt(entryAddress + typeEntryIsIntegerTypeOffset) != 0;
                 boolean isUnsigned = unsafe.getInt(entryAddress + typeEntryIsUnsignedOffset) != 0;
                 gHotSpotVMTypes.put(name, new Type(name, parentName, size, isOop, isInteger, isUnsigned));
+
+                // add pointer type
+                gHotSpotVMTypes.put(name + "*", new Type(name + "*", null, unsafe.addressSize(),
+                        true, false, false));
             }
             entryAddress += typeEntryArrayStride;
         } while (typeNamesAddress != 0);
@@ -238,6 +242,7 @@ public class VMStructs {
     private static String printType(List<String> printedTypes, Map<String, Type> gHotSpotVMTypes, Type value) {
         if(printedTypes.contains(value.name)) return "";
         printedTypes.add(value.name);
+
         StringBuilder builder = new StringBuilder();
         if(value.parent != null
                 && !printedTypes.contains(value.parent)

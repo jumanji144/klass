@@ -467,7 +467,8 @@ public class Unsafe {
 
             pageSize = lookup.unreflect(unsafeClass.getMethod("pageSize"));
 
-            defineAnonymousClass = lookup.unreflect(unsafeClass.getMethod("defineAnonymousClass", Class.class, byte[].class, Object[].class));
+            //defineAnonymousClass = lookup.unreflect(unsafeClass.getMethod("defineAnonymousClass", Class.class, byte[].class, Object[].class));
+            defineAnonymousClass = null;
 
             ensureClassInitialized = lookup.unreflect(unsafeClass.getMethod("ensureClassInitialized", Class.class));
         } catch (Exception e) {

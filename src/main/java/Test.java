@@ -7,6 +7,7 @@ import me.darknet.oop.jvm.base.SigScanStrategy;
 import me.darknet.oop.jvm.base.ThreadStrategy;
 import me.darknet.oop.klass.*;
 import me.darknet.oop.library.Library;
+import me.darknet.oop.types.Types;
 import me.darknet.oop.util.*;
 
 import java.io.DataOutputStream;
@@ -47,6 +48,9 @@ public class Test {
 	public static void test() {}
 
 	public static void main(String[] args) throws Throwable {
+		Types.resolveRuntime();
+
+		Universe universe = Universe.obtainFrom(ConstantPool.class);
 
 	}
 

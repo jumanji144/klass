@@ -1,5 +1,6 @@
 package me.darknet.oop.types;
 
+import me.darknet.oop.VMStructs;
 import me.darknet.oop.util.Util;
 
 import java.io.*;
@@ -7,6 +8,8 @@ import java.math.BigInteger;
 import java.util.*;
 
 public class Types {
+
+    private static boolean initialized = false;
 
     private static final Map<String, Type> types = new HashMap<>();
     private static final Map<String, Field> fields = new HashMap<>();
@@ -170,11 +173,19 @@ public class Types {
         }
     }
 
-    static {
-        try {
-            initialize();
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+    public static void resolveRuntime() throws IOException {
+        String s = VMStructs.dumpVMStructs();
+        parseStructDef(new ByteArrayInputStream(s.getBytes()));
+        initialized = true;
+    }
+
+    public static void resolvePreResolved() throws IOException {
+        initialize();
+        initialized = true;
+    }
+
+    public static void resolveFromFile(String path) throws IOException {
+        parseStructDef(new FileInputStream(path));
+        initialized = true;
     }
 }
